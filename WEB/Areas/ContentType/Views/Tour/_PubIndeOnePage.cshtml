@@ -1,0 +1,60 @@
+﻿@model WebModule
+@{
+    var webmodule = Model;
+    var urlcat = webmodule.URL;
+    if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+    {
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
+    }
+    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+    TempData["URL"] = ApplicationService.Domain + urlcat;
+    TempData["Cat"] = webmodule.Title;
+
+
+    <div class="tour-title">
+        <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title" title="@webmodule.Title">
+        <h1 class="white text-center shadow-text center-text">@webmodule.Title</h1>
+
+        <div>
+            <a class="smooth-scroll" href="#read-tour">
+                <img class="curvechevron" src="~/Content/themes/web/assets/svgs/curvesingle.svg" alt="">
+                <div class="chevroncurve">
+                    <i class="fa hoverchevron white fa-chevron-down"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+    <section id="section3" class="tour-list-sidebar">
+
+        <div class="container-fluid">
+            <div class="row">
+                @Html.Action("_SiteMap", "Home", new { area = "" })
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-lg-3 ml-lg-5 order-lg-first order-last mt-3 mt-lg-0">
+
+                    @Html.Action("_FrmSearchDetail", "Home", new { area = "ContentType" })
+
+                    @*@Html.Partial("_QuickContact")*@
+
+                    @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_tour" })
+
+
+                </div>
+
+                <div class="col-xs-12 col-md-12 col-lg-8  single-tour">
+                    <h4 id="read-tour" class="black text-left bold">@webmodule.Title</h4>
+
+
+                    <div class="separator-tour"></div>
+
+                    <div class="post-emtry">
+                        @Html.Raw(webmodule.Body)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

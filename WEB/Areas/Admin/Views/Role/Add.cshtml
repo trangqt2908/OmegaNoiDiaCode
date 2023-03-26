@@ -1,0 +1,15 @@
+﻿@model WebModels.WebRole
+@{
+   
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+@using (Html.BeginForm("Add", "Role", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal fix" }))
+{  
+	<div class="control-group">@Html.LabelFor(m => m.RoleName, new { @class = "control-label" })<div class="controls">@Html.TextBoxFor(m => m.RoleName, new { @class = "input-block-level" }) @Html.ValidationMessageFor(m => m.RoleName)</div></div><div class="control-group">@Html.LabelFor(m => m.Title, new { @class = "control-label" })<div class="controls">@Html.TextBoxFor(m => m.Title, new { @class = "input-block-level" }) @Html.ValidationMessageFor(m => m.Title)</div></div><div class="control-group">@Html.LabelFor(m => m.Description, new { @class = "control-label" })<div class="controls">@Html.TextAreaFor(m => m.Description, new { @class = "input-block-level" })</div></div><div class="validation-group"><div class="controls">@Html.ValidationSummary(true)</div></div><div class="form-actions"><button class="btn btn-primary" type="submit"><i class="icon-save"></i> @Resources.Common.SaveChanges</button></div> @Html.AntiForgeryToken()
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        top.winsetup("@Html.Raw(Resources.Common.AddItem)", 500, 250, true);  
+    });
+    function create_success() { top.winclose(); top.$("#grid").data("kendoGrid").dataSource.read(); }
+</script>

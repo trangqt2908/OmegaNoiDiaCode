@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{
+    Layout = "";
+    int i = 0;
+}
+
+<ul class="list-inline">
+    <li class="destination">
+        <i class="fa fa-map-marker fa-fw"></i>
+        @foreach (var item in Model)
+        {
+            i++;
+          
+            if(i != Model.Count())
+            {
+                  <span>@item.Title  &nbsp; - &nbsp; </span>                
+            }
+            else
+            {
+                   <span>@item.Title </span> 
+            }
+        }
+    </li>
+</ul>
+
+
+

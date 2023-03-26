@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Layouts>
+  <Layout Title="Layout 01 (/Views/Shared/_Layout.cshtml)" Path="~/Views/Shared/_Layout.cshtml"  />
+  <Layout Title="Layout 02 (/Views/Shared/_Layout_02.cshtml)" Path="~/Views/Shared/_Layout_02.cshtml" />
+  <Layout Title="Layout 03 (/Views/Shared/_Layout_03_FullContent.cshtml)" Path="~/Views/Shared/_Layout_03_FullContent.cshtml" />
+  <Layout Title="Layout 04 (/Views/Shared/_Layout_04_No_Backgroud.cshtml)" Path="~/Views/Shared/_Layout_04_No_Backgroud.cshtml" />
+</Layouts>

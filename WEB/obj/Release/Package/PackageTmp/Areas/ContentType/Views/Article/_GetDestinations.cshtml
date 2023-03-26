@@ -1,0 +1,26 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{
+
+    Layout = "";
+
+}
+
+
+<div class="sidebar-item sidebar-widget">
+    <h3>@Resources.Common.TopDestinations</h3>
+    <ul class="archive-list">
+        @foreach (var item in Model)
+        {
+            var url = Url.Action("Index", "Home", new
+            {
+                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                id = item.ID,
+                area = ""
+            });
+
+            <li>
+                <a href="@url" title="@item.Title"> @item.Title </a>
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{
+    var parent = (WebModule)ViewBag.currentModule;
+    var urlParent = parent.URL;
+    if (string.IsNullOrEmpty(parent.URL) || string.IsNullOrWhiteSpace(parent.URL))
+    {
+        urlParent = Url.Action("Index", "Home", new { metatitle = parent.MetaTitle != null ? parent.MetaTitle : "web", id = parent.ID });
+    
+    
+    }
+    var styleActive = "";
+    if (ViewBag.currentModuleId == 8 || ViewBag.currentModuleId == 69)
+    {
+        styleActive = "active";
+    }
+}
+
+<div class="col-md-12 text-center">
+    <ul id="filter-list">
+        <li class="filter @styleActive"><a href="@urlParent" title="All"> All </a></li>
+
+        @foreach (var item in Model)
+        {                        
+            if(item.ID == ViewBag.currentModuleId)
+            {
+                styleActive = "active";
+            }
+            else
+            {
+                styleActive = "";
+            }
+
+            var url = item.URL;
+            if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+            {
+                url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", id = item.ID });
+            }
+            <li class="filter @styleActive"> <a href="@url" title="@item.Title"> @item.Title </a></li>
+        }
+    </ul>
+</div>

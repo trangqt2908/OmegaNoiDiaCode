@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    ViewBag.Title = "_OtherNews";
+    Layout = "";
+
+    var urlcat = "";
+    var webmodule = new WebModule();
+    if (ViewBag.WebModule != null)
+    {
+        webmodule = (WebModule)ViewBag.WebModule;
+        urlcat = webmodule.URL;
+        if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+        {
+            urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
+        }
+    }
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="title-row">
+            @if (webmodule.ID == 0)
+            {
+                <h3 class="title-entry">@Resources.Common.AllToursIn @ViewBag.WebModuleName</h3>
+            }
+            else
+            {
+                <h3 class="title-entry">@Resources.Common.RelatedTours</h3>
+                <a class="pull-right" href="@urlcat"> @Resources.Common.FindMore  <i class="fa fa-angle-double-right"></i></a>
+            }
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+        var urlContent = Url.Action("Detail", "Home", new
+        {
+            metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+            m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+            area = ""
+        });
+
+
+        <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
+            <div class="card ">
+                <small class="white front"><span class="fa fa-clock mr-2 white"></span> &nbsp; <strong>@item.ProductInfo.Duration</strong><br>@Resources.Common.Days</small>
+                <a class="img-card" href="@urlContent" title="@item.Title">
+                    <img src="@img" alt="@item.Title" title="@item.Title" />
+                </a>
+                <div class="card-content">
+                    <h2 class="black">
+                        <a href="@urlContent" title="@item.Title">
+                            @if (!string.IsNullOrWhiteSpace(item.Title))
+                            {
+                                @Html.RawSubString(item.Title, 35)
+                            }
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    }
+</div>

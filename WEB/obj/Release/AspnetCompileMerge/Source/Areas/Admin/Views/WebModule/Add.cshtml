@@ -1,0 +1,221 @@
+﻿@model WebModels.WebModule
+@{   
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+@using (Html.BeginForm("Add", "WebModule", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{  
+
+    <div class="control-group">
+        @Html.LabelFor(m => m.UID, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.UID, new { @class = "input-block-level" })
+            @Html.ValidationMessageFor(m => m.UID)
+        </div>
+    </div>  
+    <div class="control-group">
+        @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Title, new { @class = "input-block-level" })
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+    </div>  
+    <div class="control-group">
+        @Html.LabelFor(m => m.ContentTypeID, new { @class = "control-label" })
+        <div class="controls">
+            @(Html.Kendo().DropDownListFor(m => m.ContentTypeID)
+          .HtmlAttributes(new { style = "width: 200px" })
+          .DataTextField("Title")
+          .DataValueField("ID")
+          .DataSource(source =>
+          {
+              source.Read(read =>
+              {
+                  read.Action("GetContentTypes", "ContentType");
+              });
+          })
+    )
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.ParentID, new { @class = "control-label" })
+        <div class="controls">
+            @Html.HiddenFor(m => m.ParentID, new { @id = "parent" })
+            <select id="select_parent_0" class="disp-none select-parent"></select>
+            <select id="select_parent_1" class="disp-none select-parent">
+            </select>
+            <select id="select_parent_2" class="disp-none select-parent">
+            </select>
+            <select id="select_parent_3" class="disp-none select-parent">
+            </select>
+            <select id="select_parent_4" class="disp-none select-parent">
+            </select>
+            <script>
+                function loaddatafor(obj, id) {
+                    $.ajax({
+                        type: 'GET', url: '/admin/webmodule/getbyparent/' + id,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json", async: false,
+                        success: function (data) {
+                            var html_temp = "<option value='$id'>$title</option>";
+                            var len = data.length;
+                            if (len > 0) {
+                                var html = "<option value=''>Chọn danh mục</option>";
+                                for (var i = 0; i < len; i++) {
+                                    html += html_temp.replace("$id", data[i].ID).replace("$title", data[i].Title);
+                                }
+                                $(obj).html(html); $(obj).show();
+                            }
+                        },
+                        error: function (data) { alert("Dịch vụ dữ liệu danh mục tin tức bị lỗi. Khởi động lại trình duyệt.") }
+                    });
+                }
+                $(document).ready(function () {
+                    var init_parent = null;
+                    var data = [];
+                    $.ajax({
+                        type: 'GET', url: '/admin/webmodule/getparentid/' + init_parent,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: false,
+                        success: function (d) {
+                            for (i = 0; i < d.length; i++) {
+                                data.push(d[i]);
+                            }
+                        },
+                        error: function (d) { }
+                    });
+                    loaddatafor($('#select_parent_0'), null);
+                    var dlen = data.length;
+                    if (dlen > 0) {
+                        for (i = 0; i < dlen; i++) {
+                            $('#select_parent_' + i + ' option[value="' + data[dlen - i - 1] + '"]').attr("selected", "selected");
+                            loaddatafor($('#select_parent_' + (i + 1)), data[dlen - i - 1]);
+                        }
+                    }
+                    var dataparents = $('.select-parent');
+                    for (var s = 0; s < dataparents.length; s++) {
+                        $('#select_parent_' + s).change({ index: s }, function (event) {
+                            var obj = $(this);
+                            var id = $(this).val();
+                            for (i = event.data.index + 1; i < dataparents.length; i++) {
+                                dataparents.eq(i).hide();
+                            }
+                            if (id.length > 0) {
+                                $('#parent').val(id);
+                                loaddatafor($(obj).next(), id);
+                            } else {
+                                if (event.data.index > 0) {
+                                    $('#parent').val(dataparents.eq(event.data.index - 1).val());
+                                } else {
+                                    $('#parent').val("");
+                                }
+                            }
+                        });
+                    }
+
+                });
+            </script>
+        </div>
+    </div>  
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextAreaFor(m => m.Description, new { @class = "input-block-level" })
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.Image, new { @class = "control-label" })
+        <div class="controls"> 
+               <input type="file" name="Image" /> 
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.URL, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.URL, new { @class = "input-block-level" })
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.Target, new { @class = "control-label" })
+        <div class="controls">
+            @Html.DropDownListFor(
+                    m => m.Target,
+                    new SelectList(new List<SelectListItem> 
+                     {
+                        new SelectListItem{ Text="Chuyển trang", Value = "_self" },
+                        new SelectListItem{ Text="Trang mới", Value = "_blank" }
+                     }, "Value", "Text")
+                    )
+        </div>
+    </div> 
+    
+     
+    <div class="control-group">
+        @Html.LabelFor(m => m.MetaKeywords, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextAreaFor(m => m.MetaKeywords, new { @class = "input-block-level" })
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.MetaDescription, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextAreaFor(m => m.MetaDescription, new { @class = "input-block-level" })
+        </div>
+    </div>    
+       
+    <div class="control-group">
+        @Html.LabelFor(m => m.IndexView, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.IndexView, new { @class = "input-block-level" })
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.PublishIndexView, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.PublishIndexView, new { @class = "input-block-level" })
+        </div>
+    </div>   
+    <div class="control-group">
+        @Html.LabelFor(m => m.Status, new { @class = "control-label" })
+        <div class="controls">
+            @Html.DropDownListFor(
+                    m => m.Status,
+                    new SelectList(new List<SelectListItem> 
+                     {
+                        new SelectListItem{ Text="Phát hành", Value = "1" },
+                        new SelectListItem{ Text="Nội bộ", Value = "0" },
+                         new SelectListItem{ Text="Khóa", Value = "-1" }
+                        
+                     }, "Value", "Text")
+                    )
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.Order, new { @class = "control-label" })
+        <div class="controls">
+            @(Html.Kendo().NumericTextBoxFor<int>(m => m.Order)
+            .Min(0)
+            .Max(100)
+            .Value(1).Format("#")
+      )
+        </div>
+    </div>
+    <div class="validation-group">
+        <div class="controls">
+            @Html.ValidationSummary(true)
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">@Resources.Common.SaveChanges</button>
+    </div>
+ @Html.AntiForgeryToken()
+}
+<script type="text/javascript">
+    function create_success() {
+        top.$("#window").data("kendoWindow").close();
+        top.$("#grid").data("kendoGrid").dataSource.read();
+        top.treeview.dataSource.read();
+    }
+</script>

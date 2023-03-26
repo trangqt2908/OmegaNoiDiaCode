@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	  <title>@ViewBag.Title</title>
+     
+	<link rel="stylesheet" href="/Content/themes/admin/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="/Content/themes/admin/css/bootstrap-responsive.min.css"> 
+	<link rel="stylesheet" href="/Content/themes/admin/css/plugins/icheck/all.css"> 
+	<link rel="stylesheet" href="/Content/themes/admin/css/style.css"> 
+	<link rel="stylesheet" href="/Content/themes/admin/css/themes.css">
+     <link href="~/Content/themes/admin/css/zstyle.css" rel="stylesheet" />
+	 @Scripts.Render("~/bundles/jquery") 
+    @Scripts.Render("~/bundles/jqueryval") 
+
+  
+
+
+	<script src="/Content/themes/admin/js/plugins/nicescroll/jquery.nicescroll.min.js"></script> 
+	<script src="/Content/themes/admin/js/plugins/validation/additional-methods.min.js"></script> 
+	<script src="/Content/themes/admin/js/plugins/icheck/jquery.icheck.min.js"></script> 
+	<script src="/Content/themes/admin/js/bootstrap.min.js"></script>
+	<script src="/Content/themes/admin/js/eakroko.js"></script> 
+
+    <link href="@Url.Content("~/Content/kendo.compatibility.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/kendo.common.min.css")" rel="stylesheet" type="text/css" /> 
+	<link href="@Url.Content("~/Content/kendo/kendo.metro.min.css")" rel="stylesheet" type="text/css" /> 
+	<script src="@Url.Content("~/Scripts/kendo/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/kendo.aspnetmvc.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+
+ 
+	<!--[if lte IE 9]>
+		<script src="/Content/themes/admin/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+	
+ 
+
+    <link rel="shortcut icon" href="/images/favicon.ico" /> 
+	<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png" />
+</head>
+    <body>
+    @RenderBody()
+        </body>
+    <script type="text/javascript" defer="defer">
+        @Html.Raw(ViewBag.StartupScript)
+</script>
+</html>
+
+
+ 

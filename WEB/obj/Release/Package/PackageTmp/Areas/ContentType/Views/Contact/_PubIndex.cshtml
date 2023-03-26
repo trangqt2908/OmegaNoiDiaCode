@@ -1,0 +1,134 @@
+﻿@model WebModels.WebContact
+@{
+    var webmodule = (WebModule)ViewBag.WebModule;
+    var moduletran = webmodule;
+
+    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+}
+<script>
+    function OnFailureContact() {
+        alert("@Html.Raw(Resources.Common.SendFaulty)");
+    }
+    function OnSuccessContact(data, status, xhr) {
+        if (data.Success) {
+            alert('@Html.Raw(Resources.Common.ThanksForContact)');
+            $('#frmcontact')[0].reset();
+        } else {
+            alert(data.Error);
+        }
+    }
+</script>
+
+<div class="tour-title not-fixed ">
+    <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title">
+    <h1 class="white text-center front shadow-text center-text">@webmodule.Title</h1>
+    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curvegrey.svg" alt="">*@
+</div>
+<section id="pagesection"> 
+    <div class="container">
+        <div class="row">
+            @Html.Action("_SiteMap", "Home", new { area = "" })
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6 col-12 order-md-first order-last">
+                @using (Ajax.BeginForm("_PubIndex", new { area = "ContentType" },
+                        new AjaxOptions
+                        {
+                            OnSuccess = "OnSuccessContact",
+                            OnFailure = "OnFailureContact"
+                        }, new { id = "frmcontact" }))
+                {
+                      @Html.AntiForgeryToken()
+                    <input type="hidden" name="WebContentID" value="@ViewBag.ID" />
+                    <input hidden name="Title" value="Liên hệ từ Omega Tours" />
+
+                    <div class="messages"></div>
+                    <div class="controls">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group text-center">
+                                    <label for="form_name">@Resources.Common.FullName *</label>
+                                    @Html.TextBoxFor(m => m.FullName, new { @placeholder = "* " + @Resources.Common.FullName, @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group text-center">
+                                    <label for="form_email">@Resources.Common.Email *</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "* " + @Resources.Common.Email, @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group text-center">
+                                    <label for="form_email">@Resources.Common.Address</label>
+                                    @Html.TextBoxFor(m => m.Address, new { @placeholder = @Resources.Common.Address, @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group text-center">
+                                    <label for="form_phone">@Resources.Common.Mobile</label>
+                                    @Html.TextBoxFor(m => m.Mobile, new { @placeholder = @Resources.Common.Mobile, @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group text-center">
+                                    <label for="form_message">Message *</label>
+                                    @*<textarea id="form_message" name="message" class="form-control" placeholder="What tour are you interested in? *" rows="4" required="required" data-error="Please,leave us a message."></textarea>*@
+                                    @Html.TextAreaFor(m => m.Body, new { @placeholder = "* " + @Resources.Common.Content, @class = "form-control", @rows = "4" })
+                                    <div class="help-block with-errors tiny mt-2"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary px-4 btn-send disabled" value="Send message">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-4">
+                                <p class="text-muted"><strong>*</strong> @Resources.Common.TheseFieldsAreRequired</p>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            <div class="col-md-6 col-12 text-left">
+                @Html.Action("_Body", "WebSimpleContent", new { area = "", key = "maps" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center  col-10 offset-1 mt-5">
+                <div class="text-center white-popup">
+
+                    <a href="https://www.facebook.com/Omegatours.vn/">
+                        <i class="fa fa-facebook-f"></i>
+                    </a> &nbsp;
+
+                    <a href="https://www.linkedin.com/company/omegatoursvietnam">
+                        <i class="fa fa-linkedin"></i>
+                    </a>&nbsp;
+
+                    <a href="https://www.instagram.com/omegatours.vietnam/">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<li class="list-inline-item"><a href="https://www.facebook.com/Omegatours.vn/"><i class="fa fa-facebook-f"></i></a></li>
+<li class="list-inline-item"><a href="https://www.linkedin.com/company/omegatoursvietnam"><i class="fa fa-linkedin"></i></a></li>
+<li class="list-inline-item"><a href="https://www.instagram.com/omegatours.vietnam/"><i class="fa fa-instagram"></i></a></li>*@

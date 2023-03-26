@@ -1,0 +1,140 @@
+﻿ 
+<div class="page-header">
+			<div class="pull-left">
+				  <div class="breadcrumbs">
+			            <ul>
+				            <li>
+					            <a href="more-login.html">Trang chủ</a>
+					            <i class="icon-angle-right"></i>
+				            </li>
+				            <li>
+					            <a href="layouts-sidebar-hidden.html">Hệ thống</a>
+					            <i class="icon-angle-right"></i>
+				            </li> 
+				            <li>
+					            <a href="layouts-sidebar-hidden.html">Nhóm người dùng</a>
+				            </li>
+			            </ul> 
+		            </div>
+			</div>
+			<div class="pull-right">
+				<ul class="actions">
+                    <li>
+						<a href="javascript:void(0)" id="btnadd" class="btn btn-mini  btn-blue btn-inverse"><i class="icon-plus"></i> @Resources.Common.Add  </a>
+					</li>
+                    <li>
+						<a href="javascript:void(0)" id="btnedit" class="btn btn-mini   btn-blue btn-inverse"><i class="icon-edit"></i> @Resources.Common.Edit  </a>
+					</li>
+					<li >
+						<a href="javascript:void(0)" id="btndelete" class="btn btn-mini  btn-red btn-inverse"><i class="icon-trash"></i> @Resources.Common.Delete  </a>
+					</li> 
+				</ul> 
+			</div>
+</div>
+        
+
+        <div class="row-fluid">
+			<div class="span12">
+				<div class="box"> 
+					<div class="box-content nopadding">  
+                        @(Html.Kendo().Grid<WebModels.WebContent>()
+                            .Name("grid")
+                            .Columns(columns =>
+                            {
+                                columns.Bound(p => p.ID).Title(Resources.Common.ID).Width(60);
+                                columns.Bound(p => p.Title).Title(Resources.Common.Title);
+                                columns.Bound(p => p.ModifiedBy).Title(Resources.Common.ModifiedBy).Width(150);
+                                columns.Bound(p => p.ModifiedDate).Format("{0:HH:mm - dd/MM/yyyy}").Title(Resources.Common.ModifiedDate).Width(150);
+                                columns.Bound(p => p.Order).Title(Resources.Common.Order).Width(60);
+                                columns.Command(command =>
+                                {
+                                    command.Custom(Resources.Common.Edit).Click("edit_handler");
+                                    command.Custom(Resources.Common.Delete).Click("delete_handler");
+                                }).Width(160).HtmlAttributes(new { style = "text-align:center;" });
+                            })
+                            .Pageable()
+                            .Selectable(select => select.Mode(Kendo.Mvc.UI.GridSelectionMode.Multiple))
+                            .Sortable()
+                            .Filterable()
+                            .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .Model(model => model.Id(p => p.ID)) 
+                                .PageSize(30)
+                                .Read(read => read.Action("WebContent_Read", "Video", new {id=ViewBag.ID }))
+                             )
+                             .Events(events => events.Change("change_handler").DataBinding("binding_handler"))
+                        )
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<div id="window" style="overflow: hidden;"></div> 
+<script type="text/javascript">
+    var w = $("#window").kendoWindow({
+        width: 900 + "px", height: 580 + "px", modal: true, draggable: true,
+        resizable: true,
+        actions: ["Minimize", "Maximize", "Close"],
+        visible: false,iframe: true,
+        pinned: false
+    });
+    w.parent().css("position", "fixed");  
+    function delete_handler(e) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        w.data("kendoWindow").setOptions({ height: 160 });
+        w.data("kendoWindow").refresh({
+            url: "/contenttype/video/delete/" + dataItem.ID,
+        }).title(unescape('@Html.Raw(Resources.Common.DeleteItem)')).center().open(); 
+    }
+    function edit_handler(e) {
+        e.preventDefault(); 
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        w.data("kendoWindow").setOptions({ height: 580 });
+        w.data("kendoWindow").refresh({
+            url: "/contenttype/video/edit/"+dataItem.ID,
+        }).title('@Html.Raw(Resources.Common.EditItem)').center().open();
+    } 
+    var rowselected = [];
+    function change_handler(e) {
+        rowselected = [];
+        var len = this.select().length;
+        for (i = 0; i < len; i++) {
+            rowselected.push(this.dataItem(this.select()[i]).ID);
+        }
+    }
+    function binding_handler(e) {
+        rowselected = []; 
+    }
+    $(document).ready(function () {
+        $("#btnadd").click(function () {
+            w.data("kendoWindow").setOptions({ height: 580 });
+            w.data("kendoWindow").refresh({
+                url: "/contenttype/video/add/"+@ViewBag.ID
+            }).title("@Html.Raw(Resources.Common.AddItem)").center().open(); 
+        });
+
+         $("#btnedit").click(function () {
+             if (rowselected.length > 0) {
+                 w.data("kendoWindow").setOptions({ height: 580 });
+                 w.data("kendoWindow").refresh({
+                     url: "/contenttype/video/edit/" + rowselected[0],
+                 }).title('@Html.Raw(Resources.Common.EditItem)').center().open();
+             } else {
+                 alert("Không có khoản mục nào được chọn.");
+             } 
+         });
+
+         $("#btndelete").click(function () {
+             if (rowselected.length > 0) {
+                 w.data("kendoWindow").setOptions({ height: 280 });
+                 w.data("kendoWindow").refresh({
+                     url: "/contenttype/video/deletes/" + rowselected,
+                 }).title('@Html.Raw(Resources.Common.DeleteItem)').center().open();
+             } else {
+                 alert("Không có khoản mục nào được chọn.");
+             }
+         });
+     });
+</script>

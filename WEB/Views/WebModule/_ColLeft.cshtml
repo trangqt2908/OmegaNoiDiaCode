@@ -1,0 +1,66 @@
+﻿@model WebModule
+
+
+<script type="text/javascript">
+    $(function () {
+        var url = window.location.href;
+
+        activeMenu1(url);
+
+        var a = $(".sitemap a");
+
+        if (a.length > 0) {
+            activeMenu1(a.last().attr("href"));
+        }
+    });
+
+    function activeMenu1(url) {
+        url = url.substring(url.lastIndexOf("/"), url.length);
+
+        $("ul.sidebar_list a").each(function () {
+            var _this = $(this);
+            var href = _this.attr("href");
+            if (href.indexOf(url) == -1) {
+                return;
+            }
+
+            var parent = _this.parent();
+            var _class = parent.parent().attr("class");
+
+            while (_class == null || _class.indexOf("sidebar_list") == -1) {
+                parent = parent.parent();
+                _class = parent.parent().attr("class");
+            }
+
+            parent.addClass("first");
+        });
+    }
+</script>
+
+<div class="sidebar_box">
+    <span class="bottom"></span>
+    <h3>@Model.Title</h3>
+    <div class="content-box">
+        @CreateMenu(Model.SubWebModules.Where(m => m.Culture == ApplicationService.Culture && m.Status == (int)Status.Public).OrderBy(m => m.Order))
+    </div>
+    @helper CreateMenu(IEnumerable<WebModels.WebModule> nodes)
+{
+    <ul class="sidebar_list">
+        @foreach (var item in nodes)
+        {
+            var node = item;
+            var subs = node.SubWebModules.Where(m => m.Culture.Equals(ApplicationService.Culture) && m.Status == (int)Status.Public).OrderBy(m => m.Order);
+            var url = node.URL;
+            if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+            {
+                url = Url.Action("Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web", });
+            }
+            <li>
+                <a href="@url" title="@node.Title">@node.Title</a>
+            </li>
+        }
+    </ul>
+}
+</div>
+
+@Html.Action("_OtherProjct", "Home", new { area = "ContentType" })

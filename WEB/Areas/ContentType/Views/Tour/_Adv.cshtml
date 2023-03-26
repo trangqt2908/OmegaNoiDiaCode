@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Advertisement>
+
+<aside id="text-2" class="widget widget_text">
+    <div class="textwidget">
+        @foreach (var item in Model)
+        {
+            <a href="@item.Link">
+                <img src="@item.Media" alt="@item.Title" width="300" height="600" title="@item.Title">
+            </a>
+        }
+    </div>
+</aside>
+
+
+

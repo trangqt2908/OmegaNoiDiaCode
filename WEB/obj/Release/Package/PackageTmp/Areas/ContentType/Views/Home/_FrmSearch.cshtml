@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "";
+}
+
+<section id="section3">
+    <div class="container formhome2 text-center justify-content-center align-items-center pb-4">
+        <h4 class="black mx-2 mb-3 mt-0 pt-4 text-center bold  d-block">Find the place it suits you best</h4>
+        <form class="form-inline text-center justify-content-center align-items-center pb-0" action="@Url.Action("Search", "Home", new { area = "" })">
+            @*<input type="text" class="form-control-inline2 form-control mb-2 mr-lg-2 mx-md-0 mx-4 py-2" id="inlineFormInputName1" placeholder="Search Tours">
+            <span class="fas fa-search iconform"></span>*@
+
+            <select class=" mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" id="leng" name="leng" value="@ViewBag.Type">
+                <option value="0">  --  @Resources.Common.HowManyDays --</option>
+                <option value="1"> @Resources.Common.From01Day </option>
+                <option value="5"> @Resources.Common.From02To05Day</option>
+                <option value="10"> @Resources.Common.From06To10Day</option>
+                <option value="11"> @Resources.Common.Over11Day </option>
+            </select>
+            <span class="fa fa-chevron-down iconform"></span>
+
+            @Html.DropDownList("country", new SelectList(ViewBag.CountryList, "ID", "Title"), "-- " + Resources.Common.WhereToGo + " --", new { @class = "mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" })
+            <select id="ddlCity" name="city" style="display:none;"></select>
+            <span class="fa fa-chevron-down iconform"></span>
+
+
+            @Html.DropDownList("type", new SelectList(ViewBag.TypeOfTour, "ID", "Title"), "-- " + Resources.Common.TravelStyle + " --", new { @class = "mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" })
+            <span class="fa fa-chevron-down iconform"></span>
+
+            <button type="submit" class="btn btn-primary mb-2 mx-4 mx-md-0 mr-lg-2 py-2 form-control-inline3">@Resources.Common.Search</button>
+
+        </form>
+    </div>
+</section>

@@ -1,0 +1,137 @@
+﻿@model WebModels.WebContent
+<style>
+    #tab-container {
+        margin-bottom: 40px;
+    }
+    .form-actions {
+        background-color: #FEFEFE;
+        border: 1px solid #F0F0F0;
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+        text-align: center;
+    }
+</style>
+
+<div id="tab-container">
+    @Html.HiddenFor(m => m.ID)
+    <div class="control-group">
+        <p> <font color="blue">@Model.Title</font></p>
+        <table style="width:100%;">
+            <tr>
+                <td style="width:200px; vertical-align:top;">
+                    <div id="frmUpload">
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-new thumbnail" style="width: 120px; height: 100px;">
+                                <img src="@ApplicationService.NoImage" />@Html.HiddenFor(m => m.Image)
+                            </div>
+                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 120px; max-height: 100px; line-height: 20px;"></div>
+                            <div>
+                                <span class="btn btn-file">
+                                    <span class="fileupload-new">Chọn ảnh</span>
+                                    <span class="fileupload-exists">Chọn ảnh</span>
+                                    <input id="file" type="file" accept="image/jpeg,image/png" />
+                                </span>
+                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Hủy</a>
+                                <input id="btnUpload" class="btn btn-primary fileupload-exists" type="button" value="Tải ảnh" />
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td >
+                    @(Html.Kendo().Grid<WebModels.ContentImage>()
+                            .Name("ContentImages_Read")
+                            .Columns(columns =>
+                            {
+                                columns.Bound(x => x.ID).Hidden();
+                                columns.Bound(x => x.Image)
+                                    .ClientTemplate("<img src='#= Image #' width='100' height='100' />").Title(WebResources.Image).Width(120);
+                                columns.Bound(x => x.Title).Title(Resources.Common.Title);
+                                columns.Bound(x => x.Order).ClientTemplate("<input type='number' style='width:30px;' value='#= Order #'/>").Width(55).Title("TT");
+                        
+                                columns.Template(@<text></text>)
+                                    .Width(160)
+                                    .ClientTemplate(@"<a class='k-button k-button-icontext k-grid-update' href='javascript:void(0);' onclick='update_handler(event)'>Lưu</a> <a class='k-button k-button-icontext k-grid-delete' href='javascript:void(0);' onclick='delete_handler(event)'>Xóa</a>");
+                            })
+                                        .Scrollable()
+                                        .Sortable()
+                                        .Selectable()
+                                        .Pageable(pageable => pageable.Refresh(true).PageSizes(false).Info(false))
+                                                .DataSource(dataSource => dataSource.Ajax().Read(read => read.Action("ContentImages_Read", "ContentPhoto", new { id = Model.ID })).PageSize(5)))
+                </td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            function update_handler(event) {
+                event.preventDefault();
+                var contentImageID = $(event.currentTarget).closest("tr").find('td[style="display:none"]').html().toString();
+                var order = $(event.currentTarget).closest("tr").find('input').val();
+                $.ajax({
+                    url: '@Url.Action("ContentImage_Update", "ContentPhoto")',
+                    type: "post",
+                    data: { contentImageID: contentImageID, order: order },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success) {
+                            $("#ContentImages_Read").data("kendoGrid").dataSource.read();
+                        } else {
+                            alert(data.error);
+                        }
+                    }
+                });
+            }
+            function delete_handler(event) {
+                event.preventDefault();
+                var contentImageID = $(event.currentTarget).closest("tr").find('td[style="display:none"]').html().toString();
+                var order = $(event.currentTarget).closest("tr").find('input').val();
+                $.ajax({
+                    url: "@Url.Action("ContentImage_Delete", "ContentPhoto")",
+                    type: "post",
+                    data: { contentImageID: contentImageID },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success) {
+                            $("#ContentImages_Read").data("kendoGrid").dataSource.read();
+                        } else {
+                            alert(data.error);
+                        }
+                    }
+                });
+            }
+        </script>
+    </div>
+  
+        <script>
+         
+            $('#btnUpload').click(function () {
+                var data = new FormData();
+                jQuery.each($('#file')[0].files, function (i, file) {
+                    data.append('file' + i, file);
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UploadProductImage", "ContentPhoto", new { productID = Model.ID })' + '&order=' + $('#txtOrder').val(),
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $("#ContentImages_Read").data("kendoGrid").dataSource.read();
+                    }
+                });
+                e.preventDefault();
+            });
+           
+            
+        </script>
+  
+    <div class="form-actions">
+        <button class="btn btn-primary" type="button" onclick="closeDialog()"> @Resources.Common.Close  </button>
+    </div>
+    <script>
+        function closeDialog() {
+            top.$("#window").data("kendoWindow").close();
+        }
+    </script>
+</div>

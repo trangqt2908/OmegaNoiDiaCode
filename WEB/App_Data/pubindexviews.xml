@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Views>
+  <Article>
+    <Item  Text="View chuẩn (_PubIndex)" Value="_PubIndex" />
+    <Item  Text="View danh sách (_PubIndexList)" Value="_PubIndexList" />
+  </Article>
+  <Hotel>
+    <Item  Text="View chuẩn (_PubIndex)" Value="_PubIndex" />
+    <Item  Text="View All (_PubIndexEntry)" Value="_PubIndexEntry" />
+  </Hotel>
+  <Tour>
+    <Item  Text="View chuẩn (_PubIndex)" Value="_PubIndex" />
+    <Item  Text="View MiCE (_PubIndeOnePage)" Value="_PubIndeOnePage" />
+  </Tour>
+  <Destinations> 
+  </Destinations>
+  <OnePage>
+    <!--<Item  Text="View Comment(_PubIndexComment)" Value="_PubIndexComment" />-->
+  </OnePage>
+</Views>

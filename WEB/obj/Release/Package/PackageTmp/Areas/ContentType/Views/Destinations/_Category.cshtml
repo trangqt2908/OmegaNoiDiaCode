@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{
+    ViewBag.Title = "_Category";
+    Layout = "";
+}
+
+<div class="well cat-list">
+    <div class="row">
+        <div class="col-sm-12 post-cats">
+            <h3><span class="el-icon-th-list"></span> Categories</h3>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    var img = item.Image != null ? item.Image : "/images/No-image-Featured-Post.jpg";
+                    var url = item.MetaTitle != null ? item.MetaTitle : "web";
+                    //var url = Url.Action("Index", "Home", new
+                    //{
+                    //    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    //    area = ""
+                    //});
+                    <div class="col-md-15 col-sm-3 col-xs-6">
+                        <div class="cat-wrap">
+                            <a href="@url" title="@item.Title"><img src="@img"></a>
+                            <span><a href="@url" title="@item.Title">@item.Title</a></span>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+    <p class="well-tip"><small><span class="el-icon-idea"></span> <strong>Looking for something specific?</strong> Try the search at the top of the page.</small></p>
+</div>
+
+
+
+
+
+

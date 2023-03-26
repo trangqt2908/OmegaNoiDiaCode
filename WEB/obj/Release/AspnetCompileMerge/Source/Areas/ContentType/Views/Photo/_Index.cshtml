@@ -1,0 +1,110 @@
+﻿ 
+<div class="page-header">
+	<div class="pull-left">
+			<div class="breadcrumbs">
+			    <ul>
+				    <li>
+					    <a href="more-login.html">Trang chủ</a>
+					    <i class="icon-angle-right"></i>
+				    </li>
+				    <li>
+					    <a href="layouts-sidebar-hidden.html">Hệ thống</a>
+					    <i class="icon-angle-right"></i>
+				    </li> 
+				    <li>
+					    <a href="layouts-sidebar-hidden.html">Nhóm người dùng</a>
+				    </li>
+			    </ul> 
+		    </div>
+	</div> 
+    <div class="pull-right">
+		<ul class="actions">
+            <li>
+				<a href="javascript:void(0)" id="btnadd" class="btn btn-mini  btn-blue btn-inverse"><i class="icon-plus"></i> @Resources.Common.Add  </a>
+			</li> 
+		</ul> 
+	</div>
+</div>
+ <script type="text/x-kendo-tmpl" id="template"> 
+    <li>
+		<a href=''>
+			<img src="#:Thumb#" alt="">
+            <p class="img-title">#:Title#</p>
+		</a>
+		<div class="extras">
+			<div class="extras-inner">
+				<a href="#:Image#" class='colorbox-image' rel="group-1"><i class="icon-search"></i></a>
+				<a href='javascript:fedit(#:ID#);'><i class="icon-pencil"></i></a>
+				<a href='javascript:fdelete(#:ID#);' class='del-gallery-pic'><i class="icon-trash"></i></a>
+			</div>
+		</div>
+	</li> 
+</script>  
+        
+<div class="row-fluid">
+	<div class="span12">
+		<div class="box"> 
+			<div class="box-content nopadding">   
+                    @(Html.Kendo().ListView<Object>()
+                        .Name("listView")
+                        .TagName("ul").HtmlAttributes(new {@class="gallery gallery-fix" })
+                        .ClientTemplateId("template")
+                        .DataSource(dataSource =>
+                        {
+                            dataSource.Read(read => read.Action("Photos_Read", "Photo", new { id = ViewBag.ID }));
+                            dataSource.PageSize(15);
+                        })
+                        .Pageable() 
+                        .Events(events => events.DataBound("onDataBound"))
+                    ) 
+                <script>
+                     
+                    function onDataBound(arg) {
+                        $(".gallery .colorbox-image").colorbox({
+                            maxWidth: "90%",
+                            maxHeight: "90%",
+                            rel: $(this).attr("rel")
+                        });
+                    }
+            </script>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="window" style="overflow: hidden;"></div> 
+ <script type="text/javascript">
+    var w = $("#window").kendoWindow({
+        width: 500 + "px", height: 250 + "px", modal: false, draggable: true,
+        resizable: true,
+        actions: ["Minimize", "Maximize", "Close"],
+        visible: false,iframe: true,
+        pinned: false
+    });
+    w.parent().css("position", "fixed");  
+    $(document).ready(function () {
+        $("#btnadd").click(function () {
+            w.data("kendoWindow").setOptions({ height: 250 });
+            w.data("kendoWindow").refresh({
+                url: "/contenttype/photo/add/"+@ViewBag.ID
+            }).title("@Html.Raw(Resources.Common.AddItem)").center().open(); 
+        });
+
+         
+    });
+     function fdelete(id)
+     {
+         w.data("kendoWindow").setOptions({ height: 350 ,width:600});
+         w.data("kendoWindow").refresh({
+             url: "/contenttype/photo/delete/"+id
+         }).title("@Html.Raw(Resources.Common.DeleteItem)").center().open(); 
+     }
+     function fedit(id)
+     {
+         w.data("kendoWindow").setOptions({ height: 400 ,width:600});
+         w.data("kendoWindow").refresh({
+             url: "/contenttype/photo/edit/"+id
+         }).title("@Html.Raw(Resources.Common.EditItem)").center().open(); 
+     }
+</script>

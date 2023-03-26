@@ -1,0 +1,32 @@
+﻿@model IList<WebModels.ContentImage>
+
+
+<div id="carousel">
+    <div id="owl-demo" class="owl-carousel owl-theme">
+        @foreach (var m in Model)
+        {
+
+            <div class="item">
+                <img src="@m.Image" alt="@m.Title" title="@m.Title" class="slide-detail">
+                <div class="carousel-text">
+                    <div class="s-12 l-12">
+                        <p class="p1">
+                            @ApplicationService.FileNameImg(m.Title)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<style>
+    .slide-detail {
+        height: 380px !important;
+    }
+
+    .carousel-text .p1 {
+        padding: 1em 2.8em !important;
+    }
+</style>

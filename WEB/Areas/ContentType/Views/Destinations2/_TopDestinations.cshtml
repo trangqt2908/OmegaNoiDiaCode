@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebModels.WebModule>
+
+<aside id="nav_menu-3" class="widget widget_nav_menu">
+    <h3 class="widget-title">@Resources.Common.TopDestinations</h3>
+    <div class="menu-top-destinations-container">
+        <ul id="menu-top-destinations" class="menu">
+            @foreach (var item in Model)
+            {
+                var url = item.URL;
+                if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+                {
+                    url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", area = "" });
+                }
+                else
+                {
+                  
+                }
+                  <li class="menu-item">
+                        <a href="@url"> @item.Title, @item.Parent.Title</a>
+                    </li>
+            }
+        </ul>
+    </div>
+</aside>

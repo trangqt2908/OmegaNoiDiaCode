@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebModels.WebModule>
+
+@{
+    var webmodule = (WebModule)ViewBag.Webmodule;
+    var urlcat = webmodule.URL;
+    if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+    {
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", id = webmodule.ID, area = "" });
+    }
+    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+
+    TempData["URL"] = ApplicationService.Domain + urlcat;
+    TempData["Cat"] = webmodule.Title;
+
+}
+
+<section class="inner-page-banner" style="background-image: url(@webmodule.Backgroud)">
+    <div class="page-banner-caption">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@webmodule.Title</h1>
+                   @Html.Action("_SiteMap", "Home", new { area = "" })
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-spacing inverse-bg">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var url = item.URL;
+                if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+                {
+                    url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", id = item.ID, area = "" });
+                }
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+
+
+                <div class="col-md-3">
+                    <div class="destination-item wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                        <a href="@url" title="@item.Title">
+                            <img src="@img" alt="@item.Title" title="@item.Title">
+                            <div class="destination-info">
+                                <h2 class="sizeH222">@item.Title</h2>
+                                @*<h3>@totalTour + </h3>*@
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

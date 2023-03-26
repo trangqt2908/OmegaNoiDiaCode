@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{  
+    ViewBag.Title = "_OtherNews";
+    Layout = "";
+
+}
+
+
+<section class="narrow directory">
+    <div class="title-row">
+        <h3 class="title-entry">@Resources.Common.RelatedPosts</h3>
+        @*<a class="btn btn-primary btn-xs" href="@urlModule"> @Resources.Common.FindMore &nbsp; <i class="fa fa-angle-right"></i></a>*@
+    </div>
+
+    <div class="row">
+@foreach (var item in Model)
+        {
+            //var img = item.Image != null ? item.Image : "/images/no-image.jpg";
+            var url = Url.Action("Detail", "Home", new
+            {
+                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                area = ""
+            });
+        <div class="col-sm-6 col-lg-4">
+            <article class="place-box card">
+                <a class="place-link" href="@url" title="@item.Title">
+                    <header>
+                        <h3 class="entry-title">
+                            <i class="fa fa-bookmark"></i>
+                            @item.Title
+                        </h3>
+                    </header>
+
+                    <div class="entry-thumbnail">
+                        <img alt="@item.Title" class=" attachment-place wp-post-image" height="540" title="@item.Title" src="@item.Image " width=" 960">
+                    </div>
+                </a>
+            </article>
+        </div>
+}
+    </div>
+</section>

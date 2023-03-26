@@ -1,0 +1,26 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{
+    var webmodule = (WebModule)ViewBag.WebModule;
+    ViewBag.Title = "_OtherNews";
+    Layout = "";
+}
+
+<div class="more-info tags my-4">
+    <h6 class="black semibold text-center mx-4 mt-3 mb-3 info-title">More about us </h6>
+    <div class="px-3 px-lg-2 pb-3">
+        <ul class="list-other">
+            @foreach (var item in Model)
+            {
+                var url = item.URL;
+                if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+                {
+                    url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", id = item.ID, area = "" });
+                }
+
+                <li>
+                    <a href="@url" title="@item.Title"> <i class="fa fa-angle-double-right"></i> @item.Title </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

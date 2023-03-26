@@ -1,0 +1,41 @@
+﻿@model WebModels.WebModule
+@{
+    ViewBag.Title = "Chức năng quản trị";
+} 
+<div id="main"> 
+    <div id="left" style="padding:0 2px;">  
+        <div class="box box-color  box-small"> 
+                <div class="box-title">
+					<h3><i class="icon-reorder"></i>
+						 <a style="color:#fff;" href="/admin/webcontent" >Nội dung Web</a>
+					</h3>
+					<div class="actions"> 
+						<a class="btn btn-mini content-slideUp" href="#"><i class="icon-angle-down"></i></a>
+					</div>
+				</div>
+            <div class="box-content"> 
+                @(Html.Kendo().TreeView()
+                    .Name("treeview")
+                    .DataSource(dataSource => dataSource
+                        .Read(read => read
+                            .Action("Read_ForTree", "WebModule", new { selected = ViewBag.ID})
+                        )
+                    )
+                    .Template("<a  href='/admin/webcontent/#: item.id #'>#: item.text #</a>  ")
+                )  
+                </div>    
+         </div> 
+    </div> 
+	<div class="container-fluid">
+        @if(Model!=null){
+            @Html.Action(Model.IndexView == null ? "_Index" : Model.IndexView, Model.ContentType.Controller, new { area = "ContentType", id = Model.ID })
+        }else{
+            @Html.Action("_Index")
+        }
+	</div>
+</div>
+     
+<script type="text/javascript">
+  
+ 
+</script>

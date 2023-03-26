@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    var webmodule = (WebModule)ViewBag.WebModule;
+    ViewBag.Title = "_TopBlogTravel";
+    Layout = "";
+
+    var urlModule = Url.Action("Index", "Home", new
+    {
+        metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+        id = webmodule.ID,      
+        area = ""
+    });
+}
+
+<section class="regular blog-posts">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="title-row">
+            <h3 class="title-entry"> @webmodule.Title </h3>
+            <a href="@urlModule" class="btn btn-primary btn-xs"> @Resources.Common.FindMore &nbsp; <i class="fa fa-angle-right"></i></a>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var url = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    id = item.ID,
+                    m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+                    m_id = webmodule.ID,
+                    area = ""
+                });
+                <div class="col-md-3 col-sm-6">
+                    <article class="post">
+                        <div class="card">
+                            <header class="entry-header">
+                                <a href="@url">
+                                    <div class="entry-thumbnail" style="background-image: url('@item.Image')">
+                                        <img alt="" title="" src="~/Content/themes/web/images/blog-placeholder-vertical.png" width="600" height="800">
+                                    </div>
+                                    <h2 class="entry-title"> @item.Title </h2>
+                                </a>
+                            </header>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+
+<!-- /.main -->
+<aside class="sidebar" role="complementary">
+
+    <section class="widget text-6 widget_text">
+        @Html.Action("_OtherNews", "Article", new { area = "ContentType" })
+    </section>
+   @* <section class="widget text-11 widget_text">
+        @Html.Action("_Adv_Small", "Advertisement", new { position = "adv-right-small", area = "" })
+    </section>*@
+</aside><!-- /.sidebar -->

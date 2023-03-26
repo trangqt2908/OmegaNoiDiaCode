@@ -1,0 +1,124 @@
+﻿@model IEnumerable<WebModels.WebModule>
+
+
+<!-- Footer -->
+<footer>
+
+    <section id="footer">
+
+        <div class="container">
+
+            <div class="row text-center text-xs-center text-sm-left text-md-left">
+                @foreach (var node in Model)
+                {
+                    var url = node.URL;
+                    if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+                    {
+                        url = node.MetaTitle != null ? node.MetaTitle : "web";
+                    }
+
+                    <div class="col-xs-12 col-md-6 col-lg-3">
+                        <div class="footer-widget">
+                            <h3 class="white mt-4">@node.Title</h3>
+                            @{
+                    var sub = WEB.Controllers.NavigationController.GetAllModule(node.ID);
+                            }
+
+                            @if (sub.Any())
+                            {
+                                @CreateMenu(sub)
+                            }
+                        </div>
+                    </div>
+                }
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <!-- Newsletter -->
+                    <div class="footer-widget">
+                        <h3 class="white mt-4"> Contact Info</h3>
+                        <ul class="list-unstyled quick-links">
+
+                            @if (ApplicationService.Culture.Equals("en-US"))
+                            {
+                                <li>
+                                    <i class="fa fa-building-o" aria-hidden="true"></i> Head Office: 2nd floor, No. 1 Le Duan, Da Nang City
+                                </li>
+                                <li>
+                                    <i class="fa fa-location-arrow" aria-hidden="true"></i>Hanoi branch: 2nd floor, No. 164 Mai Anh Tuan, Ha Noi
+                                </li>
+                            }
+                            else
+                            {
+                        <li>
+                            <i class="fa fa-building-o" aria-hidden="true"></i> Trụ sở chính: Tầng 2, Số 1 Lê Duẩn, TP Đà Nẵng
+                        </li>
+                        <li>
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i>Chi nhánh Hà Nội: Tầng 2, Số 164 Mai Anh Tuấn, Hà Nội
+                        </li>
+                            }
+                            <li><i class="fa fa-phone" aria-hidden="true"></i> +84 236 3810 188 </li>
+                            <li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@omegatours.vn"> info@omegatours.vn </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <!-- Newsletter -->
+                    @Html.Action("_GetLetter", "Home", new { area = "ContentType" })
+
+                </div>
+            </div>
+            <!-- GO UP rectangle -->
+            <div class="scale-up">
+                <a class="smooth-scroll  rectangle-right" href="#">
+                    <div class="go-up px-1">
+                        <i class="fa mb-2 fa-arrow-up"></i><br>
+                        <h6 class="text-center letters-up">GO<br>UP</h6>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Copyright Info-->
+            <div class="row">
+                <div class="col-12 mt-2 mt-sm-2 text-center text-white">
+                    <div class="separatorfullwidth"></div>
+                    <p class="white footer-bottom"> Copyright © @DateTime.Now.Year Omega Tours. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</footer>
+<!-- End of Footer -->
+@helper CreateMenu(IEnumerable<WebModels.WebModule> nodes)
+{
+    <ul class="list-unstyled quick-links">
+        @foreach (var node in nodes)
+        {
+            <li>
+                @if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+                {
+                    var url = Url.Action("Index", "Home", new
+                    {
+                        metatitle = node.MetaTitle != null ? node.MetaTitle : "web",
+                        id = node.ID,
+                        area = ""
+                    });
+                    <a href="@url" target="@node.Target">
+                        <i class="fa fa-angle-double-right"></i> @node.Title
+                    </a>
+                }
+                else
+                {
+                    <a href="@node.URL" target="@node.Target">
+                        <i class="fa fa-angle-double-right"></i> @node.Title
+                    </a>
+                }
+            </li>
+        }
+    </ul>
+}
+
+
+

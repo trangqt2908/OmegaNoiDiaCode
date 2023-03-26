@@ -1,0 +1,89 @@
+﻿
+.magleft-0{margin-left:0px !important;}
+
+.actions {
+  float: left; list-style:none;
+}
+.actions > li {
+  float: left; list-style:none;
+  margin-right: 10px; padding:2px;
+}
+.actions > li:last-child{
+    margin-right:0px;
+}
+.actions > li > a {
+  display: block; font-size:16px;
+  height: 26px;
+  min-width:26px;
+  color: #fff;
+  text-decoration: none;
+  position: relative;border-radius:4px;
+  text-align: center;padding-right:2px;
+}
+.actions > li > a i {
+  font-size: 16px;
+  line-height: 26px;
+}
+.actions > li > a:hover:before {
+    
+  left: 0;
+  top: 0; 
+  height: 24px; min-width:24px;
+  background: none;
+  pointer-events: none; 
+  z-index: 99;
+}
+.table-thborderedtop th{
+      border-top: 1px solid #DDDDDD !important;
+}
+
+
+.input-block-level{
+    width:98.8% !important;
+}
+
+.form-actions{
+    padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px;
+}
+
+.field-validation-error{font-size:12px !important; color:red; margin:3px 0px; float:left;}
+
+.valid-summary ul{color: red;  list-style: square inside none;  padding: 0; margin:0;}
+
+.validation-summary-errors{font-size:12px !important; color:red;}
+
+
+#grid .k-header{
+    font-weight:bold !important;
+}
+
+  select.disp-none {
+    display:none ;
+}
+#treeview a {
+    color:#333;
+}
+  #treeview a:hover{text-decoration:none; color:#fff; }
+
+#treeview .k-state-selected a {
+    color:#fff;
+}
+
+.gallery-fix{
+    border:none !important;
+    margin:2px 0px !important; 
+}
+.gallery-fix li{
+    margin:2px 0 0 2px;
+}
+.gallery-fix li > a{
+   border:1px #eee solid;
+   padding:2px;
+}
+.gallery-fix li > a img{
+   width:180px; height:120px;border-bottom:1px solid #EEE;
+}
+.gallery-fix  p.img-title{
+    text-align:center; color:#666;
+    width:180px; height:38px; overflow:hidden;
+}

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    TempData["Title"] = @Resources.Common.SearchResults;
+    Layout = "~/Views/Shared/_Layout_02.cshtml";
+
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#country").val(@ViewBag.des);
+        $("#type").val(@ViewBag.type1);
+        $("#leng").val(@ViewBag.leng);
+    });
+
+</script>
+
+
+<div class="tour-title not-fixed center-image">
+    <img class="w-100 h-100" src="@Html.Action("_LinkImg", "WebSimpleContent", new { area = "", key = "bg_Search" })" alt="">
+    <h1 class="white text-center front shadow-text center-text">@Resources.Common.Search</h1>
+    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curve.svg" alt="">*@
+</div>
+@Html.Action("_FrmSearch", "Home", new { area = "ContentType" })
+
+<section id="section3" class="tour-list-sidebar tour-search-3-cols-card padding-top-0">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                var urlContent = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    id = item.ID,
+                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                    m_id = item.WebModule.ID,
+                    area = ""
+                });
+
+                var urlModule = Url.Action("Index", "Home", new
+                {
+                    metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                    id = item.WebModule.ID,
+                    area = ""
+                });
+
+
+                <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card ">
+                        <small class="white front"><span class="fa fa-clock mr-2 white"></span>&nbsp;<strong>@item.ProductInfo.Duration</strong><br>@Resources.Common.Days</small>
+                        <a class="img-card" href="@urlContent" title="@item.Title">
+                            <img src="@img" alt="@item.Title" title="@item.Title" />
+                        </a>
+                        <div class="card-content">
+                            <div>
+                                <a class="btn btn-primary px-3 btn-sm float-left" href="@urlModule" role="button">@item.WebModule.Title</a>
+                            </div>
+                            <h6 class="primary-color text-right"> &nbsp; </h6>
+                            <h2 class="black">
+                                <a href="@urlContent" title="@item.Title">
+                                    @if (!string.IsNullOrWhiteSpace(item.Description))
+                                    {
+                                        @Html.RawSubString(item.Title, 50)
+                                    }
+                                </a>
+                            </h2>
+                            <p class="">
+                                @if (!string.IsNullOrWhiteSpace(item.Description))
+                                {
+                                    @Html.RawSubString(item.Description, 80)
+                                }
+                                <a href="@urlContent" title="@item.Title"><span>@Resources.Common.SeeMore</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="control-bot" class="control control-bot control-classer">
+            @if (ViewBag.TotalItemCount > 12)
+            {
+                <div class="pager">
+                    @Html.Raw(Html.Pager(
+                            new Options
+                            {
+                                PageSize = 12,
+                                TotalItemCount = ViewBag.TotalItemCount,
+                                CurrentPage = ViewBag.CurrentPage,
+                                ItemTexts = new ItemTexts() { Next = "", Previous = "" },
+                                ItemIcon = new ItemIcon() { First = "fa fa-angle-double-left", Previous = "fa fa-angle-left", Next = "fa fa-angle-right", Last = "fa fa-angle-double-right" },
+                                TooltipTitles = new TooltipTitles() { Next = Resources.Common.NextPage, Previous = Resources.Common.PreviousPage },
+                                Size = Size.normal,
+                                IsShowControls = true,
+                                Alignment = Alignment.centered,
+                                IsShowFirstLast = false,
+                                IsShowPages = true
+                            }, new RouteValueDictionary(ViewBag.RouteValues)))
+                </div>
+            }
+        </div>
+
+    </div>
+</section>
+
+

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    var webmodule = (WebModule)ViewBag.webmodule;
+}
+
+
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <h2 class="menu-title-header">@Html.Raw(Resources.Common.TitleSpecialOffers) </h2>
+            <div class="text-center padding-top-15 padding-bottom-15">
+                <p class="padding-left-25 padding-right-25">
+                    @webmodule.Description
+                </p>
+            </div>
+
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        @foreach (var item in Model)
+        {
+            var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+            var url = Url.Action("Detail", "Home", new
+            {
+                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                id = item.ID,
+                m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                m_id = item.WebModule.ID,
+                area = ""
+            });
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padding-0">
+                <img src="@img" class="img-width-hotel" title="@item.Title" alt="@item.Title" />
+                @*<div class="wpb_text_column wpb_content_element  img-banner1">
+                        <div class="wpb_wrapper">
+                            <div class="title"><span class="name">the viet nam&nbsp;</span><strong>Da Lat</strong></div>
+                            <div class="prices"><span class="from">Start from</span><span class="price">586</span><span class="sub">$</span></div>
+                            <div class="description">
+                                Stay 4 day 3 night from <strong>$568 perpassenge.</strong><br>
+                                Lower air fare &amp; tour prices guanrenteed
+                            </div>
+
+                        </div>
+                    </div>*@
+                <div class="zo_button vc_btn3-container  btn-position-img left vc_btn3-left">
+                    <a style="border-radius: 30px; color: #444;" href="@url" title="@item.Title" class="btn btn-success">
+                        @Resources.Common.Detail
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

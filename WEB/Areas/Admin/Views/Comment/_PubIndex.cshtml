@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Comment>
+@{
+
+    Layout = "";
+}
+
+<div id="comments" class="comments-area">
+    @*<header class="page-header">
+        <h2 class="comments-title"> 3 thoughts on “<span>Living the Travel Lifestyle</span>”</h2>
+    </header>*@
+    <ol class="comment-list media-list">
+        @foreach (var item in Model)
+        {
+            <li class="comment even thread-odd thread-alt depth-1">
+                <article class="comment-body media">
+                    <div class="media-body">
+                        <div class="media-body-wrap panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <a class="pull-left" href="#"> 
+                                    <img src="@item.Image" width="75" alt="@item.Title" class="avatar alignnone photo"> </a>
+                                <h5 class="media-heading"><cite class="fn">@item.Title</cite> <span class="says">says:</span></h5>
+                                <div class="comment-meta">
+                                    <a href="#">
+                                        <time> @item.DateTime </time>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="comment-content panel-body">
+                               @Html.Raw(item.Body)
+                            </div>
+                         </div>
+                    </div>
+                </article>
+            </li>
+        }
+    </ol>
+    <div id="control-bot" class="control control-bot control-classer">
+        @if (ViewBag.TotalItemCount > 10)
+        {
+            <div class="pager">
+                @Html.Raw(Html.Pager(new Options
+                            {
+                                PageSize = 10,
+                                TotalItemCount = ViewBag.TotalItemCount,
+                                CurrentPage = ViewBag.CurrentPage,
+                                ItemTexts = new ItemTexts() { Next = "", Previous = "" },
+                                ItemIcon = new ItemIcon() { First = "fa fa-angle-double-left", Previous = "fa fa-angle-left", Next = "fa fa-angle-right", Last = "fa fa-angle-double-right" },
+                                TooltipTitles = new TooltipTitles() { Next = Resources.Common.NextPage, Previous = Resources.Common.PreviousPage },
+                                Size = Size.normal,
+                                IsShowControls = true,
+                                Alignment = Alignment.centered,
+                                IsShowFirstLast = false,
+                                IsShowPages = true
+                            }, new RouteValueDictionary(ViewBag.RouteValues)))
+            </div>
+        }
+    </div>
+
+
+
+</div>

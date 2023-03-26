@@ -1,0 +1,17 @@
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Web.Helpers.dll
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Web.Helpers.pdb
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\Newtonsoft.Json.dll
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Net.Http.dll
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Net.Http.Formatting.dll
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Net.Http.WebRequest.dll
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Web.Http.dll
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Web.Razor.dll
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\Newtonsoft.Json.xml
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Net.Http.xml
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Net.Http.Formatting.xml
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Net.Http.WebRequest.xml
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Web.Http.xml
+E:\Projects\Sources\Projects\EPortal\Common\bin\Debug\System.Web.Razor.xml
+E:\Projects\Sources\Projects\EPortal\Common\obj\Debug\System.Web.Helpers.dll
+E:\Projects\Sources\Projects\EPortal\Common\obj\Debug\System.Web.Helpers.pdb
+E:\Projects\Sources\Projects\EPortal\Common\obj\Debug\System.Web.Helpers.csprojResolveAssemblyReference.cache

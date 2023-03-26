@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    var webmodule = (WebModule)ViewBag.WebModule;
+    var moduletran = webmodule;
+    var background = String.IsNullOrEmpty(webmodule.Image) ? "/content/themes/web/img/bg-title1.png" : webmodule.Image;
+    var codecolor = String.IsNullOrEmpty(webmodule.CodeColor) ? "#b200b2" : webmodule.CodeColor;
+    var urlcat = webmodule.URL;
+    if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+    {
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", id = webmodule.ID, area = "" });
+    }
+    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+
+    TempData["URL"] = ApplicationService.Domain + urlcat;
+    TempData["Cat"] = webmodule.Title;
+}
+@helper CreateMenubox(IEnumerable<WebModels.WebModule> nodes, string codecolor)
+{
+    foreach (var node in nodes)
+    {
+        <li>
+            @if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+            {
+                @Html.ActionLink(node.Title, "Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web", id = node.ID, area = "" }, new { title = node.Title, style = "color:" + codecolor })
+            }
+            else
+            {
+                <a href="@node.URL" target="@node.Target" style="color:@codecolor">@node.Title</a>
+            }
+        </li>
+    }
+}
+
+
+<div class="tour-title not-fixed center-image">
+    <img class="w-100 h-100" src="@webmodule.Backgroud" alt="">
+    <h1 class="white text-center front shadow-text center-text">@webmodule.Title</h1>
+    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curve.svg" alt="">*@
+</div>
+<section id="section3">
+    <div class="container-fluid">
+        @Html.Action("_SiteMap", "Home", new { area = "" })
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                var url = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    id = item.ID,
+                    m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+                    m_id = webmodule.ID,
+                    area = ""
+                });
+                <div class="col-lg-4 col-sm-6 col-xs-12 mb-4 complete-image">
+                    <a class="" href="@url" title="@item.Title">
+                        <div class="destination-item">
+                            <img src="@img" class="img-fluid destination-item" alt="@item.Title" title="@item.Title">
+                            <h2 class="front">
+                            @item.Title
+                            </h2>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+        <div id="control-bot" class="control control-bot control-classer">
+            @if (ViewBag.TotalItemCount > 12)
+            {
+                <div class="pager">
+                    @Html.Raw(Html.Pager(
+                            new Options
+                            {
+                                PageSize = 12,
+                                TotalItemCount = ViewBag.TotalItemCount,
+                                CurrentPage = ViewBag.CurrentPage,
+                                ItemTexts = new ItemTexts() { Next = "", Previous = "" },
+                                ItemIcon = new ItemIcon() { First = "fa fa-angle-double-left", Previous = "fa fa-angle-left", Next = "fa fa-angle-right", Last = "fa fa-angle-double-right" },
+                                TooltipTitles = new TooltipTitles() { Next = Resources.Common.NextPage, Previous = Resources.Common.PreviousPage },
+                                Size = Size.normal,
+                                IsShowControls = true,
+                                Alignment = Alignment.centered,
+                                IsShowFirstLast = false,
+                                IsShowPages = true
+                            }, new RouteValueDictionary(ViewBag.RouteValues)))
+                </div>
+            }
+        </div>
+
+    </div>
+</section>

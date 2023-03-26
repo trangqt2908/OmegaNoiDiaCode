@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    var webmodule = (WebModule)ViewBag.WebModule;
+    ViewBag.Title = "_OtherNews";
+    Layout = "";
+}
+<script src="/Content/themes/web/js/jquery.masonry.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $container = $('.list-photo');
+        $container.imagesLoaded(function () {
+            $container.masonry({
+                itemSelector: '.item',
+                isAnimated: true,
+                animationOptions: {
+                    duration: 300,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
+        });
+    });
+</script>
+<div class="news-cat">
+    <div class="list-photo">
+        <ul>
+            @foreach (var item in Model)
+            {
+                var image = String.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                var url = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+                    area = ""
+                });
+                <li class="item">
+                    <div class="box-image">
+                        <a href="@url">
+                            <img src="@image" alt="@item.Title" class="thumb" />
+                            
+                        </a>
+                    </div>
+                    <a href="@url">@item.Title </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

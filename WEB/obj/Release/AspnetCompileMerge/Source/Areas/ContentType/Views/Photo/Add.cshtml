@@ -1,0 +1,119 @@
+﻿@{
+    
+}
+<script src="~/Content/themes/admin/js/plugins/plupload/plupload.full.js"></script>
+<script src="~/Content/themes/admin/js/plugins/plupload/jquery.plupload.queue.js"></script>
+<style>
+    #filelist input {
+        padding:0; margin:0;
+    }
+    #filelist .pic-item {
+        margin-top:3px;
+    }
+    #filelist .pic-item span{
+        padding:2px;
+    }
+     #filelist a {
+         text-decoration:none;
+    }
+</style>
+<div id="container">
+	<div id="filelist">Trình duyệt cần hỗ trợ một trong các phương thức sau: gears,html5,flash,silverlight,browserplus.</div> 
+	<a id="pickfiles" href="#">[Chọn tệp ảnh]</a>
+	<a id="uploadfiles" href="#">[Tải lên]</a>
+</div>
+
+
+
+ <script type="text/javascript"> 
+     var uploader;
+     $(function () {
+          uploader = new plupload.Uploader({
+             runtimes: 'gears,html5,flash,silverlight,browserplus',
+             browse_button: 'pickfiles',
+             container: 'container',
+             max_file_size: '10mb',
+             url: '/contenttype/photo/uploadImage/' +@ViewBag.ID +"",
+              flash_swf_url: '/Content/themes/admin/js/plugins/plupload/plupload.flash.swf',
+              silverlight_xap_url: '/Content/themes/admin/js/plugins/plupload/plupload.silverlight.xap',
+             filters: [
+                {title : "Image files", extensions : "jpg,gif,png,bmp,jpeg"} 
+             ],
+             resize: { width: 1366, height: 768, quality: 90 },
+         }); 
+         uploader.bind('Init', function (up, params) {
+             $('#filelist').html("<div><i>Bạn đang sử dụng  <b>" + params.runtime + " </b> để tải file.</i></div>");  
+         } 
+         );
+         $('#uploadfiles').click(function (e) { 
+             uploader.start();
+             e.preventDefault();
+         }); 
+         uploader.init();
+         uploader.bind('UploadFile', function (up, file) {  
+             up.settings.multipart_params = { title: $("#i_" + file.id).val() };
+         });
+         uploader.bind('FilesAdded', function (up, files) {
+             $.each(files, function (i, file) {
+                 $('#filelist').append(
+                     ' <div class="pic-item" id="' + file.id + '"><input type="text" value="' + GetFileName(file.name) + '" id="i_' + file.id + '"  />' +
+                     '<span>' + file.name + '</span>' + ' (' + plupload.formatSize(file.size) + ') <b></b> <a class="glyphicon-delete" onclick="javascript:clearpic(this);" href="javascript:void(0)"></a> ' +
+                 '</div>');
+             }); 
+             up.refresh();  
+         }); 
+         uploader.bind('UploadProgress', function (up, file) {             
+             $('#' + file.id + " b").html(file.percent + "%");
+         }); 
+         uploader.bind('Error', function (up, err) {
+             $('#filelist').append("<div>Error: " + err.code +
+                 ", Message: " + err.message +
+                 (err.file ? ", File: " + err.file.name : "") +
+                 "  <a class='glyphicon-delete' onclick='javascript:clearerror(this);' href='javascript:void(0)'></a></div>"
+             ); 
+             up.refresh(); 
+         }); 
+         uploader.bind('FileUploaded', function (up, file, res) {
+             if (jQuery.parseJSON(res.response).success) {
+                 $('#' + file.id + " b").html("100%"); $('#' + file.id).fadeOut(3000);
+                 create_success();
+             } else {
+                 alert(jQuery.parseJSON(res.response).data);
+             }
+             
+         });
+         
+     });
+     function clearerror(obj) {
+          $(obj).parent().remove();
+     }
+     function clearpic(obj) {
+         var picselected = $(obj).parent().attr("id");
+         uploader.removeFile(uploader.getFile(picselected));
+         $('#' + picselected).fadeOut(100);
+     }
+     function GetFileName(input) {
+         var dot = input.lastIndexOf('.');
+         return input.substr(0, dot);
+     }
+      
+     $(document).ready(function () {
+      
+     });
+     function create_success()
+     {
+         top.$("#listView").data("kendoListView").dataSource.read();
+
+     }
+</script>  
+ <div id="listView" class="gallery-grid">
+     
+ 
+ </div>   
+
+ 
+
+ 
+ 
+
+

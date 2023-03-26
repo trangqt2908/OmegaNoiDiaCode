@@ -1,0 +1,20 @@
+﻿@model WebModels.WebModule
+
+
+@if (Model != null)
+{
+    try
+    {
+        if (Model.PublishDetailLayout != null)
+        {
+            Layout = Model.PublishDetailLayout;
+        }
+        @Html.Action(Model.PublishDetailView == null ? "_PubDetail" : Model.PublishDetailView, Model.ContentType.Controller, new { area = "ContentType" })
+    }
+    catch (Exception) { }
+}
+
+
+
+
+

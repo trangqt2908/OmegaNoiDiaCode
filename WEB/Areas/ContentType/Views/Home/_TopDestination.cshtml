@@ -1,0 +1,91 @@
+﻿@model IEnumerable<WebContent>
+
+@{
+    var webmodule = (WebModule)ViewBag.Webmodule;
+
+    var url = Url.Action("Index", "Home", new
+    {
+        metatitle = webmodule.MetaTitle != null ?
+            webmodule.MetaTitle : "web",
+        area = ""
+    });
+
+    var style = "";
+    var index = 0;
+}
+
+<section id="section-masonry">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <h3 class="black front bold text-center">@Resources.Common.PopularDestinations</h3>
+                        <div class="separator text-center svgcenter"></div>
+                        <h5 class="primary-color text-center mb-5 "> @webmodule.Description </h5>
+                    </div>
+
+                    <div class="gal">
+                        @foreach (var item in Model)
+                        {
+                            index++;
+                            var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                            var urlContent = Url.Action("Index", "Home", new
+                            {
+                                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                                area = ""
+                            });
+                            if(index == 1 || index == 2 || index == 4 || index == 6)
+                            {
+                                style = "mb-3";
+                            }
+                            else if (index == 3 || index == 5)
+                            {                               
+                                style = "mb-md-0 mb-3";
+                            }
+                            else
+                            {
+                                style = "";
+                            }
+
+                            if(index == 4 || index == 7)
+                            {
+                                img = string.IsNullOrEmpty(item.LinkVideo) ? ApplicationService.NoImage : item.LinkVideo;
+                            }
+                            
+                            <div class="masonry-full @style">
+                            <div class="masonry-hover">
+                                <div class="masonry-item">
+                                    <img class="masonry-image" src="@img" alt="@item.Title" title="@item.Title">
+                                    <div class="masonry-info text-center front">
+                                        <h6 class="white front">@item.Title</h6>
+                                        <a class="btn btn-outline-light px-3 front" href="@urlContent" role="button">@Resources.Common.SeeMore</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@if (Model != null)
+{
+
+    <div class="more-info tags my-4">
+        <h6 class="black semibold text-center mx-4 mt-3 mb-3 info-title">@Resources.Common.Tag</h6>
+        <div class="text-center px-3 px-lg-2 pb-3">
+            @foreach (var item in Model)
+            {
+                <li>
+                    @Html.ActionLink(item, "Search", "Home", new { area = "", tag = item }, new { target = "_blank", @class = "btn btn-outline-primary px-3  mr-1 mb-1 btn-sm" })
+                </li>
+            }
+
+        </div>
+    </div>
+}

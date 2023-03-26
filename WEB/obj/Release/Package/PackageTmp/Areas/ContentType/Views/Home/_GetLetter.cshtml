@@ -1,0 +1,33 @@
+﻿<script>
+    function OnFailure() {
+        alert("@Html.Raw(Resources.Common.SendFaulty)");
+    }
+    function OnSuccess(data, status, xhr) {
+        if (data.Success) {
+            alert('@Resources.Common.ThankYouForRegis');
+            $('#frmnewsletter')[0].reset();
+        } else {
+            alert(data.Error);
+        }
+    }
+</script>
+
+
+
+<div class="footer-widget">
+    <h3 class="white mt-4">@Resources.Common.SubscribeToOurNewsletter</h3>
+    @using (Ajax.BeginForm("_GetLetter", "Home", new { area = "ContentType" },
+                        new AjaxOptions
+                        {
+                            OnSuccess = "OnSuccess",
+                            OnFailure = "OnFailure"
+                        }, new { id = "frmnewsletter" }))
+    {
+        <div class="input-prepend">
+            <span class="add-on"><i class="icon-envelope"></i></span>
+            <input type="text" name="email" placeholder="@Resources.Common.YourEmail" class="form-control text-center">
+        </div>
+        <br>
+        <input type="submit" value="@Resources.Common.SubscribeNow" class="btn btn-primary mb-5 px-4 pull-right">
+    }
+</div>

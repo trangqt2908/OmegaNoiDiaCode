@@ -1,0 +1,132 @@
+﻿@model WebContent
+@{
+    var item = Model;
+    var webmodule = item.WebModule;
+    var urlcat = webmodule.URL;
+    var background = String.IsNullOrEmpty(webmodule.Image) ? "/content/themes/web/img/bg-title1.png" : webmodule.Image;
+    var codecolor = String.IsNullOrEmpty(webmodule.CodeColor) ? "#b200b2" : webmodule.CodeColor;
+    var bgColor = WEB.Areas.ContentType.Controllers.ArticleController.GetBGColor(codecolor);
+    if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+    {
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
+    }
+    var url = Url.Action("Detail", "Home", new
+        {
+            metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+            m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+            area = ""
+        });
+
+    TempData["Title"] = Utility.UseStringHasValue(item.SeoTitle, item.Title);
+    TempData["Description"] = Utility.UseStringHasValue(item.MetaDescription, item.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(item.MetaKeywords, item.SeoTitle);
+
+    TempData["URL"] = ApplicationService.Domain + url;
+    TempData["Cat"] = webmodule.Title;
+}
+
+<div class="tour-title not-fixed center-image">
+
+    <img class="w-100 h-100" src="@item.Link" alt="@item.Title" title="@item.Title">
+    <h1 class="white text-center front shadow-text center-text">@item.Title </h1>
+
+    <a class="smooth-scroll" href="#read-tour">
+        <img class="curvechevron" src="~/Content/themes/web/assets/svgs/curvesingle.svg" alt="image">
+        <div class="chevroncurve">
+            <i class="fa hoverchevron white fa-chevron-down"></i>
+        </div>
+    </a>
+
+</div>
+<section id="section3" class="tour-list-sidebar tour-list-sidebar-2-col">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-lg-3 ml-lg-5 order-lg-first order-last mt-5 mt-lg-0">
+
+                @Html.Action("_TopDestinations", "Destinations", new { area = "ContentType", webmoduleId = item.WebModuleID, webContentId = item.ID })
+
+
+                @Html.Action("_OtherNews", "Article", new { area = "ContentType", id = item.ID, isNew = true })
+                @*@Html.Partial("_QuickContact")*@
+
+                @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_destination" })
+            </div>
+
+            <div class="col-xs-12 col-md-11 col-lg-8   single-tour">
+                <div class="row">
+                    <div class="col-12">
+                        <ol class="breadcrumb">
+                            @Html.Action("_SiteMapDetail", "Home", new { area = "" })
+                            <li class="breadcrumb-item"><a href="#" title="@item.Title">@item.Title </a></li>
+                        </ol>
+                    </div>
+                </div>
+                <h1 id="read-tour" class="black text-center bold">@item.Title</h1>
+
+                <div class="mr-lg-5 post-emtry">
+                    <section id="tabs">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 ">
+                                    <nav>
+                                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                                                <p class="grey text-center grey-ex"> <span class="black bold"> General information </span></p>
+                                            </a>
+                                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                                                <p class="grey text-center grey-ex"> <span class="black bold"> Planning a trip  </span></p>
+                                            </a>
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                                <p class="grey text-center grey-ex"> <span class="black bold"> Top Attractions </span></p>
+                                            </a>
+                                            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">
+                                                <p class="grey text-center grey-ex"> <span class="black bold">  History & culture </span></p>
+                                            </a>
+                                            <a class="nav-item nav-link" id="nav-discovery-tab" data-toggle="tab" href="#nav-discovery" role="tab" aria-controls="nav-discovery" aria-selected="false">
+                                                <p class="grey text-center grey-ex"> <span class="black bold"> Discovery more  </span></p>
+                                            </a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            <div class="post-emtry">
+                                                @Html.Raw(item.Body)
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            <div class="post-emtry">
+                                                @Html.Raw(item.ProductInfo.Map)
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                            <div class="post-emtry">
+                                                @Html.Raw(item.ProductInfo.ServiceDetail)
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                            <div class="post-emtry">
+                                                @Html.Raw(item.Event)
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-discovery" role="tabpanel" aria-labelledby="nav-discovery-tab">
+                                            <div class="post-emtry">
+                                                @Html.Raw(item.ProductInfo.Destination)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    @Html.Action("_OtherTour", "Tour", new { area = "ContentType", webContentID = item.ID, type = 1 })
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

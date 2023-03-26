@@ -1,0 +1,16 @@
+﻿@model List<string>
+
+@if (Model != null)
+{
+
+    <div class="more-info tags my-4">
+        <h6 class="black semibold text-center mx-4 mt-3 mb-3 info-title">@Resources.Common.Tag</h6>
+        <div class="text-center px-3 px-lg-2 pb-3">
+            @foreach (var item in Model)
+            {
+                @Html.ActionLink(item, "Search", "Home", new { area = "", tag = item }, new { target = "_blank", @class = "btn btn-outline-primary px-3  mr-1 mb-1 btn-sm" })
+            }
+
+        </div>
+    </div>
+}

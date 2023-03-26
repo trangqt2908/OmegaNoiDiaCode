@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{  
+    ViewBag.Title = "_OtherNews";
+    Layout = "";
+}
+
+
+<section class="inverse-bg">
+
+    <div class="title-row">
+        <h3 class="title-entry">@Resources.Common.OtherPlaces</h3>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var url = item.URL;
+            if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+            {
+                url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", area = "" });
+            }
+            var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+
+
+            <div class="col-md-3">
+                <div class="destination-item wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                    <a href="@url" title="@item.Title">
+                        <img src="@img" alt="@item.Title" title="@item.Title">
+                        <div class="destination-info">
+                            <h2>@item.Title</h2>
+                            @*<h3>@totalTour + </h3>*@
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+</section>

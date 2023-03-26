@@ -1,0 +1,115 @@
+﻿@model IEnumerable<WebModels.WebModule>
+
+@{
+    var webmodule = (WebModule)ViewBag.Webmodule;
+    var urlcat = webmodule.URL;
+    if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+    {
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
+    }
+    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+
+    TempData["URL"] = ApplicationService.Domain + urlcat;
+    TempData["Cat"] = webmodule.Title;
+
+}
+
+<section class="inner-page-banner" style="background-image: url(@webmodule.Backgroud)">
+    <div class="page-banner-caption">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@webmodule.Title</h1>
+                    <ol class="breadcrumb">
+                        @Html.Action("_SiteMapDetail", "Home", new { area = "" })
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-spacing inverse-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h2><span>@Resources.Common.PopularDestinations</span></h2>
+                    <p>@webmodule.Description</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var url = item.URL;
+                if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+                {
+                    url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", area = "" });
+                }
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+           
+                
+                <div class="col-md-6">
+                    <div class="destination-item wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                        <a href="@url" title="@item.Title">
+                            <img src="@img" alt="@item.Title" title="@item.Title">
+                            <div class="destination-info">
+                                <h2>@item.Title</h2>
+                                @*<h3>@totalTour + </h3>*@
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @*<div class="row">
+            <div class="col-md-12">
+                <div class="text-center mt-40">
+                    <a href="contact-us.html" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</section>
+
+
+@*<section class="hero small-hero" style="background-image: url('@webmodule.Backgroud');">
+        <div class="bg-overlay">
+            <div class="container" style="">
+                <div class="intro-wrap">
+                    <h1 class="intro-title">@webmodule.Title</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main container">
+        <div class="places">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    var url = item.URL;
+                    if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+                    {
+                        url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", id = item.ID, area = "" });
+                    }
+
+                    <div class="col-sm-4">
+                        <article class="place-box card">
+                            <a href="@url" title="@item.Title" class="place-link">
+                                <header>
+                                    <h3 class="entry-title"><i class="fa fa-map-marker"></i>@item.Title</h3>
+                                </header>
+                                <div class="entry-thumbnail">
+                                    <img width="960" height="540" alt="@item.Title" title="@item.Title" src="@item.Image">
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>*@

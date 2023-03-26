@@ -1,0 +1,100 @@
+﻿@model AccountModels.UserProfile
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "User", new { cUserName = ViewBag.cUserName, UserId = Model.UserId },
+    FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{  
+	<div class="control-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "input-block-level", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+    </div>   
+     <div class="control-group"> 
+        @Html.Label(AccountModels.AccountResources.Role, new { @class = "control-label" })
+        <div class="controls">
+            <div style="width:99%;">
+                @(Html.Kendo().MultiSelect()
+                  .Name("roles")
+                  .DataTextField("RoleName")
+                  .DataValueField("RoleName")
+                  .Placeholder("...")
+                  .DataSource(source => {
+                      source.Read(read =>
+                      {
+                          read.Action("GetRoles", "Role");
+                      })
+                      .ServerFiltering(false);
+                  })
+                  .Value(ViewBag.Roles)
+                )  
+            </div> 
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.FullName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.FullName, new { @class = "input-block-level" })
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Email, new { @class = "input-block-level" })
+              @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.Mobile, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Mobile, new { @class = "input-block-level" })
+        </div>
+    </div> 
+ 
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.Avatar, new { @class = "control-label" })
+        @Html.HiddenFor(m => m.Avatar, new { id="hfavatar"}) 
+        <div class="controls">
+            @if (Common.ImageTools.ValidateUriImage(Model.Avatar))
+            {   <table id="tblavatar">
+                    <tr>
+                        <td>
+                            <img id="thumb_avatar" class="thumbnail" src="@Model.Avatar" /> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            <a id="delete_avatar" href="javascript:void(0)"><i class="icon-trash"></i> Xóa  </a>
+                        </td>
+                    </tr>
+                </table> 
+                <script> 
+                    $(document).ready(function () { 
+                        $('#delete_avatar').click(function () { 
+                            $('#tblavatar').hide();
+                            $('#hfavatar').val("");
+                        });
+                    });
+                </script>
+            }
+            <input type="file" name="Image" />
+        </div>
+    </div>  
+    <div class="validation-group"><div class="controls">
+        @Html.ValidationSummary(true)</div>
+    </div> 
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">@Resources.Common.SaveChanges</button> 
+    </div>
+    @Html.AntiForgeryToken()
+}
+<script type="text/javascript">
+    function create_success() {
+        top.$("#window").data("kendoWindow").close();
+        top.$("#grid").data("kendoGrid").dataSource.read();
+    }
+</script>

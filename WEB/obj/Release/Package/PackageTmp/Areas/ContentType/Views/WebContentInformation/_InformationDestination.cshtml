@@ -1,0 +1,74 @@
+﻿@model IEnumerable<WebModels.WebContentInformation>
+@{
+    Layout = "";
+}
+
+
+
+<script>
+    $(document).ready(function () {
+        $('.open-popup-link').magnificPopup({
+            type: 'inline',
+            midClick: true
+        });
+    });
+</script>
+
+
+<section class="narrow page-info">
+    <div class="title-row">
+        <h3 class="title-entry"> @Resources.Common.Information</h3>
+        @*<a class="btn btn-primary btn-xs" href="#">
+                @Resources.Common.FindMore &nbsp;
+                <i class="fa fa-angle-right"></i>
+            </a>*@
+    </div>
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            var _class = "col-lg-" + item.Width;
+            <div class="col-sm-12 @_class">
+                <a class="page-box-link" href="#">
+                    <article class="page-box">
+                        <h3 class="entry-title"> @item.Title </h3>
+
+                        <p class="entry-excerpt">
+                            @if (!string.IsNullOrWhiteSpace(item.Description))
+                            {
+                             @Html.RawSubString(item.Description, 270)  
+                            }
+                        </p>
+
+
+                        <a href="#test-form-@item.ID" class="more-link open-popup-link">
+                            @Resources.Common.Readmore
+                        </a>
+
+                        <div id="test-form-@item.ID" class="white-popup mfp-hide">
+
+                            @Html.Raw(item.Body)
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </article>
+                </a>
+            </div>
+
+        }
+    </div>
+</section>
+
+<style>
+    /************************************** Start popup *******************************/
+    .white-popup {
+        position: relative;
+        background: #FFF;
+        padding: 30px 20px 20px 20px;
+        width: auto;
+        max-width: 800px;
+        margin: 20px auto;
+    }
+</style>
+

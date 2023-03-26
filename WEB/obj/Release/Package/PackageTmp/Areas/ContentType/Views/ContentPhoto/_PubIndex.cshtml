@@ -1,0 +1,77 @@
+﻿@model IList<WebModels.WebContent>
+@*Tour*@
+@{
+    var webmodule = (WebModule)ViewBag.WebModule;
+    var urlcat = webmodule.URL;
+    if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+    {
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", id = webmodule.ID, area = "" });
+    }
+    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+    TempData["URL"] = ApplicationService.Domain + urlcat;
+    TempData["Cat"] = webmodule.Title;
+
+}
+
+<section class="inner-page-banner" style="background-image: url(@webmodule.Backgroud)">
+    <div class="page-banner-caption">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@webmodule.Title</h1>
+                    <ol class="breadcrumb">
+                        @Html.Action("_SiteMapDetail", "Home", new { area = "" })
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-spacing inverse-bg">
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title text-center">
+                        <h2><span>@webmodule.Title</span></h2>
+                        <p>@webmodule.Description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.Action("_BoxGalleryType", "Navigation", new { area = "" })
+                @*<div class="col-md-12 text-center">
+                        <ul id="filter-list">
+                            <li class="filter active" data-filter="all">All</li>
+                            <li class="filter" data-filter="1">Asia</li>
+                            <li class="filter" data-filter="2">Africa</li>
+                            <li class="filter" data-filter="3">Europe</li>
+                            <li class="filter" data-filter="4">America</li>
+                            <li class="filter" data-filter="5">Australia</li>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+        <div class="gallery-outer">
+            <ul class="gallery-items" style="padding: 0px; position: relative; height: 1901px;">
+                @foreach (var item in Model)
+                {
+                    var img = item.Image != null ? item.Image : ApplicationService.NoImage;
+                    <li class="filtr-item" data-category="@item.WebModuleID" style="opacity: 1; transform: scale(1) translate3d(0px, 0px, 0px); backface-visibility: hidden; perspective: 1000px;
+                            transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
+                        <div class="gallery-inner">
+                            <img src="@img" alt="@item.Title" title="@item.Title" />
+                            <div class="gallery-overlay">
+                                <a href="@img" class="venobox vbox-item" data-gall="gallery"><i class="fa fa-picture-o"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

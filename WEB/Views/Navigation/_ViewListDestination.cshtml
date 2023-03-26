@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    Layout = "";
+    var index = 0;
+    var style = "hidden";
+}
+
+<style>
+    .hierarchy {
+        margin-top: 5px;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-sm-6 col-12 text-left ml-sm-0">
+        <div class=" ml-0 mt-1">
+            @foreach (var item in Model)
+            {
+                index++;
+                if (index != 1)
+                {
+                    style = "";
+                }
+
+                var url = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                    area = ""
+                });
+                
+                <i class="fa fa-caret-right @style"></i>  <a class="btn btn-primary px-3  text-left mr-1 mb-1 btn-sm" href="@url" role="button">@item.Title </a>
+            }
+        </div>
+    </div>
+
+</div>

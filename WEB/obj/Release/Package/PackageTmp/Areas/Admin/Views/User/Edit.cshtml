@@ -1,0 +1,109 @@
+﻿@model WebModels.UserProfile
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "User", new { cUserName = ViewBag.cUserName, UserId = Model.UserId },
+    FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal fix" }))
+{  
+	<div class="control-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "input-block-level", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+    </div>   
+     <div class="control-group"> 
+        @Html.Label(WebModels.AccountResources.Role, new { @class = "control-label" })
+        <div class="controls">
+            <div style="width:99%;">
+                @(Html.Kendo().MultiSelect()
+                  .Name("roles")
+                  .DataTextField("RoleName")
+                  .DataValueField("RoleName")
+                  .Placeholder("...")
+                  .DataSource(source => {
+                      source.Read(read =>
+                      {
+                          read.Action("GetRoles", "Role");
+                      })
+                      .ServerFiltering(false);
+                  })
+                  .Value(ViewBag.Roles)
+                )  
+            </div> 
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.FullName, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.FullName, new { @class = "input-block-level" })
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Email, new { @class = "input-block-level" })
+              @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div> 
+    <div class="control-group">
+        @Html.LabelFor(m => m.Mobile, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Mobile, new { @class = "input-block-level" })
+        </div>
+    </div> 
+ 
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.Avatar, new { @class = "control-label" })
+        @Html.HiddenFor(m => m.Avatar, new { id="hfavatar"}) 
+        <div class="controls">
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <div class="fileupload-new thumbnail" id="imgthumb" style="width: 120px; height: 100px;">
+                    <img src='@String.Format("{0}", !string.IsNullOrEmpty(Model.Avatar) ? Model.Avatar : ApplicationService.NoImage)' />
+                </div>
+                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 120px; max-height: 100px; line-height: 20px;"></div>
+                <div>
+                    <span class="btn btn-file"><span class="fileupload-new">Tải ảnh</span><span class="fileupload-exists">Tải ảnh</span><input type="file" name='image' /></span>
+                    <a href="javascript:void(0);" class="btn fileupload-exists" data-dismiss="fileupload">Hủy</a>
+                    @if (!string.IsNullOrEmpty(Model.Avatar))
+                    {
+                        <a href="javascript:void(0);" onclick="thumbprocess(this, 'imgthumb','@ApplicationService.NoImage');" class="btn">Xóa</a>
+                        @Html.HiddenFor(m => m.Avatar, new { @url = Model.Avatar })
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>  
+    <div class="validation-group"><div class="controls">
+        @Html.ValidationSummary(true)</div>
+    </div> 
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">@Resources.Common.SaveChanges</button> 
+    </div>
+    @Html.AntiForgeryToken()
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        top.winsetup("@Html.Raw(Resources.Common.EditItem)", 700, 500, true);
+    });
+    function create_success() {
+        top.$("#window").data("kendoWindow").close();
+        top.$("#grid").data("kendoGrid").dataSource.read();
+    }
+    function thumbprocess(obj, target, noimg) {
+        var state = $(obj).attr("state");
+        var cthumb = $(obj).next().attr('url');
+        if (state == '' || state == null) {
+            $(obj).next().val('');
+            $('#' + target).find('img').attr('src', noimg);
+            $(obj).text("Khôi phục"); $(obj).attr("state", "1")
+        } else {
+            $(obj).text("Xóa");
+            $('#' + target).find('img').attr('src', cthumb);
+            $(obj).next().val(cthumb); $(obj).attr("state", "")
+        }
+    }
+</script>

@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />	
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <title>@ViewBag.Title</title> 
+	<link rel="stylesheet" href="/Content/themes/admin/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="/Content/themes/admin/css/bootstrap-responsive.min.css">  
+      <link rel="stylesheet" href="/Content/themes/admin/css/plugins/icheck/all.css">
+   <link rel="stylesheet" href="/Content/themes/admin/css/plugins/pageguide/pageguide.css">
+   <link rel="stylesheet" href="/Content/themes/admin/css/plugins/chosen/chosen.css">
+    <link rel="stylesheet" href="/Content/themes/admin/css/plugins/select2/select2.css">
+ 	<link rel="stylesheet" href="/Content/themes/admin/css/plugins/colorbox/colorbox.css">
+    <link rel="stylesheet" href="/Content/themes/admin/css/style.css"> 
+	<link rel="stylesheet" href="/Content/themes/admin/css/themes.css"> 
+    <link rel="stylesheet" href="/Content/themes/admin/css/plugins/jquery-ui/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/Content/themes/admin/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css">
+    <link href="/Content/themes/admin/css/zstyle.css" rel="stylesheet" />
+     @Scripts.Render("~/bundles/jquery") 
+	<script src="/Content/themes/admin/js/plugins/jquery-ui/jquery.ui.core.min.js"></script>
+	<script src="/Content/themes/admin/js/plugins/jquery-ui/jquery.ui.widget.min.js"></script>
+	<script src="/Content/themes/admin/js/plugins/jquery-ui/jquery.ui.mouse.min.js"></script>
+	<script src="/Content/themes/admin/js/plugins/jquery-ui/jquery.ui.draggable.min.js"></script>
+	<script src="/Content/themes/admin/js/plugins/jquery-ui/jquery.ui.resizable.min.js"></script>
+	<script src="/Content/themes/admin/js/plugins/jquery-ui/jquery.ui.sortable.min.js"></script>
+    	
+    
+    <script src="/Content/themes/admin/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="/Content/themes/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/Content/themes/admin/js/bootstrap.min.js"></script>
+ 
+     <script src="/Content/themes/admin/js/plugins/icheck/jquery.icheck.min.js"></script>
+ 
+    <script src="/Content/themes/admin/js/plugins/bootbox/jquery.bootbox.js"></script> 
+    <script src="/Content/themes/admin/js/plugins/colorbox/jquery.colorbox-min.js"></script>
+     <script src="/Content/themes/admin/js/plugins/select2/select2.min.js"></script> 
+	<script src="/Content/themes/admin/js/plugins/pageguide/jquery.pageguide.js"></script> 
+    <script src="/Content/themes/admin/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>  
+	<link href="@Url.Content("~/Content/kendo.compatibility.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/kendo.common.min.css")" rel="stylesheet" type="text/css" /> 
+	<link href="@Url.Content("~/Content/kendo/kendo.metro.min.css")" rel="stylesheet" type="text/css" /> 
+	<script src="@Url.Content("~/Scripts/kendo/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/kendo.aspnetmvc.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    
+      <script src="/Content/themes/admin/js/eakroko.min.js"></script>
+     <script src="/Content/themes/admin/js/application.min.js"></script>
+  
+
+
+    	<!--[if lte IE 9]>
+		<script src="/Content/themes/admin/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+   <link rel="shortcut icon" href="/images/favicon.ico" /> 
+	<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png" />
+  
+</head> 
+   <body data-layout-sidebar="fixed" data-layout-topbar="fixed">
+	 
+	 
+	<div id="navigation">
+		<div class="container-fluid">
+			<a href="#" id="brand">FLAT</a>
+			<a href="#" class="toggle-nav" style="visibility:visible;" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+
+			@Html.Partial("_MainNav") 
+			<div class="user">
+				<ul class="icon-nav">
+					<li class='dropdown'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope"></i><span class="label label-lightred">4</span></a>
+						<ul class="dropdown-menu pull-right message-ul">
+							<li>
+								<a href="#">
+									<img src="/images/demo/user-1.jpg" alt="">
+									<div class="details">
+										<div class="name">Jane Doe</div>
+										<div class="message">
+											Lorem ipsum Commodo quis nisi ...
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="/images/demo/user-2.jpg" alt="">
+									<div class="details">
+										<div class="name">John Doedoe</div>
+										<div class="message">
+											Ut ad laboris est anim ut ...
+										</div>
+									</div>
+									<div class="count">
+										<i class="icon-comment"></i>
+										<span>3</span>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="/images/demo/user-3.jpg" alt="">
+									<div class="details">
+										<div class="name">Bob Doe</div>
+										<div class="message">
+											Excepteur Duis magna dolor!
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="components-messages.html" class='more-messages'>Go to Message center <i class="icon-arrow-right"></i></a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown sett">
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-cog"></i></a>
+						<ul class="dropdown-menu pull-right theme-settings">
+							<li>
+								<span>Layout-width</span>
+								<div class="version-toggle">
+									<a href="#" class='set-fixed'>Fixed</a>
+									<a href="#" class="active set-fluid">Fluid</a>
+								</div>
+							</li>
+							<li>
+								<span>Topbar</span>
+								<div class="topbar-toggle">
+									<a href="#" class='set-topbar-fixed'>Fixed</a>
+									<a href="#" class="active set-topbar-default">Default</a>
+								</div>
+							</li>
+							<li>
+								<span>Sidebar</span>
+								<div class="sidebar-toggle">
+									<a href="#" class='set-sidebar-fixed'>Fixed</a>
+									<a href="#" class="active set-sidebar-default">Default</a>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class='dropdown colo'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
+						<ul class="dropdown-menu pull-right theme-colors">
+							<li class="subtitle">
+								Predefined colors
+							</li>
+							<li>
+								<span class='red'></span>
+								<span class='orange'></span>
+								<span class='green'></span>
+								<span class="brown"></span>
+								<span class="blue"></span>
+								<span class='lime'></span>
+								<span class="teal"></span>
+								<span class="purple"></span>
+								<span class="pink"></span>
+								<span class="magenta"></span>
+								<span class="grey"></span>
+								<span class="darkblue"></span>
+								<span class="lightred"></span>
+								<span class="lightgrey"></span>
+								<span class="satblue"></span>
+								<span class="satgreen"></span>
+							</li>
+						</ul>
+					</li>
+					<li class='dropdown language-select'>
+						<a href="/admin/base/changelanguage?lang=vi-VN" class='dropdown-toggle' data-toggle="dropdown"><img src="/images/demo/flags/vn.gif" alt=""><span>VN</span></a>
+						<ul class="dropdown-menu pull-right"> 
+							<li>
+								<a href="/admin/base/changelanguage?lang=en-US"><img src="/images/demo/flags/us.gif" alt=""><span>English</span></a>
+							</li> 
+						</ul>
+					</li>
+				</ul>
+				<div class="dropdown">
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe <img src="/images/demo/user-avatar.jpg" alt=""></a>
+					<ul class="dropdown-menu pull-right">
+						<li>
+							<a href="more-userprofile.html">Edit profile</a>
+						</li>
+						<li>
+							<a href="#">Account settings</a>
+						</li>
+						<li>
+							<a href="more-login.html">Sign out</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid" id="content">
+		  @RenderBody()
+    </div>
+
+    
+    </body>
+   
+</html>
+<script type="text/javascript" defer="defer">
+         @Html.Raw(ViewBag.StartupScript)
+</script>

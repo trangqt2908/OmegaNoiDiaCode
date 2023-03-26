@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{
+    ViewBag.Title = "_ColLeft";
+    var module = (WebModule)ViewBag.ModuleActive;
+}
+
+<div class="pull-right navbar-right filter-listing">
+    <span> @Resources.Common.Sortby </span>
+    <div class="btn-group">
+
+        <button type="button" class="btn btn-default btn-sm" style="    min-width: 140px;">
+
+            @if (module.UID != "list-tour")
+            {
+                <span> @module.Title </span>
+            }
+            else
+            {
+                <span> --- @Resources.Common.TypeOfTour ---  </span>
+            }
+
+        </button>
+
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu nav-condensed" role="menu">
+
+            @if (module.UID != "list-tour")
+            {
+                var url = module.URL;
+                if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
+                {
+                    url = Url.Action("Index", "Home",
+                        new { metatitle = module.Parent.MetaTitle != null ? module.Parent.MetaTitle : "web", id = module.Parent.ID, area = "" });
+                }
+                <li><a href="@url" title="@module.Title"> --- @Resources.Common.TypeOfTour --- </a></li>
+            }
+           
+
+            @foreach (var item in Model)
+            {
+                var url = item.URL;
+                if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+                {
+                    url = Url.Action("Index", "Home",
+                        new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", id = item.ID, area = "" });
+                }
+                <li><a href="@url" title="@item.Title">@item.Title </a></li>
+            }
+
+        </ul>
+    </div>
+</div>

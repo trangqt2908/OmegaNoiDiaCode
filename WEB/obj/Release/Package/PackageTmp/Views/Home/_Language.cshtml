@@ -1,0 +1,67 @@
+﻿@model IList<Language>
+@{
+    Layout = null;
+}
+
+<ul>
+    @foreach (Language language in Model)
+    {
+        string img = language.ID + ".png";
+
+        <li>
+            <div class="img">
+                <a href="/base/changelanguage/@language.ID">
+                    <img src="/images/flags/@img" title="@language.Title" alt="@img" />
+                </a>
+            </div>
+            <h4><a href="/base/changelanguage/@language.ID" title="@language.Title">@language.Title</a></h4>
+        </li>
+
+    }
+</ul>
+
+
+
+@*<div class="mini-cart">
+    <div class="cart-content">
+        <i class="fa fa-language "></i>
+    </div>
+    <div class="sub-cart">
+        <h5> @Resources.Common.Language </h5>
+        <ul>
+            @foreach (Language language in Model)
+            {
+                string img = language.ID + ".png";
+                
+                <li>
+                <div class="img">
+                    <a href="/base/changelanguage/@language.ID">
+                        <img src="/images/flags/@img" title="@language.Title" alt="@img" />
+                    </a>
+                </div>
+                <h4><a href="/base/changelanguage/@language.ID" title="@language.Title">@language.Title</a></h4>
+            </li>
+                
+            }
+        </ul>
+    </div>
+</div>*@
+
+@*@if (ApplicationService.Culture.Equals("en-US"))
+{
+    <a href="/base/changelanguage/vi-VN">
+        <span class="menu-title">
+            <i class="fa fa-fw fa-globe"></i>
+            VietNam
+        </span>
+    </a>
+}
+else
+{
+    <a href="/base/changelanguage/en-US">
+        <span class="menu-title">
+            <i class="fa fa-fw fa-globe"></i>
+            English
+        </span>
+    </a>
+}*@

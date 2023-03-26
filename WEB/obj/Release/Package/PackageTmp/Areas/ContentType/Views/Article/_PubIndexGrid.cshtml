@@ -1,0 +1,26 @@
+﻿@model IEnumerable<WebModels.WebContent>
+@{
+    ViewBag.Title = "";
+}
+<div class="publish-news">
+    <div class="grid-view">
+        @foreach (var item in Model)
+        { <div class="item">
+            <div class="item-imagebox">
+                @if (item.Image != null)
+                {
+                    <a href="#"><img src="@item.Image" alt="@item.Title" /><div class="image-hover"></div></a>
+                }
+                else
+                {
+                    <a href="#"><img src="/images/no-image.jpg" alt="@item.Title" /><div class="image-hover"></div></a>
+                }
+            </div>
+            <div class="item-review">
+                <h3><a href="#">@item.Title</a></h3>               
+            </div>
+        </div>
+        }
+
+    </div>
+</div>

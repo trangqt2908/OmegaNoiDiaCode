@@ -1,0 +1,62 @@
+﻿@model AccountModels.LoginModel
+@{ 
+    ViewBag.Title = "FLAT -  " + AccountModels.AccountResources.SignIn;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+
+<div class='login' style="width: 100%; height: 100%;">
+
+   
+   
+
+    <div class="wrapper">
+        <h1><a href="/admin">
+            <img src="/images/logo-big.png" alt="" class='retina-ready' width="59" height="49">FLAT</a></h1>
+        <div class="login-body">
+            <h2>@AccountModels.AccountResources.SignIn </h2>
+            @using (Html.BeginForm("Login", "Account", null, FormMethod.Post, new { @class = "form-validate" }))
+            { 
+
+                <div class="control-group">
+                    <div class="email controls">
+                        @Html.TextBoxFor(m => m.UserName, new { @placeholder = AccountModels.AccountResources.UserName, @class = "input-block-level" })
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="pw controls">
+                        @Html.PasswordFor(m => m.Password, new { @class = "input-block-level", @placeholder = AccountModels.AccountResources.Password })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                </div> 
+
+                <div class="control-group clearfix">
+                    @Html.ValidationSummary(true)
+                </div>
+                 
+                <div class="submit">
+                    <div class="remember">
+                        @Html.CheckBoxFor(m => m.RememberMe, new Dictionary<string, object> {   
+                            { "class", "icheck-me" },{"data-skin","square"},{"data-color","blue"},{"id","remember"}
+                        })
+                        <label for="remember">@AccountModels.AccountResources.RememberMe</label>
+                    </div>
+                    <input type="submit" value="@AccountModels.AccountResources.SignInMe" class='btn btn-primary'>
+                </div>
+                @Html.AntiForgeryToken()
+
+               <div style="text-align:center;">
+                    <a  href="/admin/base/changelanguage?lang=en-US"> 
+                        <img alt="" src="/images/demo/flags/us.gif"> </a>
+                    <a  href="/admin/base/changelanguage?lang=vi-VN"> <img alt="" src="/images/demo/flags/vn.gif"> </a>
+                </div>
+            }
+            <div class="forget">
+                <a href="/account/forgot-password"><span>@AccountModels.AccountResources.ForgotPassword?</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
