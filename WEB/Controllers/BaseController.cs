@@ -115,6 +115,33 @@ namespace WEB.Controllers
                 catch (Exception)
                 { } 
             }
+            else
+            {
+
+                string culture = "";
+                if (this.Session["culture"] != null)
+                {
+                    culture = this.Session["culture"].ToString();
+                }
+                else
+                {
+                    try
+                    {
+                        if (this.Language != null)
+                        {
+                            culture = this.Language.First().ID;
+                        }
+                        //else
+                        //    culture = CultureInfo.InvariantCulture.Name;
+
+                    }
+                    catch (Exception)
+                    {
+                        culture = CultureInfo.InvariantCulture.Name;
+                    }
+                    this.Session["culture"] = culture;
+                }
+            }
             base.ExecuteCore();
         }
 
