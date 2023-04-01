@@ -4,20 +4,19 @@
     Layout = "";
 }
 
-
-<div class="more-info tags my-4">
-    <h6 class="black semibold text-center mx-4 mt-3 mb-3 info-title">@Resources.Common.TopDestinations</h6>
-    <div class="text-center px-3 px-lg-2 pb-3">
-        @foreach (var item in Model)
+<div class="title-box">
+    <h3>Top <span>Destination</span></h3>
+</div>
+<div class="tags-item">
+    @foreach (var item in Model)
+    {
+        var url = Url.Action("Detail", "Home", new
         {
-            var url = Url.Action("Detail", "Home", new
-            {
-                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                area = ""
-            });
-            <a class="btn btn-outline-primary px-3  mr-1 mb-1 btn-sm " href="@url" title="@item.Title" role="button">@item.Title</a>
-        }
-    </div>
+            metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+            m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+            area = ""
+        });
+        <a class="" href="@url" title="@item.Title" role="button">@item.Title</a>
+    }
 
 </div>

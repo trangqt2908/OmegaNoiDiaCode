@@ -22,45 +22,29 @@
                             OnFailure = "OnFailureContactTour"
                         }, new { id = "frmcontact" }))
 {
-      @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
     <input type="hidden" name="WebContentID" value="@ViewBag.ContentID" />
     <input type="hidden" name="Title" value="Email liên hệ từ Tour" />
-
-
-    <div class="form-container px-3 py-3" id="contactTour">
-
-        <h4 class="black bold mt-3 px-4 pb-2 text-center text-book">Book this tour</h4>
-
-        <div id="sidebar-form" class="px-xl-3 px-lg-3 px-3">
-
-            <div class="form-group text-center">
-                <label class="" for="inputname">@Resources.Common.FullName</label>
-                @Html.TextBoxFor(m => m.FullName, new { @placeholder = "* " + @Resources.Common.FullName, @class = "form-control" })
-            </div>
-            <div class="form-group text-center">
-                <label class="text-center" for="inputtours">@Resources.Common.Email</label>
-                @Html.TextBoxFor(m => m.Email, new { @placeholder = "* " + @Resources.Common.Email, @class = "form-control" })
-            </div>
-            <div class="form-group text-center">
-                <label class="" for="inputmail">@Resources.Common.Mobile</label>
-                @Html.TextBoxFor(m => m.Mobile, new { @placeholder = @Resources.Common.Mobile, @class = "form-control" })
-            </div>
-            <div class="form-group text-center">
-                <label class="" for="inputmail">@Resources.Common.Address</label>
-                @Html.TextBoxFor(m => m.Address, new { @placeholder = @Resources.Common.Address, @class = "form-control" })
-            </div>
-
-            <div class="form-group text-center departure">
-                <label class="" for="datepicker">@Resources.Common.Content</label>
+    <div class="form-row id="sidebar-form">
+        <div class="form-group col-md-6">
+            @Html.TextBoxFor(m => m.FullName, new { @placeholder = "* " + @Resources.Common.FullName, @class = "form-control" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.TextBoxFor(m => m.Email, new { @placeholder = "* " + @Resources.Common.Email, @class = "form-control" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.TextBoxFor(m => m.Mobile, new { @placeholder = @Resources.Common.Mobile, @class = "form-control" })
+        </div>
+        <div class="form-group col-md-12">
+            @Html.TextBoxFor(m => m.Address, new { @placeholder = @Resources.Common.Address, @class = "form-control" })
+        </div>
+        <div class="form-group col-md-12">
+            <div class="contact-textarea">
                 @Html.TextAreaFor(m => m.Body, new { @placeholder = "* " + @Resources.Common.Content, @class = "form-control", @rows = "4" })
-            </div>
-
-            <div class="form-group row">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn col-sm-12 my-2 btn-primary"> @Resources.Common.BookNow</button>
-                </div>
+                <button type="submit" class="btn btn-theme mt-4"> @Resources.Common.BookNow</button>
             </div>
         </div>
 
     </div>
+
 }
