@@ -221,3 +221,4 @@ D:\Projects\OmagaNoiDia\OmegaNoiDiaCode\WebHelpers\obj\Debug\WebHelpers.csproj.C
 D:\Projects\OmagaNoiDia\OmegaNoiDiaCode\WebHelpers\obj\Debug\WebHelpers.csproj.CopyComplete
 D:\Projects\OmagaNoiDia\OmegaNoiDiaCode\WebHelpers\obj\Debug\Web.Helpers.dll
 D:\Projects\OmagaNoiDia\OmegaNoiDiaCode\WebHelpers\obj\Debug\Web.Helpers.pdb
+D:\Projects\OmagaNoiDia\OmegaNoiDiaCode\WebHelpers\obj\Debug\WebHelpers.csproj.AssemblyReference.cache
