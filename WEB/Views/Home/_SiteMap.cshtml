@@ -4,8 +4,9 @@
 
     <!-- Sub Navigation
             ================================================== -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">  <a href="/"> <i class="fa fa-home" aria-hidden="true"></i>  </a></li>
+
+    <p>
+        <a href="/">Trang chủ</a>
         @if (Model != null && Model.Count > 0)
         {
 
@@ -19,22 +20,22 @@
                         if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
                         {
 
-                            <li class="breadcrumb-item">  <a href="/">@module.Title   </a></li>
+                            <a class="map-child" href="/">@module.Title</a>
                         }
                         else
                         {
-                            <li class="breadcrumb-item">  <a href="@module.URL target=" @module.Target> @module.Title </a></li>
+                            <a class="map-child" href="@module.URL target=" @module.Target> @module.Title </a>
                         }
                     }
                     else
                     {
                         if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
                         {
-                            <li class="breadcrumb-item">      @Html.ActionLink(@module.Title, "Index", "Home", new { metatitle = module.MetaTitle != null ? module.MetaTitle : "gym", id = module.ID }, new { title = module.Title })</li>
+                            @Html.ActionLink(@module.Title, "Index", "Home", new {  metatitle = module.MetaTitle != null ? module.MetaTitle : "gym", id = module.ID}, new { title = module.Title, @class = "map-child" })
                         }
                         else
                         {
-                            <li class="breadcrumb-item"><a href="@module.URL target=" @module.Target>@module.Title </a></li>
+                            <a class="map-child" href="@module.URL target=" @module.Target>@module.Title </a>
                         }
                     }
                 }
@@ -42,5 +43,7 @@
             }
             while (Model.Count != 0);
         }
-    </ol>
+
+    </p>
+
 </div>

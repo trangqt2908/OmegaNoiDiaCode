@@ -141,5 +141,15 @@ namespace WEB.Areas.ContentType.Controllers
             ViewBag.CurrentPage = ipage;
             return PartialView(contents.Skip((ipage - 1) * 10).Take(10).ToList());
         }
+        public ActionResult _TourService()
+        {
+            var model = db.WebModules.Where(x => x.UID == "blog").FirstOrDefault();
+            if(model!= null)
+            {
+                var tourItem = db.WebContents.Where(x => x.WebModuleID == model.ID).ToList();
+                return View(tourItem);
+            }
+            return View();
+        }
     }
 }
