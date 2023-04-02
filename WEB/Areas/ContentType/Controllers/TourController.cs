@@ -288,10 +288,11 @@ namespace WEB.Areas.ContentType.Controllers
                     db.Entry(model.ProductInfo).Property(a => a.Price).IsModified = true;
                     db.Entry(model.ProductInfo).Property(a => a.Code).IsModified = true;
                     db.Entry(model.ProductInfo).Property(a => a.Duration).IsModified = true;
-                    db.Entry(model.ProductInfo).Property(a => a.Languages).IsModified = true;
+                    db.Entry(model.ProductInfo).Property(a => a.DepartureTime).IsModified = true;
                     db.Entry(model.ProductInfo).Property(a => a.Destination).IsModified = true;
-                    db.Entry(model.ProductInfo).Property(a => a.ServiceDetail).IsModified = true;
-                    db.Entry(model.ProductInfo).Property(a => a.Map).IsModified = true;
+                    db.Entry(model.ProductInfo).Property(a => a.TourTime).IsModified = true;
+                    db.Entry(model.ProductInfo).Property(a => a.Discount).IsModified = true;
+                    db.Entry(model.ProductInfo).Property(a => a.Transportation).IsModified = true;
 
                     db.SaveChanges();
                     if (submit == 0)
@@ -478,7 +479,7 @@ namespace WEB.Areas.ContentType.Controllers
             var webContents = new List<WebContent>();
             ViewBag.WebModule = webmodule;
 
-            var contents = GetListContents(webmodule.ID, webContents);
+            var contents = GetListContents(webmodule.ID, webContents).OrderByDescending(x=>x.ID);
 
             var ipage = 1; if (page != null) ipage = page.Value;
             ViewBag.TotalItemCount = contents.Count();

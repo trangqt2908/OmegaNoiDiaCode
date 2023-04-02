@@ -76,11 +76,11 @@
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             @node.Title
                                         </a>
-                                        @CreateMenu(sub, idDrop)
+                                        @CreateMenu(sub)
                                     }
                                     else
                                     {
-                                        <a class="nav-link ml-lg-0 ml-3 mr-4 my-lg-0 my-2 lastitem" href="@url">
+                                        <a class="nav-link" href="@url">
                                             @node.Title
                                         </a>
 
@@ -122,11 +122,39 @@
 <!-- Header Section End -->
 
 
-@helper CreateMenu(IEnumerable<WebModels.WebModule> nodes, string idDrop)
+@helper CreateMenu(IEnumerable<WebModels.WebModule> nodes)
 {
+    <div class="dropdown-menu left-1">
+        <div class="dropdown">
+            @foreach (var node in nodes)
+            {
+                var sub = from x in Model where x.ParentID == node.ID select x;
+                var url = node.URL;
+                if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+                {
+                    url = Url.Action("Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web" });
+                }
 
-<div class="dropdown-menu left-1">
-    <div class="dropdown">
+                if (sub.Any())
+                {
+                    <div class="dropdown">
+                        <a class="dropdown-toggle dropdown-item" data-toggle="dropdown"
+                           href="#"> @node.Title</a>
+                        @CreateMenu2(sub)
+                    </div>
+                }
+                else
+                {
+                    <a class="dropdown-item" href="@url">@node.Title</a>
+                }
+            }
+        </div>
+    </div>
+}
+
+@helper CreateMenu2(IEnumerable<WebModels.WebModule> nodes)
+{
+    <div class="dropdown-menu">
         @foreach (var item in nodes)
         {
             var url = item.URL;
@@ -135,8 +163,7 @@
                 url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web" });
             }
 
-            <a class="dropdown-item" href="@url" title="@item.Title"> @item.Title </a>
+            <a class="dropdown-item" href="@url">@item.Title</a>
         }
     </div>
-</div>
-    }
+}

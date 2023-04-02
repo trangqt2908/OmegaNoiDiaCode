@@ -215,19 +215,15 @@ namespace WebModels
         [Column("PriceOld")]
         public Nullable<double> PriceOld { get; set; }
 
-        [Column("PriceInfo")]
-        [Display(ResourceType = typeof(WebResources), Name = "PriceInfo")]
-        public string PriceInfo { get; set; }
-
         [Column("Code")]
         [Display(ResourceType = typeof(WebResources), Name = "ProductCode")]
         public string Code { get; set; }
         public int Duration { get; set; }
-        public string Languages { get; set; }
         public string Destination { get; set; }
-
-        public string ServiceDetail { get; set; }
-        public string Map { get; set; }
+        public string Transportation { get; set; }
+        public int Discount { get; set; }
+        public string TourTime { get; set; }
+        public string DepartureTime { get; set; }
         public virtual WebContent WebContent { get; set; }
 
     }
