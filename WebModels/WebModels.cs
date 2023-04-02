@@ -224,6 +224,8 @@ namespace WebModels
         public int Discount { get; set; }
         public string TourTime { get; set; }
         public string DepartureTime { get; set; }
+
+        public string Policy { get; set; }
         public virtual WebContent WebContent { get; set; }
 
     }

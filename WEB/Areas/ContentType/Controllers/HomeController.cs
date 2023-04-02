@@ -377,7 +377,6 @@ namespace WEB.Areas.ContentType.Controllers
             }
             else webmodule = db.Set<WebModule>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault(); ;
             ViewBag.WebModule = webmodule;
-            ViewBag.ID = webmodule.ID;
 
             return PartialView();
         }

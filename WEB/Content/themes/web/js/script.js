@@ -328,7 +328,7 @@
         autoplay: false,
         autoplayHoverPause:false,
         smartSpeed: 700,
-        items: 2,
+        items: 3,
         margin:30,
         dots: false,
         nav:true,
@@ -350,10 +350,10 @@
             items:1
           },
           992:{
-            items:2
+            items:3
           },
           1200:{
-            items:2
+            items:3
           }
         }
     });

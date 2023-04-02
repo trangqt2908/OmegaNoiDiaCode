@@ -11,45 +11,76 @@
     <meta name="description" content="@TempData["Description"]" />
     <meta name="keywords" content="@TempData["Keywords"]" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap and Jquery scripts -->
-    @*<script src="~/Content/themes/web/js/jquery-3.1.1.min.js"></script>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Content/themes/web/js/bootstrap.min.js"></script>
-    <script src="~/Content/themes/web/js/popper.min.js"></script>
 
-    <!-- Aditional scripts -->
-    <script src="~/Content/themes/web/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/Content/themes/web/js/smooth-scroll.min.js"></script>
-    <script src="~/Content/themes/web/js/jquery-ui.js"></script>
-    <script src="~/Content/themes/web/js/initslider.js"></script>
-    <script src="~/Content/themes/web/js/instafeed.min.js"></script>
-    <script src="~/Content/themes/web/js/jquery.ui.touch-punch.min.js"></script>
-
-
-    <!-- Main scripts -->
-    <script src="~/Content/themes/web/js/main.js"></script>
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="~/Content/themes/web/css/all.css">
-    <link rel="stylesheet" href="~/Content/themes/web/css/jquery-ui.css">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Content/themes/web/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/themes/web/fonts/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/Content/themes/web/css/font-awesome-animation.min.css">
-    <link rel="stylesheet" href="~/Content/themes/web/css/magnific-popup.css">
-    <link rel="stylesheet" href="~/Content/themes/web/css/style.css" type="text/css">
-    <link href="~/Content/paging.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/themes/web/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Content/themes/web/css/menu.css">
+    <link rel="stylesheet" href="~/Content/themes/web/css/custom-animation.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/Content/themes/web/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/themes/web/css/responsive.css">
+
     @RenderSection("scripts", required: false)
 
-</head>
-<body class="jquerytouch">
 
-    @Html.Action("_Main", "Navigation", new { key = "main", area = "" })
-    @RenderBody()
-    @Html.Action("_Menu_Footer", "Navigation", new { area = "", key = "footer" })
+</head>
+<body class="home home2">
+    <!-- navbar -->
+
+
+
+    @*@Html.Action("_Menu_Footer", "Navigation", new { area = "", key = "footer" })*@
+
+
+    <div class="preloader"></div>
+
+    <!-- Start Page Wrapper  -->
+    <div class="page-wrapper">
+        @Html.Action("_Main", "Navigation", new { key = "main", area = "" })
+
+
+
+        @RenderBody()
+        <!-- Footer Style Seven Start -->
+        @Html.Action("_Menu_Footer", "Navigation", new { area = "", key = "footer" })
+
+        <!-- Footer Style Seven End -->
+
+    </div>
+    <!-- End Page Wrapper  -->
+
+    <a href="#" class="scrollup"><i class="flaticon-long-arrow-pointing-up" aria-hidden="true"></i></a>
+
+
+    <!------------------------------------------
+    Main JavaScript
+    <------------------------------------------>
+    <script src="~/Content/themes/web/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/themes/web/js/popper.min.js"></script>
+    <script src="~/Content/themes/web/js/bootstrap.min.js"></script>
+
+
+    <!-- Optional JavaScript -->
+    <script src="~/Content/themes/web/js/bootstrap-dropdownhover.min.js"></script>
+    <script src="~/Content/themes/web/js/bootstrap-slider.js"></script>
+    <script src="~/Content/themes/web/js/jquery.flexslider-min.js"></script>
+    <script src="~/Content/themes/web/js/slick.min.js"></script>
+    <script src="~/Content/themes/web/js/owl.carousel.min.js"></script>
+    <script src="~/Content/themes/web/js/css3-animate-it.js"></script>
+    <script src="~/Content/themes/web/js/magnific-popup.min.js"></script>
+    <script src="~/Content/themes/web/js/jquery.fancybox.js"></script>
+    <script src="~/Content/themes/web/js/player-min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="~/Content/themes/web/js/script.js"></script>
 
 </body>
 </html>
