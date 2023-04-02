@@ -2271,6 +2271,7 @@ canvas {
     width: 30%;
 }
 
+
 .special-places .content .price-box h5 {
     color: #ff701a;
     font-family: 'Roboto', sans-serif;
@@ -2320,7 +2321,14 @@ canvas {
     margin-bottom: 8px;
     text-transform: uppercase;
 }
-
+    .special-places .content .title h2 {
+        color: #255669;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
 .special-places .content .title-box h3 {
     color: #a9a8a8;
     font-family: 'Roboto', sans-serif;
@@ -2539,15 +2547,16 @@ canvas {
 .special-packages .post-title-box {
     background-color: rgba(15, 129, 197, 0.86);
     bottom: 0;
-    padding: 10px 0 10px 20px;
+    padding: 10px;
     position: absolute;
     width: 100%;
 }
 
-.special-packages .post-title-box .price-box {
-    float: left;
-    width: 27%;
-}
+    .special-packages .post-title-box .price-box {
+        float: right;
+        width: 50%;
+        text-align: right;
+    }
 
 .special-packages .post-title-box .price-box h5 {
     color: #ffcd22;
@@ -2556,7 +2565,7 @@ canvas {
     font-weight: 600;
     letter-spacing: 0.6px;
     line-height: 1;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
 }
 
 .special-packages .post-title-box .price-box h5 span {
@@ -2568,14 +2577,15 @@ canvas {
     font-size: 14px;
 }
 
-.special-packages .post-title-box .title-box {
-    float: right;
-    padding-left: 14px;
-    padding-top: 2px;
-    position: relative;
-    width: 73%;
-}
-
+    .special-packages .post-title-box .title-box {
+        float: left;
+        /*padding-left: 14px;*/
+        padding-top: 2px;
+        position: relative;
+        width: 50%;
+        text-decoration: line-through;
+    }
+/*
 .special-packages .post-title-box .title-box:before {
     background-color: rgba(221, 221, 221, 0.7);
     content: "";
@@ -2584,16 +2594,25 @@ canvas {
     position: absolute;
     top: 6px;
     width: 1px;
-}
+}*/
 
 .special-packages .post-title-box .title-box h4 {
     color: #fff;
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.3px;
-    margin-bottom: 8px;
+    /*margin-bottom: 8px;*/
     text-transform: uppercase;
 }
+
+    .special-packages .post-title-box .title h2 {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
 
 .special-packages .post-title-box .title-box h3 {
     color: #ffcd22;
@@ -2609,7 +2628,7 @@ canvas {
     border-top: none;
     box-shadow: 0 0 5px -3px rgba(0, 0, 0, 0.1);
     display: inline-block;
-    padding: 22px 19px 20px;
+    padding: 14px;
     position: relative;
     width: 100%;
 }
@@ -2632,14 +2651,25 @@ canvas {
     color: #255669;
 }
 
-.special-packages .content .info li a {
-    color: #9c9b9b;
-    margin-right: 12px;
-    font-size: 13px;
-}
+    .special-packages .content .info li a {
+        color: #4a4949;
+        margin-right: 12px;
+        font-size: 13px;
+    }
 
 .special-packages .content .info li a i {
     margin-right: 10px;
+}
+
+.content .btn {
+    display: inline-block;
+    width: 37px;
+    height: 35px;
+    text-align: center;
+    background: #1EC8E7 none repeat scroll 0 0;
+    font-size: 15px;
+    border-radius: 5px;
+    color: #fff;
 }
 
 .special-packages .content p {

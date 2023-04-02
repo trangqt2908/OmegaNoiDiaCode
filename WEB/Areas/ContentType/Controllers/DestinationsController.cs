@@ -187,10 +187,11 @@ namespace WEB.Areas.ContentType.Controllers
                         db.Entry(model.ProductInfo).Property(a => a.Price).IsModified = true;
                         db.Entry(model.ProductInfo).Property(a => a.Code).IsModified = true;
                         db.Entry(model.ProductInfo).Property(a => a.Duration).IsModified = true;
-                        db.Entry(model.ProductInfo).Property(a => a.Languages).IsModified = true;
+                        db.Entry(model.ProductInfo).Property(a => a.DepartureTime).IsModified = true;
                         db.Entry(model.ProductInfo).Property(a => a.Destination).IsModified = true;
-                        db.Entry(model.ProductInfo).Property(a => a.ServiceDetail).IsModified = true;
-                        db.Entry(model.ProductInfo).Property(a => a.Map).IsModified = true;
+                        db.Entry(model.ProductInfo).Property(a => a.TourTime).IsModified = true;
+                        db.Entry(model.ProductInfo).Property(a => a.Discount).IsModified = true;
+                        db.Entry(model.ProductInfo).Property(a => a.Transportation).IsModified = true;
 
                         db.SaveChanges();
                         ViewBag.StartupScript = "edit_success();";
