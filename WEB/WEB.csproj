@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WEB</RootNamespace>
     <AssemblyName>WEB</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -2914,6 +2914,8 @@
     <Content Include="Content\themes\web\fonts\Stroke-Gap-Icons.woff" />
     <Content Include="Areas\ContentType\Views\OnePage\_TourService.cshtml" />
     <Content Include="Areas\ContentType\Views\Article\_BlogView.cshtml" />
+    <Content Include="Areas\ContentType\Views\Home\_LastestBlog.cshtml" />
+    <Content Include="Areas\ContentType\Views\OnePage\_AboutUs.cshtml" />
     <None Include="Properties\PublishProfiles\Aexcursions.pubxml" />
     <None Include="Properties\PublishProfiles\FLAT.pubxml" />
     <Content Include="Images\apple-touch-icon-precomposed.png" />
@@ -3307,8 +3309,6 @@
     <Content Include="Views\Shared\_Socical.cshtml" />
     <Content Include="Views\BookTour\Book.cshtml" />
     <Content Include="Views\WebSimpleContent\_ContentCoverHome.cshtml" />
-    <Content Include="Views\Shared\_Layout_03_FullContent.cshtml" />
-    <Content Include="Views\Shared\_Layout_04_No_Backgroud.cshtml" />
     <Content Include="Views\Home\_SiteMapDetail.cshtml" />
     <Content Include="Views\Navigation\_ViewListDestination.cshtml" />
     <Content Include="Views\Navigation\_BoxTourTypeList.cshtml" />

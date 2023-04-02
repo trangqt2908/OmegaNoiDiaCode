@@ -398,6 +398,7 @@ namespace WEB.Areas.ContentType.Controllers
         {
             return PartialView();
         }
+        
 
         [AllowAnonymous]
         [HttpPost]
@@ -460,7 +461,11 @@ namespace WEB.Areas.ContentType.Controllers
 
             var module = db.WebModules.Where(x => x.UID.Equals("blog") && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
             ViewBag.WebModule = module;
-
+            var listTopBlog = db.WebContents.Where(x => x.WebModuleID == module.ID).ToList();
+            if(listTopBlog!= null && listTopBlog.Any())
+            {
+                return PartialView(listTopBlog.OrderByDescending(x => x.CreatedDate).Take(3));
+            }
             if (!string.IsNullOrWhiteSpace(module.PositionActive))
             {
                 var result = module.PositionActive.Split(new char[] { ',' }).ToList();
@@ -503,6 +508,14 @@ namespace WEB.Areas.ContentType.Controllers
 
             return PartialView();
         }
+
+        [AllowAnonymous]
+        public ActionResult _LastestBlog()
+        {
+
+            return PartialView();
+        }
         #endregion _Publish
+
     }
 }

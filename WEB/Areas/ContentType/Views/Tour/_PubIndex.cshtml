@@ -14,81 +14,96 @@
     TempData["Cat"] = webmodule.Title;
 }
 
-
-<div class="tour-title not-fixed center-image">
-
-    <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title">
-    <h1 class="white text-center front shadow-text center-text">@webmodule.Title</h1>
-    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curve.svg" alt="">*@
-
-</div>
-<!-- End section 1-->
-<!-- Section 3 Tours-->
-
-<section id="section3" class="tour-list-sidebar tour-search-3-cols-card">
-    <div class="container-fluid">
-        <div class="row">
-            @Html.Action("_SiteMap", "Home", new { area = "" })
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-lg-3 order-lg-first order-last mt-4 mt-lg-0">
-               
-                @Html.Action("_FrmSearchDetail", "Home", new { area = "ContentType"})
-                @*@Html.Partial("_QuickContact")*@
-
-                @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_tour" })
-
+<!-- Inner Section Start -->
+<section class="inner-area parallax-bg" data-background="images/bg/px-1.jpg" data-type="parallax" data-speed="3">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Holiday</h4>
+                    <p>Home <a href="#">Packages</a></p>
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
-                <div class="row">
-                    @foreach (var item in Model)
-                    {
-                        var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
-                        var urlContent = Url.Action("Detail", "Home", new
-                        {
-                            metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                            m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                            area = ""
-                        });
+        </div>
+    </div>
+</section>
+<!-- Inner Section End -->
+<!-- Special Packages Section Start -->
+<section class="special-packages-sec pt-85 pb-60">
+    <div class="container">
+        <div class="row grid-mb">
+            @foreach (var item in Model)
+            {
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                var urlContent = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                    area = ""
+                });
 
-                        var urlModule = Url.Action("Index", "Home", new
-                        {
-                            metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                            area = ""
-                        });
+                var urlModule = Url.Action("Index", "Home", new
+                {
+                    metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                    area = ""
+                });
 
 
-                        <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
-                            <div class="card ">
-                                <small class="white front"><span class="fa fa-clock mr-2 white"></span>&nbsp;<strong>@item.ProductInfo.Duration</strong><br>@Resources.Common.Days</small>
-                                <a class="img-card" href="@urlContent" title="@item.Title">
-                                    <img src="@img" alt="@item.Title" title="@item.Title" />
-                                </a>
-                                <div class="card-content">
-                                    <div>
-                                        <a class="btn btn-primary px-3 btn-sm float-left" href="@urlModule" role="button">@item.WebModule.Title</a>
-                                    </div>
-                                    <h6 class="primary-color text-right"> &nbsp; </h6>
-                                    <h2 class="black">
-                                        <a href="@urlContent" title="@item.Title">
-                                            @if (!string.IsNullOrWhiteSpace(item.Description))
-                                            {
-                                                @Html.RawSubString(item.Title, 50)
-                                            }
-                                        </a>
-                                    </h2>
-                                    <p class="">
-                                        @if (!string.IsNullOrWhiteSpace(item.Description))
-                                        {
-                                            @Html.RawSubString(item.Description, 80)
-                                        }
-                                        <a href="@urlContent" title="@item.Title"><span>@Resources.Common.SeeMore</span></a>
-                                    </p>
+
+                <div class="col-md-4">
+                    <div class="special-packages">
+                        <div class="thumb">
+                            <img src="@img" alt="@item.Title">
+                            @if (item.ProductInfo.Discount > 0)
+                            {
+                                <div class="offer-price"> Off @item.ProductInfo.Discount%</div>
+                            }
+                            <div class="post-title-box">
+
+                                <div class="title">
+                                    <h2> @item.Title</h2>
                                 </div>
+
+                                <div class="title-box">
+                                    <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
+                                </div>
+                                <div class="price-box">
+                                    @if (item.ProductInfo.Discount > 0)
+                                    {
+                                        <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                    }
+                                </div>
+
                             </div>
                         </div>
-                    }
+                        <div class="content">
+                            <div class="infor">
+                                <div class="pull-left" style="width: 50%">
+                                    <ul class="info">
+                                        <li>
+                                            <a href="#"><i class="fa fa-calendar"></i> @item.ProductInfo.DepartureTime </a>
+                                            <br />
+                                            <a href="#"><i class="fa fa-calendar-check-o"></i>@item.ProductInfo.TourTime</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pull-left" style="width: 50%">
+                                    <div class="btn"> <i class="fa fa-plane"></i> </div>
+                                    <div class="btn"> <i class="fa fa-train"></i> </div>
+                                </div>
+
+                            </div>
+                            <p>Travel quia tempore, ex delectus rerum option's sapiente, magnam ullam ipsum voluptate more maxime blanditiis tour package.</p>
+                            <h5 class="share-btn"><i class="fa fa-share-alt"></i> Share</h5>
+                            <a class="btn-theme" href="#">View Details</a>
+                        </div>
+                    </div>
                 </div>
+            }
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
                 <div id="control-bot" class="control control-bot control-classer">
                     @if (ViewBag.TotalItemCount > 12)
                     {
@@ -113,7 +128,7 @@
                 </div>
             </div>
         </div>
+
     </div>
-
-
-</section><!-- End section 3 tours-->
+</section>
+<!-- Special Packages Section End -->

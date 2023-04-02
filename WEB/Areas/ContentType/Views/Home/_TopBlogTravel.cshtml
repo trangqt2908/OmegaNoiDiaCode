@@ -11,14 +11,18 @@
     });
 }
 
-<section class="regular blog-posts">
+
+<!-- Blog Section Start -->
     <div class="container">
-        <!-- Section Title -->
-        <div class="title-row">
-            <h3 class="title-entry"> @webmodule.Title </h3>
-            <a href="@urlModule" class="btn btn-primary btn-xs"> @Resources.Common.FindMore &nbsp; <i class="fa fa-angle-right"></i></a>
+        <div class="row">
+            <div class="section-title">
+                <h4>Our latest blog</h4>
+                <h2>Touran <span>Latest</span> Blog</h2>
+                <p>Consectetur adipisicing elit. Excepturi nemo tenetur veniam repellat earum inventore modi omnis.</p>
+            </div>
         </div>
         <div class="row">
+
             @foreach (var item in Model)
             {
                 var url = Url.Action("Detail", "Home", new
@@ -27,21 +31,33 @@
                     m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
                     area = ""
                 });
-                <div class="col-md-3 col-sm-6">
-                    <article class="post">
-                        <div class="card">
-                            <header class="entry-header">
-                                <a href="@url">
-                                    <div class="entry-thumbnail" style="background-image: url('@item.Image')">
-                                        <img alt="" title="" src="~/Content/themes/web/images/blog-placeholder-vertical.png" width="600" height="800">
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-post">
+                        <div class="thumb">
+                            <img alt="" src="@item.Image" alt="@item.Title" title="@item.Title">
+                            <div class="content">
+                                <a href=" @url " title=" @item.Title ">
+                                    <h3>
+                                        @Html.RawSubString(item.Title, 50)
+                                    </h3>
+                                    <div class="meta-box">
+                                        <div class="admin-post">OmegaTourNoiDia</div>
+                                        <div class="inner">
+                                            <div class="date">
+                                                <i class="fa fa-calendar-plus-o"></i> @item.CreatedDate.Value.Day @item.CreatedDate.Value.ToString("MMM")
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h2 class="entry-title"> @item.Title </h2>
                                 </a>
-                            </header>
+                            </div>
                         </div>
-                    </article>
+                        <a href="@url" class="read-btn">
+                            Continue Reading
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             }
         </div>
     </div>
-</section>
+<!-- Blog Section End -->
