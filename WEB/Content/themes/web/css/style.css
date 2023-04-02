@@ -7666,3 +7666,31 @@ M > P Css Style
 .text-center {
     text-align: center;
 }
+
+
+.page-link-item .pagination {
+    width:100%;
+    justify-content:center;
+}
+    .page-link-item .pagination li span {
+        border: 1px solid #eee !important;
+        border-radius: 50% !important;
+        font-family: 'Lora', serif;
+        font-size: 16px !important;
+        height: 40px;
+        line-height: 40px;
+        width: 40px;
+        background: white !important;
+        color: #777 !important;
+        display: flex;
+        align-items: center;
+    }
+    .page-link-item .pagination li span {
+        font-size: 16px;
+    }
+    .page-link-item .pagination ul li.active span{
+        color: #ffcd22 !important;
+    }
+    .page-link-item .pagination ul li.active.previous span, .page-link-item .pagination ul li.active.next span {
+        color: #777 !important;
+    }
