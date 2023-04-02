@@ -1,38 +1,48 @@
-﻿@model Stack<WebModule>
+﻿
+@model Stack<WebModule>
 
-    <li class="breadcrumb-item">  <a href="/"> <i class="fa fa-home" aria-hidden="true"></i>   </a></li>
-    @if (Model != null && Model.Count > 0)
-    {
+<div class="col-12" style="padding: 0;">
 
-        do
+    <!-- Sub Navigation
+            ================================================== -->
+
+    <p>
+        <a href="/">Trang chủ</a>
+        @if (Model != null && Model.Count > 0)
         {
-            WebModule module = Model.Pop();
-
-            if (string.IsNullOrEmpty(module.UID) || string.IsNullOrWhiteSpace(module.UID))
+            do
             {
-                if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
-                {
+                WebModule module = Model.Pop();
 
-                    <li class="breadcrumb-item">  <a href="/">@module.Title   </a></li>
+                if (string.IsNullOrEmpty(module.UID) || string.IsNullOrWhiteSpace(module.UID))
+                {
+                    if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
+                    {
+                        <a class="map-child" href="/">@module.Title   </a>
+                    }
+                    else
+                    {
+                        <a class="map-child" href="@module.URL target=" @module.Target> @module.Title </a>
+                    }
                 }
                 else
                 {
-                    <li class="breadcrumb-item">  <a href="@module.URL target=" @module.Target> @module.Title </a></li>
+                    if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
+                    {
+                        @Html.ActionLink(@module.Title, "Index", "Home", new { metatitle = module.MetaTitle != null ? module.MetaTitle : "gym", id = module.ID }, new { title = module.Title, @class="map-child"})
+                    }
+                    else
+                    {
+                        <a class="map-child" href="@module.URL target=" @module.Target>@module.Title </a>
+                    }
                 }
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
-                {
-                    <li class="breadcrumb-item">      @Html.ActionLink(@module.Title, "Index", "Home", new { metatitle = module.MetaTitle != null ? module.MetaTitle : "gym", id = module.ID }, new { title = module.Title })</li>
-                }
-                else
-                {
-                    <li class="breadcrumb-item"><a href="@module.URL target=" @module.Target>@module.Title </a></li>
-                }
-            }
 
-            module = module.Parent;
+                module = module.Parent;
+            }
+            while (Model.Count != 0);
+
         }
-        while (Model.Count != 0);
-    }
+
+    </p>
+
+</div>

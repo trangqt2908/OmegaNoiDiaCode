@@ -17,95 +17,143 @@
     TempData["Cat"] = webmodule.Title;
 }
 
-<div class="tour-title not-fixed ">
-
-    <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title">
-    <h1 class="white text-center front shadow-text center-text">@webmodule.Title</h1>
-    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curve.svg" alt="">*@
-
-</div>
-
-<section id="section3" class="tour-list-sidebar tour-list-sidebar-2-col">
-   
-    <div class="container-fluid">
-        @Html.Action("_SiteMap", "Home", new { area = "" })
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-lg-3 ml-lg-5 order-lg-first order-last mt-3 mt-lg-0">
-                @Html.Action("_TopDestinations", "Destinations", new { area = "ContentType", webmoduleId = 0, webContentId = 0 })
-
-                @*@Html.Partial("_QuickContact")*@
-
-                <div class=" mt-4">
-                    @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_destination" })
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-md-12 col-lg-8   single-tour">
-                <div class="row">
-                    <div class="col-lg-12 travel-left">
-
-
-                        @foreach (var item in Model)
-                        {
-                            var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
-                            var url = Url.Action("Detail", "Home", new
-                            {
-                                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                                m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
-                                area = ""
-                            });
-                            <div class="single-travel media mb-5">
-                                <img class="img-fluid d-flex  mr-3 " src="@img" alt="@item.Title" title="@item.Title">
-                                <div class="dates tiny white">
-                                    <span>@item.CreatedDate.Value.Day</span>
-                                    <p class="white  text-center">@item.CreatedDate.Value.ToString("MMM")</p>
-                                </div>
-                                <div class="media-body mt-sm-0 mt-3  align-self-center">
-                                    <a class="title-blog black" href="@url" title="@item.Title">
-                                        <h2 class="mt-0">
-                                            @Html.RawSubString(item.Title, 50)
-                                        </h2>
-                                    </a>
-
-                                    <p class="desc-blog">
-                                        @if (!string.IsNullOrWhiteSpace(item.Description))
-                                        {
-                                            @Html.RawSubString(item.Description, 320)
-                                        }
-                                    </p>
-                                    <div class="meta-bottom d-flex justify-content-between">
-                                        @*<p class="primary-color"><span class="far primary-color fa-heart"></span></p>*@
-                                        <p class="primary-color pull-right"> @Resources.Common.SeeMore ... <span class="far primary-color"></span> </p>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                    <div id="control-bot" class="control control-bot control-classer">
-                        @if (ViewBag.TotalItemCount > 12)
-                        {
-                            <div class="pager">
-                                @Html.Raw(Html.Pager(
-                            new Options
-                            {
-                                PageSize = 12,
-                                TotalItemCount = ViewBag.TotalItemCount,
-                                CurrentPage = ViewBag.CurrentPage,
-                                ItemTexts = new ItemTexts() { Next = "", Previous = "" },
-                                ItemIcon = new ItemIcon() { First = "fa fa-angle-double-left", Previous = "fa fa-angle-left", Next = "fa fa-angle-right", Last = "fa fa-angle-double-right" },
-                                TooltipTitles = new TooltipTitles() { Next = Resources.Common.NextPage, Previous = Resources.Common.PreviousPage },
-                                Size = Size.normal,
-                                IsShowControls = true,
-                                Alignment = Alignment.centered,
-                                IsShowFirstLast = false,
-                                IsShowPages = true
-                            }, new RouteValueDictionary(ViewBag.RouteValues)))
-                            </div>
-                        }
-                    </div>
+<section class="inner-area parallax-bg" data-background="images/bg/px-1.jpg" data-type="parallax" data-speed="3">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-12">
+                    <h4>@webmodule.Title</h4>
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
         </div>
     </div>
 </section>
+<section class="blog-section">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                var url = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+                    area = ""
+                });
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-post">
+                        <div class="thumb">
+                            <img alt="" src="@img" alt="@item.Title" title="@item.Title">
+                            <div class="content">
+                                <a href=" @url " title=" @item.Title ">
+                                    <h3>
+                                        @Html.RawSubString(item.Title, 50)
+                                    </h3>
+                                    <div class="meta-box">
+                                        <div class="admin-post">OmegaTourNoiDia</div>
+                                        <div class="inner">
+                                            <div class="date">
+                                                <i class="fa fa-calendar-plus-o"></i> @item.CreatedDate.Value.Day @item.CreatedDate.Value.ToString("MMM")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="@url" class="read-btn">
+                            Continue Reading
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <section class="text-center pt-0 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-link-item">
+                            <div id="control-bot" class="control control-bot control-classer">
+                                @if (ViewBag.TotalItemCount > 1)
+                                {
+                                    <div class="pager">
+                                        @Html.Raw(Html.Pager(
+                                    new Options
+                                    {
+                                        PageSize = 6,
+                                        TotalItemCount = ViewBag.TotalItemCount,
+                                        CurrentPage = ViewBag.CurrentPage,
+                                        ItemTexts = new ItemTexts() { Next = "", Previous = "" },
+                                        ItemIcon = new ItemIcon() { First = "fa fa-angle-double-left", Previous = "fa fa-angle-left", Next = "fa fa-angle-right", Last = "fa fa-angle-double-right" },
+                                        TooltipTitles = new TooltipTitles() { Next = Resources.Common.NextPage, Previous = Resources.Common.PreviousPage },
+                                        Size = Size.normal,
+                                        IsShowControls = true,
+                                        Alignment = Alignment.centered,
+                                        IsShowFirstLast = false,
+                                        IsShowPages = true
+                                    }, new RouteValueDictionary(ViewBag.RouteValues)))
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+    @*@Html.Action("_TopDestinations", "Destinations", new { area = "ContentType", webmoduleId = 0, webContentId = 0 })
+        @Html.Partial("_QuickContact")
+        @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_destination" })
+        *@
+    <!-- Client Section Start -->
+    <section class="client-section style-2 bg-f8 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="client_carousel" class="owl-carousel">
+                        <div class="item">
+                            <div class="client-img-item">
+                                <img src="images/partner/1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-img-item">
+                                <img src="images/partner/2.png" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-img-item">
+                                <img src="images/partner/3.png" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-img-item">
+                                <img src="images/partner/4.png" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-img-item">
+                                <img src="images/partner/5.png" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-img-item">
+                                <img src="images/partner/6.png" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="client-img-item">
+                                <img src="images/partner/2.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Client Section End -->
+
+
+

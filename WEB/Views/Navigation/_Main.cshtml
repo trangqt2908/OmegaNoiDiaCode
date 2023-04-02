@@ -76,7 +76,7 @@
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             @node.Title
                                         </a>
-                                        @*@CreateMenu(sub, idDrop)*@
+                                        @CreateMenu(sub, idDrop)
                                     }
                                     else
                                     {
@@ -121,7 +121,7 @@
 </header>
 <!-- Header Section End -->
 
-@*
+
 @helper CreateMenu(IEnumerable<WebModels.WebModule> nodes, string idDrop)
 {
 
@@ -139,4 +139,4 @@
         }
     </div>
 </div>
-    }*@
+    }
