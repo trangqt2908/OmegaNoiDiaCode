@@ -151,5 +151,23 @@ namespace WEB.Areas.ContentType.Controllers
             }
             return View();
         }
+        [ChildActionOnly]
+        [AllowAnonymous]
+        public ActionResult _AboutUs(string metatitle)
+        {
+            WebModule webmodule = null;
+            if (TempData["WebModule"] != null)
+            {
+                webmodule = TempData["WebModule"] as WebModule;
+            }
+            else webmodule = db.Set<WebModule>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault();
+            if (webmodule == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView(webmodule);
+        }
+
     }
 }
