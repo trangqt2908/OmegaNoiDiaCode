@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebContent>
+<!-- Team Section Start -->
+<section class="team-section bg-f8 pt-75 pb-50">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <h4>MEET OUR TEAM</h4>
+                <h2>OUR <span>TEAM</span></h2>
+                <p>@ViewBag.description</p>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="team-col">
+                        <div class="thumb">
+                            <img src="@item.Image" alt="">
+                        </div>
+                        <div class="content text-center">
+                            <h4><a href="#">@item.Title</a></h4>
+                            <h5>@item.Description</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Team Section End -->

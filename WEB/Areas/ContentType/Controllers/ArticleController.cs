@@ -308,12 +308,7 @@ namespace WEB.Areas.ContentType.Controllers
                 }
             }
         }
-        public ActionResult _BlogView()
-        {
-            return View();
-        }
-
-
+       
 
     }
 }
