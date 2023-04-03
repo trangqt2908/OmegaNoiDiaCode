@@ -63,7 +63,7 @@ Creation Date: 15 January 2019
 
 body {
     background-color: #fff;
-    color: #999999;
+    /*color: #999999;*/
     line-height: 1.65;
     /*font-family: 'Roboto', sans-serif;*/
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
@@ -108,7 +108,7 @@ h6 {
 }
 
 p {
-    color: #9c9c9c;
+    /*color: #9c9c9c;*/
     font-family: 'Roboto', sans-serif;
     line-height: 28px;
     margin: 0;
@@ -2596,14 +2596,16 @@ canvas {
     width: 1px;
 }*/
 
-.special-packages .post-title-box .title-box h4 {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    /*margin-bottom: 8px;*/
-    text-transform: uppercase;
-}
+
+
+        .special-packages .post-title-box .title-box h4 {
+            color: #a5a5a5;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            /*margin-bottom: 8px;*/
+            text-transform: uppercase;
+        }
 
     .special-packages .post-title-box .title h2 {
         color: #fff;
@@ -2635,7 +2637,7 @@ canvas {
 
 .special-packages .content .info {
     display: inherit;
-    margin-bottom: 16px;
+    margin-bottom: 0px;
     width: 100%;
 }
 
@@ -3315,7 +3317,7 @@ Testimonials Css Style
 
 .owl-navst.st-three.owl-theme .owl-nav {
     display: block;
-    top: -101px;
+    top: -85px;
 }
 
 .owl-navst.st-three.owl-theme .owl-nav .owl-prev,
@@ -4658,6 +4660,10 @@ Client Css Style
 Inner Css Style
 ----------------------------------------------------------------*/
 
+/*--------------------------------------------------------------
+Inner Css Style
+----------------------------------------------------------------*/
+
 .inner-area {
     padding-bottom: 70px;
     padding-top: 132px;
@@ -4666,26 +4672,26 @@ Inner Css Style
     z-index: 1;
 }
 
-.inner-area:after {
-    background-color: rgba(9, 20, 38, 0.7);
-    bottom: 0;
-    content: "";
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
-}
+    .inner-area:after {
+        background-color: rgba(9, 20, 38, 0.7);
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
 
-.inner-area h4 {
-    color: #fff;
-    font-size: 58px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    text-transform: uppercase;
-}
+    .inner-area h4 {
+        color: #fff;
+        font-size: 58px;
+        font-weight: 600;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+    }
 
-    .inner-area p a{
+    .inner-area p {
         color: #e9e9e9;
         font-family: 'Lora', serif;
         font-size: 18px;
@@ -4694,26 +4700,26 @@ Inner Css Style
         text-transform: capitalize;
     }
 
-    .inner-area p .map-child{
-        color: #ffcd22!important;
-    }
-
-        .inner-area p .map-child:before {
-            content: "";
-            font-family: FontAwesome;
-            font-size: 13px;
-            color: #fff !important;
-            margin: 0 8px;
+        .inner-area p a {
+            color: #ffcd22;
         }
+
+            .inner-area p a:before {
+                content: "";
+                font-family: FontAwesome;
+                font-size: 13px;
+                color: #fff;
+                margin: 0 8px;
+            }
 
 /*--------------------------------------------------------------
 Shop Css Style
 ----------------------------------------------------------------*/
 
 .shop-section {
-
+    padding-bottom: 0;
+    padding-top: 50px;
 }
-
 .shop-section .shopping-col {
     margin-bottom: 30px;
     -webkit-transition: all 0.4s;
@@ -5147,31 +5153,35 @@ Page Link Css Style
 
 }
 
-.shop-single .content h3 {
+.shop-single .content h1 {
     color: #333;
     font-size: 24px;
     font-weight: 600;
     letter-spacing: 0.6px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     text-transform: uppercase;
 }
 
 .shop-single .content h4 {
     color: #ffcd22;
     font-size: 28px;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
     font-weight: 600;
     letter-spacing: 0.8px;
 }
 
-.shop-single .content h4 span {
-    color: #989898;
-    display: inline-block;
-    font-size: 22px;
-    font-weight: 400;
-    margin-left: 8px;
-    position: relative;
-}
+    .shop-single .content  .transportation{
+        margin-bottom: 10px;
+    }
+
+    .shop-single .content h4 span {
+        color: #989898;
+        display: inline-block;
+        font-size: 22px;
+        font-weight: 400;
+        margin-left: 8px;
+        position: relative;
+    }
 
 .shop-single .content h4 span:after {
     background-color: #999;
@@ -7724,3 +7734,10 @@ M > P Css Style
     .page-link-item .pagination ul li.active.previous span, .page-link-item .pagination ul li.active.next span {
         color: #777 !important;
     }
+
+
+
+.content .info a{
+    font-family: 'Roboto', sans-serif;
+    color: #212529;
+}

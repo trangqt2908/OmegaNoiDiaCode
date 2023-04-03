@@ -16,6 +16,7 @@ namespace WEB.Models
 {/// <summary>
     /// Represents a shipping option
     /// </summary>
+    /// 
     public partial class ShippingOption
     {
         /// <summary>
@@ -37,6 +38,27 @@ namespace WEB.Models
         /// Gets or sets a shipping option description
         /// </summary>
         public string Description { get; set; }
+    }
+
+    public class ItemObj<T>
+    {
+        public T Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Ids
+        {
+            get
+            {
+                if (IdTTs != null)
+                    return String.Join(",", IdTTs);
+                else
+                    return string.Empty;
+            }
+        }
+
+        public List<string> IdTTs { get; set; }
+        public bool Checked { get; set; }
     }
 
 
@@ -470,4 +492,65 @@ namespace WEB.Models
 
 
     }
+
+    public static class CommonEnum
+    {
+        #region Functions
+        public static List<ItemObj<int>> EnumToList(Type TypeObject)
+        {
+            List<ItemObj<int>> objTemList = new List<ItemObj<int>>();
+            try
+            {
+                foreach (object iEnumItem in Enum.GetValues(TypeObject))
+                {
+                    ItemObj<int> objTem = new ItemObj<int>();
+                    objTem.Id = ((int)iEnumItem);
+                    objTem.Name = GetEnumDescription((Enum)iEnumItem);
+                    objTemList.Add(objTem);
+                }
+                return objTemList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static string GetEnumDescription(Enum en)
+        {
+            Type type = en.GetType();
+
+            try
+            {
+                MemberInfo[] memInfo = type.GetMember(en.ToString());
+
+                if (memInfo != null && memInfo.Length > 0)
+                {
+
+                    object[] attrs = memInfo[0].GetCustomAttributes(typeof(EnumDisplayString), false);
+
+                    if (attrs != null && attrs.Length > 0)
+                        return ((EnumDisplayString)attrs[0]).DisplayString;
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+
+            return en.ToString();
+        }
+
+        public class EnumDisplayString : Attribute
+        {
+            public string DisplayString;
+
+            public EnumDisplayString(string text)
+            {
+                this.DisplayString = text;
+            }
+        }
+        #endregion
+    }
+
 }

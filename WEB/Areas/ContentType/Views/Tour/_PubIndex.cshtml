@@ -15,13 +15,13 @@
 }
 
 <!-- Inner Section Start -->
-<section class="inner-area parallax-bg" data-background="images/bg/px-1.jpg" data-type="parallax" data-speed="3">
+<section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')">
     <div class="container">
         <div class="section-content">
             <div class="row">
                 <div class="col-12">
-                    <h4>Holiday</h4>
-                    <p>Home <a href="#">Packages</a></p>
+                    <h4>@webmodule.Title</h4>
+                    <p> Trang chủ <a href="@urlcat">@webmodule.Parent.Title</a></p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
 </section>
 <!-- Inner Section End -->
 <!-- Special Packages Section Start -->
-<section class="special-packages-sec pt-85 pb-60">
+<section class="special-packages-sec pt-50 pb-60">
     <div class="container">
         <div class="row grid-mb">
             @foreach (var item in Model)
@@ -42,17 +42,10 @@
                     area = ""
                 });
 
-                var urlModule = Url.Action("Index", "Home", new
-                {
-                    metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                    area = ""
-                });
-
-
-
                 <div class="col-md-4">
                     <div class="special-packages">
                         <div class="thumb">
+                            <a href="@urlContent" alt="@item.Title"> </a>
                             <img src="@img" alt="@item.Title">
                             @if (item.ProductInfo.Discount > 0)
                             {
@@ -61,7 +54,7 @@
                             <div class="post-title-box">
 
                                 <div class="title">
-                                    <h2> @item.Title</h2>
+                                    <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
                                 </div>
 
                                 <div class="title-box">
@@ -78,7 +71,7 @@
                         </div>
                         <div class="content">
                             <div class="infor">
-                                <div class="pull-left" style="width: 50%">
+                                <div class="pull-left" style="width: 50%;">
                                     <ul class="info">
                                         <li>
                                             <a href="#"><i class="fa fa-calendar"></i> @item.ProductInfo.DepartureTime </a>
@@ -87,15 +80,21 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="pull-left" style="width: 50%">
-                                    <div class="btn"> <i class="fa fa-plane"></i> </div>
-                                    <div class="btn"> <i class="fa fa-train"></i> </div>
-                                </div>
+                                <div class="pull-left" style="width: 50%; text-align: right; margin-top: 8px;">
+                                    @{
+                                        var lstTrans = string.IsNullOrEmpty(item.ProductInfo.Transportation) ? new List<string>() : item.ProductInfo.Transportation.Split(',').ToList();
 
+                                        foreach (var trans in lstTrans)
+                                        {
+
+                                            if (!string.IsNullOrWhiteSpace(trans))
+                                            {
+                                                <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                            }
+                                        }
+                                    }
+                                </div>
                             </div>
-                            <p>Travel quia tempore, ex delectus rerum option's sapiente, magnam ullam ipsum voluptate more maxime blanditiis tour package.</p>
-                            <h5 class="share-btn"><i class="fa fa-share-alt"></i> Share</h5>
-                            <a class="btn-theme" href="#">View Details</a>
                         </div>
                     </div>
                 </div>

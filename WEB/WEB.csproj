@@ -2804,6 +2804,7 @@
     <Content Include="Images\flags\fr-FR.png" />
     <Content Include="Images\flags\ru-RU.png" />
     <Content Include="Images\no-image.png" />
+    <Content Include="Images\px-1.jpg" />
     <Content Include="Views\WebModule\_ColLeft.cshtml" />
     <Content Include="Areas\ContentType\Views\Article\_Category.cshtml" />
     <Content Include="Areas\ContentType\Views\Tour\Add.cshtml" />
@@ -2914,8 +2915,7 @@
     <Content Include="Content\themes\web\fonts\Stroke-Gap-Icons.woff" />
     <Content Include="Areas\ContentType\Views\OnePage\_TourService.cshtml" />
     <Content Include="Areas\ContentType\Views\Article\_BlogView.cshtml" />
-    <Content Include="Areas\ContentType\Views\Home\_LastestBlog.cshtml" />
-    <Content Include="Areas\ContentType\Views\OnePage\_AboutUs.cshtml" />
+    <Content Include="Areas\ContentType\Views\Tour\_SlideContent.cshtml" />
     <None Include="Properties\PublishProfiles\Aexcursions.pubxml" />
     <None Include="Properties\PublishProfiles\FLAT.pubxml" />
     <Content Include="Images\apple-touch-icon-precomposed.png" />

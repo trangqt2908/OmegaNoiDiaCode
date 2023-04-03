@@ -1,4 +1,8 @@
 ﻿@model WebModels.WebContent
+@{
+    var listTransportation = CommonEnum.EnumToList(typeof(Transportation));
+}
+
 
 @using (Html.BeginForm("Edit", "Tour", new { UID = Model.UID }, FormMethod.Post, new
 {
@@ -61,7 +65,7 @@
                         <div style="width:99%;">
                             <div class="box">
                                 <div class="box-title">
-                                    <label class="control-label"> Brief info </label>
+                                    <label class="control-label"> Lịch trình tour </label>
                                 </div>
                                 <div class="box-content nopadding">
                                     @Html.TextAreaFor(m => m.Body, new { @id = "ckeditor", @style = "height:550px;" })
@@ -138,6 +142,31 @@
                         </div>
                     </div>
 
+                      <div class="control-group">
+                            <label class="control-label"> Chức vụ </label>
+                            <div class="bd-example">
+                                @Html.HiddenFor(x => x.ProductInfo.Transportation)
+                                @foreach (var obj in listTransportation)
+                                {
+                                    var _checked = "";
+                                    if (Model.ProductInfo.Transportation != null)
+                                    {
+                                        _checked = (Model.ProductInfo.Transportation.Contains(obj.Id.ToString())) ? "checked" : "";
+                                    }
+
+                                    var cbbId = "inlineCheckbox" + obj.Name;
+
+                                    <div class="form-check form-check-inline">
+                                          <input class="form-check-input"  type="checkbox" name="transportationCbb"
+                                           id="@cbbId" value="@obj.Name"  @_checked>
+                                            <label class="form-check-label" for="@cbbId">
+                                                @obj.Name
+                                            </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
                     <div class="control-group">
                            <label class = "control-label"> Giá gốc </label>
                         <div class="controls">
@@ -186,17 +215,41 @@
                             @Html.TextBoxFor(m => m.ProductInfo.DepartureTime, new { @class = "input-block-level" })
                         </div>
                     </div>
+     <div class="row-fluid control-group">
+                        <div style="width:99%;">
+                            <div class="box">
+                                <div class="box-title">
+                                    <h3><i class="icon-th"></i>  Chính sách tour  </h3>
+                                </div>
+
+                                <div class="box-content nopadding">
+                                    @Html.TextAreaFor(m => m.ProductInfo.Policy, new { @id = "ckeditorPolicy", @style = "height:550px;" })
+                                    <script>
+                                        var editor = CKEDITOR.replace('ckeditorPolicy', {
+                                            customConfig: '/content/ckeditor/config.js',
+                                            filebrowserBrowseUrl: '/admin/upload/file?uid=@ViewBag.UID',
+                                            filebrowserImageBrowseUrl: '/admin/upload/image?uid=@ViewBag.UID',
+                                            filebrowserImageUploadUrl: '/admin/upload/imageck?uid=@ViewBag.UID',
+                                            filebrowserFlashBrowseUrl: '/admin/upload/flash?uid=@ViewBag.UID',
+                                            filebrowserFlashUploadUrl: '/admin/upload/flashck?uid=@ViewBag.UID',
+                                            height: '400px'
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </text>);
 
 
-        @*tabstrip.Add().Text(Resources.Common.Pictures)
+        tabstrip.Add().Text(Resources.Common.Pictures)
             .Content(@<text>
                 <div class="control-group">
                     @Html.Partial("UpdatePictures", Model)
                 </div>
-            </text>).Enabled(true);*@
+            </text>).Enabled(true);
 
             tabstrip.Add().Text("Cấu hình SEO")
                 .Content(@<text>
@@ -321,4 +374,12 @@
         var fileimage = $('.file-image');
         fileimage = fileimage.replaceWith(fileimage.clone(true));
     }
+
+    $('input:checkbox').change(function () {
+        let lstTransportation = "";
+        $('input[name="transportationCbb"]:checked').each(function () {
+            lstTransportation += this.value + ",";
+        });
+        $("#ProductInfo_Transportation").val(lstTransportation);
+    });
 </script>
