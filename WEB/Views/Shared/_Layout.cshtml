@@ -37,9 +37,6 @@
  
 
 
-    @RenderBody()
-
-
     @*@Html.Action("_Menu_Footer", "Navigation", new { area = "", key = "footer" })*@
 
 
@@ -49,6 +46,9 @@
     <div class="page-wrapper">
         @Html.Action("_Main", "Navigation", new { key = "main", area = "" })
 
+
+
+        @RenderBody()
         <!-- Footer Style Seven Start -->
         @Html.Action("_Menu_Footer", "Navigation", new { area = "", key = "footer" })
 

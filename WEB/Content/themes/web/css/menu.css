@@ -2,10 +2,11 @@
 ----------------------------------------------------------------------------- */
 /*   Navigations
 ----------------------------------------------------------------------------- */
-header.header .container{
-    padding:0 15px;
+header.header .container {
+    padding: 0 15px;
     position: relative;
 }
+
 .navbar {
     padding-top: 0;
     padding-bottom: 0;
@@ -21,6 +22,7 @@ header.header .container{
     padding: 0;
     border-top: 2px solid red;
 }
+
 .header .navbar-nav li .nav-link {
     color: #333333;
     font-size: 16px;
@@ -135,12 +137,13 @@ header.header .container{
     text-align: left;
     font-family: 'Poppins', sans-serif;
 }
+
 .header .navbar-nav li li:hover a,
 .header .navbar-nav li.mega-menu .menu-item > li:hover > a {
     background: #ffcd22;
     color: #fff;
     font-size: 14px;
-} 
+}
 
 .mega-menu .menu-item > li > a i,
 .dropdown-menu > li > a i {
@@ -155,24 +158,24 @@ header.header .container{
     color: #cdcdcd;
 }
 
-.mega-menu .menu-item > li > a i.fa,
-.dropdown-menu > li > a i.fa {
-    width: 32px;
-    text-align: center;
-}
+    .mega-menu .menu-item > li > a i.fa,
+    .dropdown-menu > li > a i.fa {
+        width: 32px;
+        text-align: center;
+    }
 
-.mega-menu .menu-item > li > a i.fa-circle-o,
-.dropdown-menu > li > a i.fa-circle-o {
-    font-size: 7px;
-    top: -3px;
-}
+    .mega-menu .menu-item > li > a i.fa-circle-o,
+    .dropdown-menu > li > a i.fa-circle-o {
+        font-size: 7px;
+        top: -3px;
+    }
 
-.mega-menu .menu-item > li > a i.fa-spin {
-    width: 11px;
-    padding: 0;
-    margin-right: 13px;
-    margin-left: 8px;
-}
+    .mega-menu .menu-item > li > a i.fa-spin {
+        width: 11px;
+        padding: 0;
+        margin-right: 13px;
+        margin-left: 8px;
+    }
 
 .mega-menu .menu-item > li:last-child > a {
     border-bottom: none !important;
@@ -198,7 +201,7 @@ header.header .container{
 
 /* Dropdown animations
 ------------------------------ */
-header.header div.main-navigation.animated li.dropdown .dropdown-menu.show{
+header.header div.main-navigation.animated li.dropdown .dropdown-menu.show {
     -webkit-animation-duration: 0.3s;
     animation-duration: 0.3s;
     -webkit-animation-fill-mode: both;
@@ -209,6 +212,7 @@ header.header div.main-navigation.animated li.dropdown .dropdown-menu.show{
     -o-animation-name: fadeInSmallUp;
     animation-name: fadeInSmallUp;
 }
+
 header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown-menu.show-sub-menu {
     -webkit-animation-duration: 0.3s;
     animation-duration: 0.3s;
@@ -232,6 +236,7 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
     color: #fff;
     background-color: #255669;
 }
+
 .menu-item .dropdown-item i {
     margin-right: 8px;
 }
@@ -246,10 +251,10 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
     font-weight: 400;
 }
 
-.product.price del {
-    color: #cdcdcd;
-    font-size: 14px;
-}
+    .product.price del {
+        color: #cdcdcd;
+        font-size: 14px;
+    }
 
 .product.element-list {
     margin-top: 7px;
@@ -262,23 +267,25 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
     right: 80px;
     padding-top: 0;
 }
+
 .dropdown-buttons {
     margin-left: 15px;
     margin-top: -15px;
 }
-.dropdown-buttons .btn-group .dropdown-menu.cart {
-    padding: 0;
-    min-width: 350px;
-    font-size: 13px;
-}
 
-.dropdown-buttons .btn-group .dropdown-menu.cart table {
-    margin-bottom: 0;
-}
+    .dropdown-buttons .btn-group .dropdown-menu.cart {
+        padding: 0;
+        min-width: 350px;
+        font-size: 13px;
+    }
 
-.dropdown-buttons .btn-group .dropdown-menu.cart .panel-body {
-    padding: 0px 10px 0px;
-}
+        .dropdown-buttons .btn-group .dropdown-menu.cart table {
+            margin-bottom: 0;
+        }
+
+        .dropdown-buttons .btn-group .dropdown-menu.cart .panel-body {
+            padding: 0px 10px 0px;
+        }
 
 .menu-cart {
     position: absolute;
@@ -307,28 +314,31 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
 .dropdown-buttons .btn-group .btn:hover .menu-cart {
     background: #222;
 }
-.dropdown-buttons .btn-group .btn.hover, 
+
+.dropdown-buttons .btn-group .btn.hover,
 .dropdown-buttons .btn-group .btn:hover,
-.dropdown-buttons .btn-group .btn.active, 
+.dropdown-buttons .btn-group .btn.active,
 .dropdown-buttons .btn-group .btn:active {
     background: #ffcd22;
     color: #fff;
 }
-.dropdown-buttons .btn-group .btn.focus, 
+
+.dropdown-buttons .btn-group .btn.focus,
 .dropdown-buttons .btn-group .btn:focus {
     box-shadow: none;
 }
+
 .dropdown-buttons .btn-group .btn {
     border-radius: 50%;
     width: 40px;
     height: 40px;
     padding: 0;
     line-height: 38px;
-    background:#eee;
+    background: #eee;
     font-size: .8rem;
     border: none;
-
 }
+
 .dropdown.open .menu-cart,
 .dropdown:hover .menu-cart {
     -webkit-transform: scale(0);
@@ -360,10 +370,10 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
     font-size: 13px;
 }
 
-.cart .product .small {
-    display: block;
-    color: #999999;
-}
+    .cart .product .small {
+        display: block;
+        color: #999999;
+    }
 
 .dropdown-buttons .menu-search-box form .form-group,
 .dropdown-buttons .menu-search-box form .form-group .form-control {
@@ -372,6 +382,7 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
     overflow: hidden;
     position: relative;
 }
+
 .dropdown-buttons .menu-search-box ul {
     padding: 20px;
     border: 0;
@@ -399,9 +410,10 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
 }
 
 
-.dropdown-buttons .menu-search-box .search-box i:hover {
-    background: #333;
-}
+    .dropdown-buttons .menu-search-box .search-box i:hover {
+        background: #333;
+    }
+
 .dropdown-buttons .dropdown-menu-right {
     position: absolute;
     transform: translate3d(-310px, 40px, 0px);
@@ -411,10 +423,9 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-
 }
 
-.fixed-header { 
+.fixed-header {
     z-index: 5;
     position: fixed;
     left: 0;
@@ -482,6 +493,7 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     border-top-color: #a0a0a0;
 }
+
 .transparent-dark {
     z-index: 22;
     position: absolute;
@@ -501,6 +513,7 @@ ul.navbar-nav li.nav-item.mega-menu div.dropdown-menu .menu-item a.dropdown-item
 .header .menu-style.bg-transparent .navbar-nav li a.nav-link {
     color: #ffffff;
 }
+
 .header .menu-style.bg-transparent .fixed-header .navbar-nav li a.nav-link {
     color: #333;
 }
@@ -508,23 +521,25 @@ ul.navbar-nav li.nav-item.mega-menu div.dropdown-menu .menu-item a.dropdown-item
 .header .menu-style.transparent-dark .navbar-nav li a.nav-link {
     color: #ffffff;
 }
+
 .header .menu-style.transparent-dark .fixed-header .navbar-nav li a.nav-link {
     color: #333;
 }
 
 .header .menu-style.bg-transparent .navbar-nav li.active a.nav-link,
-.header .menu-style.bg-transparent .navbar-nav li:focus a.nav-link, 
+.header .menu-style.bg-transparent .navbar-nav li:focus a.nav-link,
 .header .menu-style.bg-transparent .navbar-nav li:hover a.nav-link {
     color: #ffcd22;
 }
+
 .header .menu-style .navbar-nav li.active a.nav-link,
-.header .menu-style .navbar-nav li:focus a.nav-link, 
+.header .menu-style .navbar-nav li:focus a.nav-link,
 .header .menu-style .navbar-nav li:hover a.nav-link {
     color: #ffcd22;
 }
 
 .header .menu-style.menu-hover-1 .navbar-nav li.active a.nav-link,
-.header .menu-style.menu-hover-1 .navbar-nav li:focus a.nav-link, 
+.header .menu-style.menu-hover-1 .navbar-nav li:focus a.nav-link,
 .header .menu-style.menu-hover-1 .navbar-nav li:hover a.nav-link {
     background: #ffcd22;
     color: #fff;
@@ -533,9 +548,8 @@ ul.navbar-nav li.nav-item.mega-menu div.dropdown-menu .menu-item a.dropdown-item
 
 
 .header .menu-style.menu-hover-2 .navbar-nav li.active a.nav-link,
-.header .menu-style.menu-hover-2 .navbar-nav li:focus a.nav-link, 
+.header .menu-style.menu-hover-2 .navbar-nav li:focus a.nav-link,
 .header .menu-style.menu-hover-2 .navbar-nav li:hover a.nav-link {
     background: rgba(0,0,0, .8);
     color: #fff;
 }
-
