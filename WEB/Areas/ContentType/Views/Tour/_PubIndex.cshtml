@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4>@webmodule.Title</h4>
-                    <p> Trang chủ <a href="#">@webmodule.Parent.Title</a></p>
+                    <p> Trang chủ <a href="@urlcat">@webmodule.Parent.Title</a></p>
                 </div>
             </div>
         </div>
@@ -86,7 +86,11 @@
 
                                         foreach (var trans in lstTrans)
                                         {
-                                            <div class="btn"> <i class="fa fa-@trans"></i> </div>
+
+                                            if (!string.IsNullOrWhiteSpace(trans))
+                                            {
+                                                <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                            }
                                         }
                                     }
                                 </div>
@@ -94,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                                        }
+            }
         </div>
 
         <div class="row">
