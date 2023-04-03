@@ -2915,6 +2915,7 @@
     <Content Include="Content\themes\web\fonts\Stroke-Gap-Icons.woff" />
     <Content Include="Areas\ContentType\Views\OnePage\_TourService.cshtml" />
     <Content Include="Areas\ContentType\Views\Article\_BlogView.cshtml" />
+    <Content Include="Areas\ContentType\Views\Tour\_SlideContent.cshtml" />
     <None Include="Properties\PublishProfiles\Aexcursions.pubxml" />
     <None Include="Properties\PublishProfiles\FLAT.pubxml" />
     <Content Include="Images\apple-touch-icon-precomposed.png" />

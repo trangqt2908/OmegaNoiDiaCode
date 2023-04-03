@@ -142,10 +142,10 @@
 
                             @foreach (var obj in listTransportation)
                             {
-                                var cbbId = "inlineCheckbox" + obj.Id;
+                                var cbbId = "inlineCheckbox" + obj.Name;
                                 <div class="form-check form-check-inline">
                                     <input class="" type="checkbox" name="transportationCbb"
-                                           id="@cbbId" value="@obj.Id">
+                                           id="@cbbId" value="@obj.Name">
                                     <label class="form-check-label" for="@cbbId">
                                         @obj.Name
                                     </label>

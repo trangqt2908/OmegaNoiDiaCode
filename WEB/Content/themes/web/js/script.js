@@ -416,7 +416,7 @@
         autoplay: 2000,
         autoplayHoverPause:true,
         smartSpeed: 700,
-        items: 2,
+        items: 1,
         margin:30,
         dots: false,
         nav:true,
@@ -424,26 +424,26 @@
           '<i class="fa fa-chevron-left"></i>',
           '<i class="fa fa-chevron-right"></i>'
         ],
-        responsive:{
-          0:{
-            items:1
-          },
-          480:{
-            items:1
-          },
-          600:{
-            items:1
-          },
-          768:{
-            items:2
-          },
-          992:{
-            items:2
-          },
-          1200:{
-            items:2
-          }
-        }
+        //responsive:{
+        //  0:{
+        //    items:1
+        //  },
+        //  480:{
+        //    items:1
+        //  },
+        //  600:{
+        //    items:1
+        //  },
+        //  768:{
+        //    items:2
+        //  },
+        //  992:{
+        //    items:2
+        //  },
+        //  1200:{
+        //    items:2
+        //  }
+        //}
     });
 
     //owl-Carousel-TwoColumn
@@ -469,7 +469,7 @@
         autoplay: 2000,
         autoplayHoverPause:true,
         smartSpeed: 700,
-        items: 6,
+        items: 1,
         margin:30,
         dots: false,
         nav:true,
@@ -477,26 +477,26 @@
           '<i class="flaticon-back-1"></i>',
           '<i class="flaticon-next"></i>'
         ],
-        responsive:{
-          0:{
-            items:2
-          },
-          480:{
-            items:3
-          },
-          600:{
-            items:3
-          },
-          800:{
-            items:4
-          },
-          1024:{
-            items:6
-          },
-          1200:{
-            items:6
-          }
-        }
+        //responsive:{
+        //  0:{
+        //    items:2
+        //  },
+        //  480:{
+        //    items:3
+        //  },
+        //  600:{
+        //    items:3
+        //  },
+        //  800:{
+        //    items:4
+        //  },
+        //  1024:{
+        //    items:6
+        //  },
+        //  1200:{
+        //    items:6
+        //  }
+        //}
     });
 
       //bootstrap Slider JS Start

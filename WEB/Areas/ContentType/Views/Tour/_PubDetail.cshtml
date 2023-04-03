@@ -49,9 +49,9 @@
                 <div class="shop-single">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="thumb">
-                                <img src="@img" alt="@item.Title">
-                            </div>
+
+                            @Html.Action("_SlideContent", "Tour", new { area = "ContentType", id = item.ID })
+                           
                         </div>
                         <div class="col-lg-6">
                             <div class="content">
