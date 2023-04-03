@@ -269,6 +269,7 @@ namespace WEB.Areas.ContentType.Controllers
             ViewBag.title = webModule.Title;
             ViewBag.description = webModule.Description;
             ViewBag.image = webModule.Image;
+            ViewBag.video = webModule.PositionActive;
             if (webModule != null)
             {
                 var webContent = db.WebContents.Where(x => x.WebModuleID == webModule.ID).ToList();
@@ -287,6 +288,25 @@ namespace WEB.Areas.ContentType.Controllers
             ViewBag.title = webModule.Title;
             ViewBag.description = webModule.Description;
             ViewBag.image = webModule.Image;
+            if (webModule != null)
+            {
+                var webContent = db.WebContents.Where(x => x.WebModuleID == webModule.ID).ToList();
+                return PartialView(webContent);
+            }
+            return PartialView();
+        }
+         [AllowAnonymous]
+
+        public ActionResult _Introduce()
+        {
+            var webModule = db.WebModules.Where(x => x.UID == "gioi-thieu"
+          && (x.Culture == null ||
+                          (!string.IsNullOrEmpty(x.Culture) && x.Culture.Equals(ApplicationService.Culture)))
+                          || (ApplicationService.Culture == null)).FirstOrDefault();
+            ViewBag.title = webModule.Title;
+            ViewBag.description = webModule.Description;
+            ViewBag.image = webModule.Image;
+            ViewBag.body = webModule.Body;
             if (webModule != null)
             {
                 var webContent = db.WebContents.Where(x => x.WebModuleID == webModule.ID).ToList();

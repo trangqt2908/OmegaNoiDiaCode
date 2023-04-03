@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<WebModule>
 @{
+    var listIDModuleActive = (List<int>)ViewBag.ListModuleActive;
 
 }
 
@@ -59,13 +60,13 @@
                             }
                             @foreach (var node in root)
                             {
-
+                                var activeClass = listIDModuleActive.Contains(node.ID) ? "active" : "";
                                 var url = node.URL;
                                 if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
                                 {
                                     url = Url.Action("Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web" });
                                 }
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown  @activeClass">
                                     @{
                                         var sub = from x in Model where x.ParentID == node.ID select x;
                                     }

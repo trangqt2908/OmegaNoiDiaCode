@@ -75,7 +75,7 @@ header.header .container {
     position: absolute;
     top: 51%;
     left: auto;
-    right: 0px;
+    right: -9px;
     line-height: 20px;
     font-size: 14px;
     border: none;

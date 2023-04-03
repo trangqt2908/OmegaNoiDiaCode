@@ -12,7 +12,7 @@
     TempData["URL"] = ApplicationService.Domain + urlcat;
     TempData["Cat"] = webmodule.Title;
 }
-<section class="inner-area parallax-bg" data-background="images/bg/px-1.jpg" data-type="parallax" data-speed="3">
+<section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')" data-type="parallax" data-speed="3">
     <div class="container">
         <div class="section-content">
             <div class="row">
@@ -25,47 +25,14 @@
     </div>
 </section>
 
-<!-- Global Section Start -->s
-<section class="global-section over-layer-white pt-75 pb-65">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-7 col-lg-12">
-                <div class="global-area">
-                    <div class="inner-title">
-                        <h2>Now We Are Globaly Everywhare</h2>
-                        <h3>Discover  vestibulum <span>pharetra orci turpis</span>, ut interdum </h3>
-                        <div class="sec-line"></div>
-                    </div>
-                    <p>Pellentesque consectetur condimentum libero, interdum aliquet enim sollic tudin ut. Donec dapibus tempor odio eu aliquet. Vivamus ultricies augue ut.</p>
-                    <h4>Condimentum at sed sapien:</h4>
-                    <ul>
-                        <li>consectetur adipting elit.</li>
-                        <li>consectetur adipting elit.</li>
-                        <li>consectetur adipting elit.</li>
-                        <li>consectetur adipting elit.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-5 col-lg-8 col-md-10">
-                <div class="map-area">
-                    <img src="images/photos/map01.png" alt="image">
-                </div>
-                <p class="map-content">Discover  vestibulum <span class="color-light">Call:</span> <span>+88095085363</span>, ut interdum </p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Global Section End -->
+@Html.Action("_Introduce", "Article", new { area = "ContentType" })
 @Html.Action("_ChooseTouran", "Article", new { area = "ContentType" })
 @Html.Action("_OurTeam", "Article", new { area = "ContentType" })
 @Html.Action("_TravelAward", "Article", new { area = "ContentType" })
 @Html.Action("_OurClient", "Article", new { area = "ContentType" })
-<!-- Blog Section Start -->
 <section class="blog-section bg-f8 pt-75 pb-50">
     @Html.Action("_TopBlogTravel", "Home", new { area = "ContentType" })
 </section>
-<!-- Blog Section End -->
-<!-- Client Section Start -->
 <section class="client-section style-2 pb-70">
     <div class="container">
         <div class="row">

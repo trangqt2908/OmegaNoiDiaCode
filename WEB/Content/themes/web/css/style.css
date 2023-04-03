@@ -789,6 +789,9 @@ a.scrollup:focus i {
 
 .header.header-style-2 .navbar-nav {
     border-right-color: #eee;
+    margin-left: auto !important;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .header.header-style-2 .fixed-header {
@@ -876,8 +879,7 @@ a.scrollup:focus i {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: 700;
     letter-spacing: 1px;
-    padding: 22px 5px 18px 5px;
-    text-transform: uppercase;
+    padding: 22px 14px 18px 14px;
 }
 
 .header .dropdown-menu.left-1 {
@@ -4692,19 +4694,22 @@ Inner Css Style
     }
 
     .inner-area p {
-        color: #e9e9e9;
+        color: #e9e9e9!important;
         font-family: 'Lora', serif;
         font-size: 18px;
         letter-spacing: 0.8px;
         margin-top: 8px;
         text-transform: capitalize;
     }
-
-        .inner-area p a {
-            color: #ffcd22;
+        .inner-area p .map-child {
+            color: #ffcd22 !important;
         }
+    .inner-area p a{
+        color: #e9e9e9 !important;
+    }
+        
 
-            .inner-area p a:before {
+            .inner-area p .map-child:before {
                 content: "";
                 font-family: FontAwesome;
                 font-size: 13px;

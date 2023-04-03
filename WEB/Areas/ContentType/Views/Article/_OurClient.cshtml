@@ -6,58 +6,31 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-title">
-                    <h2>Our Client's Say</h2>
+                    <h2>@ViewBag.title</h2>
                     <div class="sec-line mb-40"></div>
                 </div>
                 <div class="testimonials-post testimonials_slide_col_two owl-carousel owl-theme owl-navst st-three">
-                    <div class="testimonials-item">
-                        <div class="thumb">
-                            <img src="images/testimonials/1.jpg" alt="">
+                    @foreach (var item in Model)
+                    {
+                        <div class="testimonials-item">
+                            <div class="thumb">
+                                <img src="@item.Image" alt="">
+                            </div>
+                            <div class="content">
+                                <h5>@item.Title</h5>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star-half-empty"></i></a></li>
+                                    <li><a href="#"><i class="fa  fa-star-o"></i></a></li>
+                                </ul>
+                                <p><i class="fa fa-quote-left"></i>@Html.Raw(item.Body)</p>
+                            </div>
                         </div>
-                        <div class="content">
-                            <h5>Horem Due <small>- Traveler ut illum</small></h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star-half-empty"></i></a></li>
-                                <li><a href="#"><i class="fa  fa-star-o"></i></a></li>
-                            </ul>
-                            <p><i class="fa fa-quote-left"></i> If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing as necessary, making this the first true generator on the Internet.</p>
-                        </div>
-                    </div>
-                    <div class="testimonials-item">
-                        <div class="thumb">
-                            <img src="images/testimonials/2.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Hasan Pue <small>- Traveler ut illum</small></h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star-half-empty"></i></a></li>
-                                <li><a href="#"><i class="fa  fa-star-o"></i></a></li>
-                            </ul>
-                            <p><i class="fa fa-quote-left"></i> If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing as necessary, making this the first true generator on the Internet.</p>
-                        </div>
-                    </div>
-                    <div class="testimonials-item">
-                        <div class="thumb">
-                            <img src="images/testimonials/1.jpg" alt="">
-                        </div>
-                        <div class="content">
-                            <h5>Gorem Due <small>- Traveler ut illum</small></h5>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                <li><a href="#"><i class="fa fa-star-half-empty"></i></a></li>
-                                <li><a href="#"><i class="fa  fa-star-o"></i></a></li>
-                            </ul>
-                            <p><i class="fa fa-quote-left"></i> If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing as necessary, making this the first true generator on the Internet.</p>
-                        </div>
-                    </div>
+
+                    }
+
                 </div>
             </div>
         </div>

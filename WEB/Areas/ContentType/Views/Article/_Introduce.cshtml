@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebContent>
+
+<section class="global-section over-layer-white pt-75 pb-65">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-7 col-lg-12">
+                <div class="global-area">
+                    <div class="inner-title">
+                        <h2>@ViewBag.title</h2>
+                        <h3>@ViewBag.description</h3>
+                        <div class="sec-line"></div>
+                    </div>
+                    @Html.Raw(ViewBag.body)
+                    <h4>Condimentum at sed sapien:</h4>
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li>@item.Title</li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-8 col-md-10">
+                <div class="map-area">
+                    <img src="@ViewBag.image" alt="image">
+                </div>
+                <p class="map-content">Discover  vestibulum <span class="color-light">Call:</span> <span>+88095085363</span>, ut interdum </p>
+            </div>
+        </div>
+    </div>
+</section>

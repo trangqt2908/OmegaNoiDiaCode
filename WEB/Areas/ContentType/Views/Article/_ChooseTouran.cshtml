@@ -17,10 +17,10 @@
                     <div class="col-md-4">
                         <div class="feature-item">
                             <div class="icon-box">
-                                <i class="flaticon-like"></i>
+                                <i class="@item.Title"></i>
                             </div>
                             <div class="content">
-                                <h3><a href="#">@item.Title</a></h3>
+                                <h3><a href="#">@Html.Raw(item.Body)</a></h3>
                                 <p>@item.Description</p>
                             </div>
                         </div>

@@ -39,8 +39,15 @@ namespace WEB.Controllers
 
         [ChildActionOnly]
         //  [OutputCache(Duration = 60, VaryByCustom = "culture")]
-        public ActionResult _Main(string key)
+        public ActionResult _Main(string key, int? moduleID)
         {
+            var listParentID = new List<int>();
+            if (moduleID != null)
+            {
+                listParentID = GetListParentID(moduleID ?? 0).ToList();
+                listParentID.Add(moduleID ?? 0);
+            }
+            ViewBag.ListModuleActive = listParentID;
             var temp = db.ModuleNavigations.AsNoTracking().Where(
                 x => x.Navigation.Key.ToLower().Equals(key.ToLower()) &&
                       (x.WebModule.Culture == null ||
@@ -55,6 +62,21 @@ namespace WEB.Controllers
 
             return PartialView(webmodules);
 
+        }
+        public IEnumerable<int> GetListParentID(int? id)
+        {
+            using (var context = new WebContext())
+            {
+                List<int> listParentID = new List<int>();
+                var WebModule = context.WebModules.Where(x => x.ID == id).FirstOrDefault();
+                while (WebModule.ParentID != null)
+                {
+                    listParentID.Add(WebModule.ParentID.Value);
+                    WebModule = context.WebModules.Where(x => x.ID == WebModule.ParentID).FirstOrDefault();
+                }
+
+                return listParentID;
+            }
         }
         [ChildActionOnly]
         // [OutputCache(Duration = 60, VaryByCustom = "culture")]
