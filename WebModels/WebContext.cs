@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers.Net;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -129,6 +130,18 @@ namespace WebModels
     }
     public enum Status { Private = -1, Internal = 0, Public = 1 }
 
-
+    public enum Transportation
+    {
+        [StringValue("fa-car")]
+        car = 1,
+        [StringValue("fa-train")]
+        train = 2,
+        [StringValue("fa-plane")]
+        plane = 3,
+        [StringValue("fa-ship")]
+        ship = 4,
+        [StringValue("fa-motorcycle")]
+        motorcycle = 5
+    }
 
 }

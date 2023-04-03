@@ -293,6 +293,7 @@ namespace WEB.Areas.ContentType.Controllers
                     db.Entry(model.ProductInfo).Property(a => a.TourTime).IsModified = true;
                     db.Entry(model.ProductInfo).Property(a => a.Discount).IsModified = true;
                     db.Entry(model.ProductInfo).Property(a => a.Transportation).IsModified = true;
+                    db.Entry(model.ProductInfo).Property(a => a.Policy).IsModified = true;
 
                     db.SaveChanges();
                     if (submit == 0)
