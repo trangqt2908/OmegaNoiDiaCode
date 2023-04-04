@@ -65,8 +65,18 @@
                                     }
                                 </h4>
                                 <div class="transportation">
-                                    <div class="btn"> <i class="fa fa-plane"></i> </div>
-                                    <div class="btn"> <i class="fa fa-train"></i> </div>
+                                    @{
+                                        var lstTrans = string.IsNullOrEmpty(item.ProductInfo.Transportation) ? new List<string>() : item.ProductInfo.Transportation.Split(',').ToList();
+
+                                        foreach (var trans in lstTrans)
+                                        {
+
+                                            if (!string.IsNullOrWhiteSpace(trans))
+                                            {
+                                                <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                            }
+                                        }
+                                    }
                                 </div>
                                 <ul class="info">
                                     <li>
