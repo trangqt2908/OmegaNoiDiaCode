@@ -57,29 +57,36 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    @Html.TextBoxFor(m => m.FullName, new { @placeholder = "* " + @Resources.Common.FullName, @class = "form-control" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
+                                    @Html.TextBoxFor(m => m.FullName, new { @placeholder = "Họ tên", @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2">
+                                        @Html.ValidationMessageFor(m => m.FullName)
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "* " + @Resources.Common.Email, @class = "form-control" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
+                                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2">
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    @Html.TextBoxFor(m => m.Address, new { @placeholder = @Resources.Common.Address, @class = "form-control" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
+                                    @Html.TextBoxFor(m => m.Address, new { @placeholder = "Địa chỉ", @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2">
+                                        @Html.ValidationMessageFor(m => m.Address)
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    @Html.TextBoxFor(m => m.Mobile, new { @placeholder = @Resources.Common.Mobile, @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Mobile, new { @placeholder = "Số điện thoại", @class = "form-control" })
                                     <div class="help-block with-errors tiny mt-2"></div>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <div class="contact-textarea">
-                                        @Html.TextAreaFor(m => m.Body, new { @placeholder = "* " + @Resources.Common.Content, @class = "form-control", @rows = "4" })
-                                        <div class="help-block with-errors tiny mt-2"></div>
-                                        <input type="submit" class="btn btn-theme mt-4 btn-send disabled" value="Send message">
+                                        @Html.TextAreaFor(m => m.Body, new { @placeholder = "Nội dung", @class = "form-control", @rows = "4" })
+                                        <div class="help-block with-errors tiny mt-2">
+                                                @Html.ValidationMessageFor(m => m.Body)
+                                        </div>
+                                        <input type="submit" class="btn btn-theme mt-4 btn-send " value="Send message">
                                     </div>
                                 </div>
-                                <div id="form-messages"></div>
                             </div>
                         </div>
 
