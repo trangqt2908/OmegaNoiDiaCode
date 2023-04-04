@@ -189,51 +189,6 @@
                         </div>
                     </div>
                 </div>
-                @*<div class="control-group">
-                        @Html.LabelFor(m => m.Icon, new { @class = "control-label" })
-                        <div class="controls">
-                            <div class="ctr-thumb-icon" data-lang="">
-                                <div class="thumb-icon" style="width: 120px; height: 100px;">
-                                    <img src='@String.Format("{0}", !string.IsNullOrEmpty(Model.Icon) ? Model.Icon : ApplicationService.NoImage)' />
-                                    @Html.HiddenFor(m => m.Icon, new { @class = "hf-icon" })
-                                </div>
-                                <div class="act">
-                                    <ul>
-                                        <li>
-                                            <a href="javascrit:void(0)" style="position:relative; ">
-                                                <span style=" top:0px; width: 140px; left: 0; position: absolute">Ảnh từ máy tính</span>
-                                                <input class="file-icon" name="icon" data-lang="" accept="image/jpeg,image/png"
-                                                       style="opacity: 0; height:20px; cursor: pointer;" type="file" />
-                                            </a>
-                                        </li>
-                                        <li><a class="thumb-gallery" href="javascript: openwin('/admin/upload/image?uid=@ViewBag.GAK&func=seticonpath', '_blank', 900, 550)">Ảnh từ thư viện</a></li>
-                                        <li><a href="javascript:openwin('/admin/upload/imagelink?uid=@ViewBag.GAK&func=seticonpath', '_blank', 700, 180)" class="thumb-link">Ảnh từ liên kết khác</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        @Html.LabelFor(m => m.CodeColor, new { @class = "control-label" })
-                        <div class="controls">
-                            @Html.TextBoxFor(m => m.CodeColor, new { @class = "span7" })
-                            <div style="height:20px;width:20px;float:left;margin-top: 5px;margin-right:5px;background:@Model.CodeColor"></div>
-
-                        </div>
-                    </div>*@
-
-                <div class="control-group">
-                    <label class="control-label"> Bài viết Active </label>
-                    <div class="controls">
-                        @Html.TextBoxFor(m => m.PositionActive, new { @class = "input-block-level" })
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label"> Top Destination </label>
-                    <div class="controls">
-                        @Html.TextBoxFor(m => m.TopDestination, new { @class = "input-block-level" })
-                    </div>
-                </div>
                 <div class="row-fluid control-group">
                     <div style="width:99%;">
                         <div class="box">

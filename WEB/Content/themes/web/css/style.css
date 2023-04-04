@@ -735,6 +735,7 @@ a.scrollup:focus i {
     display: inline-block;
     font-weight: 600;
     letter-spacing: 0.6px;
+    margin-right: 10px;
 }
 
 .top-bar .contact-info i {
@@ -5418,7 +5419,7 @@ Contact Details Css Style
 }
 
 .contact-details .service-item.style-1 {
-    padding: 18px 24px;
+    padding: 18px 15px;
     border: 1px solid #eee;
     background-color: #fbfbfb;
     margin-bottom: 30px;
@@ -5440,18 +5441,31 @@ Contact Details Css Style
     text-transform: uppercase;
 }
 
-.contact-details .service-item.style-1 i {
-    background-color: #ffcd22;
-    color: #fff;
-    border: 1px solid #eee;
-    border-radius: 50%;
-    font-size: 30px;
-    height: 60px;
-    line-height: 54px;
-    margin-right: 20px;
-    text-align: center;
-    width: 60px;
-}
+    .contact-details .service-item.style-1 .service-icon i {
+        background-color: #ffcd22;
+        color: #fff;
+        border: 1px solid #eee;
+        border-radius: 50%;
+        font-size: 30px;
+        line-height: 48px;
+        margin-right: 20px;
+        text-align: center;
+        width: 50px;
+        height: 50px;
+    }
+
+    .contact-details .service-item.style-1 .service-item i {
+        background-color: #ffcd22;
+        color: #fff;
+        border: 1px solid #eee;
+        border-radius: 50%;
+        font-size: 30px;
+        line-height: 48px;
+        margin-right: 20px;
+        text-align: center;
+        width: 50px;
+        height: 50px;
+    }
 
 .contact-details .service-item.style-1 .service-icon {
     float: left;
@@ -7745,4 +7759,8 @@ M > P Css Style
 .content .info a{
     font-family: 'Roboto', sans-serif;
     color: #212529;
+}
+
+.footer-contact {
+    color: #989898;
 }

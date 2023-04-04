@@ -92,8 +92,16 @@
                             <i class="pe-7s-map"></i>
                         </div>
                         <div class="content">
-                            <h5><a href="#">Contact Info</a></h5>
-                            <p> 829, Hasan street ground <br>melbourne, Australia.</p>
+                            <h5><a href="#">Thông tin liên hệ</a></h5>
+                            <br />
+                            <p>
+                                <i class="fa fa-building-o"></i> Trụ sở chính: @Html.Action("_Description", "WebSimpleContent", new { key = "address-one", area = "" })
+                                <br />
+                                <i class="fa fa-location-arrow"></i> Chi nhánh hà nội: @Html.Action("_Description", "WebSimpleContent", new { key = "address-one", area = "" })
+                                <br />
+                                <i class="fa fa-phone"></i> @Html.Action("_Description", "WebSimpleContent", new { key = "hotline", area = "" })
+                            </p>
+
                         </div>
                     </div>
                     <div class="service-item style-1 border-1px">
@@ -101,8 +109,8 @@
                             <i class="pe-7s-clock"></i>
                         </div>
                         <div class="content">
-                            <h5><a href="#">Business Hours</a></h5>
-                            <p>Monday-Friday: 10am to 8pm <br>Saturday: 11am to 3pm</p>
+                            <h5><a href="#">Giờ làm việc</a></h5>
+                            <p>Thứ 2 - Thứ 6: 9 AM tới 6 PM</p>
                         </div>
                     </div>
                     <div class="service-item style-1 border-1px">
@@ -111,65 +119,16 @@
                         </div>
                         <div class="content">
                             <h5><a href="#">Email</a></h5>
-                            <p><a href="#">info@bdCoder.com</a> <br> <a href="#">set-info@bdCoder.com</a> </p>
+                            <p>@Html.Action("_Description", "WebSimpleContent", new { key = "email", area = "" })  </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <section class="p-0">
+    @*<section class="p-0">
         <div class="map">
             @Html.Action("_Body", "WebSimpleContent", new { area = "", key = "maps", height = "450", allowfullscreen = "" })
         </div>
-    </section>
+    </section>*@
 </section>
-<section class="client-section bg-f8 style-2 pb-70">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="client_carousel" class="owl-carousel">
-                    <div class="item">
-                        <div class="client-img-item">
-                            <img src="images/partner/1.png" alt="">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-img-item">
-                            <img src="images/partner/2.png" alt="">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-img-item">
-                            <img src="images/partner/3.png" alt="">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-img-item">
-                            <img src="images/partner/4.png" alt="">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-img-item">
-                            <img src="images/partner/5.png" alt="">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-img-item">
-                            <img src="images/partner/6.png" alt="">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="client-img-item">
-                            <img src="images/partner/2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@*<li class="list-inline-item"><a href="https://www.facebook.com/Omegatours.vn/"><i class="fa fa-facebook-f"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.linkedin.com/company/omegatoursvietnam"><i class="fa fa-linkedin"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.instagram.com/omegatours.vietnam/"><i class="fa fa-instagram"></i></a></li>*@
-<!-- Inner Section Start -->

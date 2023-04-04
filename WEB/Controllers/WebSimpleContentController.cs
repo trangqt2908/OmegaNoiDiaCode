@@ -35,6 +35,24 @@ namespace WEB.Controllers
             else { return PartialView(); }
         }
         [ChildActionOnly]
+        public ActionResult _Description(string key)
+        {
+
+            var content = from x in db.WebSimpleContents
+                          where
+                              x.Key.ToLower().Equals(key.ToLower()) &&
+                              ((x.Culture == null ||
+                              (!string.IsNullOrEmpty(x.Culture) && x.Culture.Equals(ApplicationService.Culture)))
+                              || (ApplicationService.Culture == null))
+
+                          select x;
+            if (content.Count() > 0)
+            {
+                return PartialView(content.First());
+            }
+            else { return PartialView(); }
+        }
+        [ChildActionOnly]
         public ActionResult _LinkImg(string key)
         {
 

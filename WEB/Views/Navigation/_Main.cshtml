@@ -14,8 +14,12 @@
                     <div class="contact-info">
                         <ul>
                             <li>
-                                <i class="flaticon-flash"></i>
-                                829, Hasan street melbourne, Australia.
+                                <i class="flaticon-phone-call"></i>
+                                @Html.Action("_Description", "WebSimpleContent", new { key = "hotline", area = "" })
+                            </li>
+                            <li>
+                                <i class="flaticon-new-email-outline"></i>
+                                @Html.Action("_Description", "WebSimpleContent", new { key = "email", area = "" })
                             </li>
                         </ul>
                     </div>

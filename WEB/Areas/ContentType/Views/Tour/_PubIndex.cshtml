@@ -12,16 +12,17 @@
     TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
     TempData["URL"] = ApplicationService.Domain + urlcat;
     TempData["Cat"] = webmodule.Title;
+    var imgBanner = string.IsNullOrEmpty(webmodule.Image) ? "/images/px-1.jpg" : webmodule.Image;
 }
 
 <!-- Inner Section Start -->
-<section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')">
+<section class="inner-area parallax-bg" style="background: url('@imgBanner')">
     <div class="container">
         <div class="section-content">
             <div class="row">
                 <div class="col-12">
                     <h4>@webmodule.Title</h4>
-                    <p> Trang chủ <a href="@urlcat">@webmodule.Parent.Title</a></p>
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
         </div>
