@@ -290,20 +290,20 @@ namespace WebModels
     {
 
 
-        [Required(ErrorMessageResourceType = typeof(WebResources), ErrorMessageResourceName = "RequiredTitle")]
+        [Required(ErrorMessage = "RequiredTitle")]
         [Display(ResourceType = typeof(WebResources), Name = "Title")]
         public string Title { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(WebResources), ErrorMessageResourceName = "RequiredBody")]
+        [Required(ErrorMessage = "Vui lòng không để trống mục nội dung")]
         [Display(ResourceType = typeof(WebResources), Name = "Body")]
         public string Body { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(WebResources), ErrorMessageResourceName = "RequiredFullName")]
+        [Required(ErrorMessage = "Vui lòng không để trống mục họ tên!")]
         [Display(ResourceType = typeof(WebResources), Name = "FullName")]
         public string FullName { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(WebResources), ErrorMessageResourceName = "RequiredEmail")]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessageResourceType = typeof(WebResources), ErrorMessageResourceName = "EmailNotValid")]
+        [Required(ErrorMessage = "Vui lòng không để trống mục Email!")]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Email không đúng định dạng")]
         [Display(ResourceType = typeof(WebResources), Name = "Email")]
         public string Email { get; set; }
 

@@ -880,17 +880,24 @@ a.scrollup:focus i {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: 700;
     letter-spacing: 1px;
-    padding: 22px 14px 18px 14px;
+    padding: 29px 13px;
+    text-align: center;
+    font-size: 15px;
 }
-
+@media(max-width:992px){
+    .header .main-navigation.animated .navbar-nav li a {
+        padding: 20px 15px;
+        text-align: left;
+        font-size: 15px;
+    }
+}
 .header .dropdown-menu.left-1 {
     left: -1px;
 }
 
 .header .navbar-nav {
     border-right: 1px solid rgba(255, 255, 255, 0.19);
-    margin-right: 24px;
-    padding-right: 34px;
+    padding-right: 6px;
     position: relative;
 }
 
@@ -961,7 +968,7 @@ a.dropdown-item.active {
 }
 
 .header .menu-style #logo_img {
-    width: 160px;
+    width: 119px;
 }
 
 /*Fixed Header*/
@@ -975,7 +982,7 @@ a.dropdown-item.active {
 }
 
 .fixed-header #logo_img {
-    width: 155px !important;
+    width: 119px !important;
     -webkit-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
@@ -7763,4 +7770,8 @@ M > P Css Style
 
 .footer-contact {
     color: #989898;
+}
+
+.with-errors span{
+    color: #ff4343;
 }
