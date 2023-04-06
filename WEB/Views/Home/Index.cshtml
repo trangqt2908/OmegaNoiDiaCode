@@ -12,7 +12,7 @@
         {
             Layout = "~/Views/Shared/_Layout_02.cshtml";
         }
-        @Html.Action(Model.PublishIndexView == null ? "_PubIndex" : Model.PublishIndexView, Model.ContentType.Controller, new { area = "ContentType", id = Model.ID })
+        @Html.Action(Model.PublishIndexView == null ? "_PubIndex" : Model.PublishIndexView, Model.ContentType.Controller, new { area = "ContentType", metatitle = Model.MetaTitle })
     }
     catch (Exception) { }
 }

@@ -1,49 +1,28 @@
 ﻿@model Stack<WebModule>
 
-<div class="col-12" style="padding: 0;">
+<p>
+    Trang chủ
+    @if (Model != null && Model.Count > 0)
+    {
 
-    <!-- Sub Navigation
-            ================================================== -->
-
-    <p>
-        <a href="/">Trang chủ</a>
-        @if (Model != null && Model.Count > 0)
+        do
         {
+            WebModule module = Model.Pop();
 
-            do
+            
+            if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
             {
-                WebModule module = Model.Pop();
-                if (module.UID != "footer")
-                {
-                    if (string.IsNullOrEmpty(module.UID) || string.IsNullOrWhiteSpace(module.UID))
-                    {
-                        if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
-                        {
-
-                            <a class="map-child" href="/">@module.Title</a>
-                        }
-                        else
-                        {
-                            <a class="map-child" href="@module.URL target=" @module.Target> @module.Title </a>
-                        }
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
-                        {
-                            @Html.ActionLink(@module.Title, "Index", "Home", new {  metatitle = module.MetaTitle != null ? module.MetaTitle : "gym", id = module.ID}, new { title = module.Title, @class = "map-child" })
-                        }
-                        else
-                        {
-                            <a class="map-child" href="@module.URL target=" @module.Target>@module.Title </a>
-                        }
-                    }
-                }
-                module = module.Parent;
+                @Html.ActionLink(@module.Title, "Index", "Home", new { metatitle = module.MetaTitle != null ? module.MetaTitle : "omegatours" }, new { title = module.Title, area = "" })
             }
-            while (Model.Count != 0);
+            else
+            {
+                <a href="@module.URL target=" @module.Target>@module.Title </a>
+            }
+
+            module = module.Parent;
         }
+        while (Model.Count != 0);
+    }
 
-    </p>
+</p>
 
-</div>

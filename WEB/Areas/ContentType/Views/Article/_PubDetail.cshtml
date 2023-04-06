@@ -30,6 +30,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4>@webmodule.Title</h4>
+
                     @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
@@ -45,18 +46,18 @@
                         <h4>@item.Title</h4>
                         @Html.Raw(item.Body)
                     </div>
-                    <!-- End Blog Comments -->
-                    <div class="mb-5 mt-5">
+
+                    @*<div class="mb-5 mt-5">
                         <h4>Book Tour</h4>
                         <div class="border-style-2"></div>
                     </div>
-                    @Html.Action("_PubContact", "Contact", new { area = "ContentType", id = item.ID })
+                    @Html.Action("_PubContact", "Contact", new { area = "ContentType", id = item.ID })*@
                 </div>
             </div>
             <div class="col-md-4 col-lg-3">
                 <div class="theme-sidebar">
 
-                    <div class="widget search-sidebar">
+                    @*<div class="widget search-sidebar">
                         <div class="title-box">
                             <h3>Search <span>Here</span></h3>
                         </div>
@@ -66,9 +67,9 @@
                                 <i class="fa fa-search form-control-feedback"></i>
                             </div>
                         </form>
-                    </div>
+                    </div>*@
 
-                    <div class="widget">
+                    @*<div class="widget">
                         <div class="title-box">
                             <h3>Categories <span></span></h3>
                         </div>
@@ -81,7 +82,7 @@
                                 <li><a href="#">Winter</a><span>5</span></li>
                             </ul>
                         </div>
-                    </div>
+                    </div>*@
 
                     <div class="widget">
                         <div class="title-box">
@@ -101,12 +102,3 @@
         </div>
     </div>
 </section>
-
-
-@*
-    @Html.Action("_OtherNews", "Article", new { area = "ContentType", id = item.ID })
-        @Html.Action("_GetTagByContentID", "Home", new { area = "", id = item.ID })
-        @Html.Action("_GetDestinations", "Article", new { area = "ContentType", id = 0 })
-
-        @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_tour" })
-*@

@@ -159,13 +159,7 @@
         @Html.TextAreaFor(m => m.Description, new { @class = "input-block-level" })
     </div>
 </div>
-<div class="control-group">
-    @Html.LabelFor(m => m.Backgroud, new { @class = "control-label" })
-    <div class="controls">
-        @Html.TextBoxFor(m => m.Backgroud, new { @class = "input-xlarge", id = "txtBackgroud" })
-        <a href="javascript:void(0);" onclick="javascript: openwin('/admin/upload/file?uid=@ViewBag.GAK&func=setmediapath', '_blank', 800, 550);" class="btn">Tải ảnh bìa</a>
-    </div>
-</div>
+
 <div class="control-group">
     @Html.LabelFor(m => m.Image, new { @class = "control-label" })
     <div class="controls">
@@ -221,15 +215,15 @@
     @Html.LabelFor(m => m.Status, new { @class = "control-label" })
     <div class="controls">
         @Html.DropDownListFor(
-                                                        m => m.Status,
-                                                        new SelectList(new List<SelectListItem>
-                                                         {
-                                                            new SelectListItem{ Text="Phát hành", Value = "1" },
-                                                            new SelectListItem{ Text="Nội bộ", Value = "0" },
-                                                             new SelectListItem{ Text="Khóa", Value = "-1" }
+          m => m.Status,
+          new SelectList(new List<SelectListItem>
+           {
+              new SelectListItem{ Text="Phát hành", Value = "1" },
+              new SelectListItem{ Text="Nội bộ", Value = "0" },
+               new SelectListItem{ Text="Khóa", Value = "-1" }
 
-                                                         }, "Value", "Text")
-                                                        )
+           }, "Value", "Text")
+          )
     </div>
 </div>
 <div class="control-group">

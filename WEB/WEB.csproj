@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WEB</RootNamespace>
     <AssemblyName>WEB</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -3275,7 +3275,6 @@
     <Content Include="Views\WebSimpleContent\_LinkImg.cshtml" />
     <Content Include="Views\WebSimpleContent\_Body.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Shared\_Layout_02.cshtml" />
     <Content Include="Uploads\settings.config">
       <SubType>Designer</SubType>

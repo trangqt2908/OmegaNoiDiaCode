@@ -35,7 +35,8 @@
             <div class="row">
                 <div class="col-12">
                     <h4>@item.Title</h4>
-                    <p>Trang chủ <a href="@urlcatparent">@webmodule.Parent.Title</a>  <a href="@urlcat">@webmodule.Title</a></p>
+                  
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
         </div>

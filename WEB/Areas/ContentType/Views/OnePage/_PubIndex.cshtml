@@ -4,7 +4,7 @@
     var urlcat = webmodule.URL;
     if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
     {
-        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",  area = "" });
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
     }
     TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
     TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
@@ -12,45 +12,36 @@
     TempData["URL"] = ApplicationService.Domain + urlcat;
     TempData["Cat"] = webmodule.Title;
 
+    var imgBanner = string.IsNullOrEmpty(webmodule.Image) ? "/images/px-1.jpg" : webmodule.Image;
+}
 
-    <div class="tour-title">
-        <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title" title="@webmodule.Title">
-        <h1 class="white text-center shadow-text center-text">@webmodule.Title</h1>
 
-        <div>
-            <a class="smooth-scroll" href="#read-tour">
-                <img class="curvechevron" src="~/Content/themes/web/assets/svgs/curvesingle.svg" alt="">
-                <div class="chevroncurve">
-                    <i class="fa hoverchevron white fa-chevron-down"></i>
-                </div>
-            </a>
-        </div>
-    </div>
-    <section id="section3" class="tour-list-sidebar">
-        <div class="container-fluid">
-          
+<section class="inner-area parallax-bg" style="background: url('@imgBanner')">
+    <div class="container">
+        <div class="section-content">
             <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-3 ml-lg-5 order-lg-first order-last mt-3 mt-lg-0">
+                <div class="col-12">
+                    <h4>@webmodule.Title</h4>
 
-                    @Html.Action("_OtherAbout", "OnePage", new { area = "ContentType", id = webmodule.ID })
-
-                    @Html.Partial("_QuickContact")
-
-                    @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_onePage" })
-                </div>
-
-                <div class="col-xs-12 col-md-12 col-lg-8  single-tour">
                     @Html.Action("_SiteMap", "Home", new { area = "" })
-                    <h4 id="read-tour" class="black text-left bold">@webmodule.Title</h4>
-
-
-                    <div class="separator-tour"></div>
-
-                    <div class="post-emtry">
-                        @Html.Raw(webmodule.Body)
-                    </div>
                 </div>
             </div>
         </div>
-    </section>
-}
+    </div>
+</section>
+
+<section class="global-section over-layer-white pt-50 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="global-area">
+                    <div class="inner-title">
+                        <h2>@webmodule.Title</h2>
+                        <div class="sec-line"></div>
+                    </div>
+                    @Html.Raw(webmodule.Body)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

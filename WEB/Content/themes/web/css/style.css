@@ -881,7 +881,7 @@ a.scrollup:focus i {
     font-weight: 700;
     letter-spacing: 1px;
     padding: 29px 13px;
-    text-align: center;
+    /*text-align: center;*/
     font-size: 15px;
 }
 @media(max-width:992px){
@@ -3543,7 +3543,7 @@ Blog Css Style
     border-top: 3px solid rgba(255, 102, 0, 0.28);
     bottom: 0;
     left: 0;
-    padding: 30px 15px;
+    padding: 12px 15px;
     position: absolute;
     right: 0;
     -webkit-transition: all 0.2s ease-in-out;
@@ -4670,10 +4670,6 @@ Client Css Style
 Inner Css Style
 ----------------------------------------------------------------*/
 
-/*--------------------------------------------------------------
-Inner Css Style
-----------------------------------------------------------------*/
-
 .inner-area {
     padding-bottom: 70px;
     padding-top: 132px;
@@ -4702,28 +4698,28 @@ Inner Css Style
     }
 
     .inner-area p {
-        color: #e9e9e9!important;
+        color: #e9e9e9;
         font-family: 'Lora', serif;
         font-size: 18px;
         letter-spacing: 0.8px;
         margin-top: 8px;
         text-transform: capitalize;
     }
-        .inner-area p .map-child {
-            color: #ffcd22 !important;
-        }
-    .inner-area p a{
-        color: #e9e9e9 !important;
-    }
-        
 
-            .inner-area p .map-child:before {
+        .inner-area p a {
+            color: #ffcd22;
+        }
+
+            .inner-area p a:before {
                 content: "";
                 font-family: FontAwesome;
                 font-size: 13px;
                 color: #fff;
                 margin: 0 8px;
             }
+/*--------------------------------------------------------------
+Inner Css Style
+----------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
 Shop Css Style

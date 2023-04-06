@@ -243,23 +243,30 @@ namespace WEB.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult _SiteMap(int id = 0, int m_id = 0, int idnew = 0)
+        public ActionResult _SiteMap(string metatitle, string m_metatitle, int idnew = 0)
         {
             ViewBag.title = "";
-            id = m_id > 0 ? m_id : id;
 
-            if (id == 0)
+            metatitle = m_metatitle ?? metatitle;
+
+            if (string.IsNullOrWhiteSpace(metatitle))
             {
                 return PartialView(null);
             }
 
-            WebModule module = this.db.WebModules.Find(id);
+            WebModule module = new WebModule();
+
+            var modulemetatitle = this.db.WebModules.Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault();
+            if (module != null)
+            {
+                module = modulemetatitle;
+            }  
+
             Stack<WebModule> modules = new Stack<WebModule>();
 
             do
             {
                 modules.Push(module);
-
                 module = module.Parent;
             }
             while (module != null);
