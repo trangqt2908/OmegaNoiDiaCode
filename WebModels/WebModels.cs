@@ -328,6 +328,16 @@ namespace WebModels
         public Nullable<int> WebContentID { get; set; }
         public string WebContentTitle { get; set; }
         public virtual WebModule WebModule { get; set; }
+        [NotMapped]
+        public string DayStart { get; set; }
+        [NotMapped]
+        public string Parent { get; set; }
+        [NotMapped]
+        public string Child { get; set; }
+        [NotMapped]
+        public string Children { get; set; }
+        [NotMapped]
+        public string NameTour { get; set; }
     }
 
 
