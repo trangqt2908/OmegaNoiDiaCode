@@ -106,6 +106,7 @@
                     <ul class="nav nav-tabs shop-tab-menu">
                         <li class="nav-item"><a href="" data-target="#home1" data-toggle="tab" class="nav-link active">LỊCH TRÌNH TOUR</a></li>
                         <li class="nav-item"><a href="" data-target="#profile1" data-toggle="tab" class="nav-link">Chính sách Tour</a></li>
+                        <li class="nav-item"><a href="" data-target="#contact" data-toggle="tab" class="nav-link">Liên hệ đặt tour</a></li>
                     </ul>
                     <br>
                     <div class="tab-content">
@@ -119,7 +120,11 @@
                                 @Html.Raw(item.ProductInfo.Policy)
                             </div>
                         </div>
-
+                        <div id="contact" class="tab-pane fade">
+                            <div class="post-content">
+                                @Html.Action("_PubContact", "Contact", new { area = "ContentType", id = item.ID })
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,4 +134,4 @@
 
 
 @Html.Action("_OtherTour", "Tour", new { area = "ContentType", webContentID = item.ID, type = 0 })
-@Html.Action("_PubContact", "Contact", new { area = "ContentType", id = item.ID })
+

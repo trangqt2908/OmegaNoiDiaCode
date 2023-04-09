@@ -50,13 +50,13 @@
                 @Html.TextBoxFor(m => m.DayStart, new { @placeholder = "*Ngày Khởi Hành", @class = "form-control" })
             </div>
             <div class="form-group col-md-6">
-                @Html.TextBoxFor(m => m.Parent, new { @placeholder = "*Số người lớn", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Parent, new { @placeholder = "*Số người lớn", @class = "form-control", @type = "number", @min = "1", @max = "20" })
             </div>
             <div class="form-group col-md-6">
-                @Html.TextBoxFor(m => m.Child, new { @placeholder = "*Số lượng trẻ em(3-9 tuổi) ", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Child, new { @placeholder = "*Số lượng trẻ em(3-9 tuổi) ", @class = "form-control", @type = "number", @min = "0", @max = "20" })
             </div>
             <div class="form-group col-md-6">
-                @Html.TextBoxFor(m => m.Children, new { @placeholder = "*Số lượng trẻ nhỏ(0-2 tuổi) ", @class = "form-control" })
+                @Html.TextBoxFor(m => m.Children, new { @placeholder = "*Số lượng trẻ nhỏ(0-2 tuổi) ", @class = "form-control", @type = "number", @min = "0", @max = "20" })
             </div>
             <div class="form-group col-md-12">
                 <div class="contact-textarea">
@@ -64,10 +64,12 @@
                     <div class="help-block with-errors tiny mt-2">
                         @Html.ValidationMessageFor(m => m.Body)
                     </div>
-                    <button type="submit" class="btn btn-theme mt-4"> Gửi ngay</button>
                 </div>
             </div>
-
+            <div class="form-group col-md-12 text-center">
+                <button type="submit" class="btn btn-theme mt-4 btn-send" style=" width: 160px;"> Gửi ngay</button>
+            </div>
+         
         </div>
 
     }
