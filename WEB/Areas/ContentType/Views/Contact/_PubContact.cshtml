@@ -1,4 +1,5 @@
-﻿@model WebModels.WebContact
+﻿
+@model WebModels.WebContact
 
 <script>
     function OnFailureContactTour() {
@@ -14,37 +15,60 @@
     }
 </script>
 
-
-@using (Ajax.BeginForm("_PubContact", new { area = "ContentType" },
-                        new AjaxOptions
-                        {
-                            OnSuccess = "OnSuccessContactTour",
-                            OnFailure = "OnFailureContactTour"
-                        }, new { id = "frmcontact" }))
-{
-    @Html.AntiForgeryToken()
-    <input type="hidden" name="WebContentID" value="@ViewBag.ContentID" />
-    <input type="hidden" name="Title" value="Email liên hệ từ Tour" />
-    <div class="form-row id="sidebar-form">
-        <div class="form-group col-md-6">
-            @Html.TextBoxFor(m => m.FullName, new { @placeholder = "* " + @Resources.Common.FullName, @class = "form-control" })
-        </div>
-        <div class="form-group col-md-6">
-            @Html.TextBoxFor(m => m.Email, new { @placeholder = "* " + @Resources.Common.Email, @class = "form-control" })
-        </div>
-        <div class="form-group col-md-12">
-            @Html.TextBoxFor(m => m.Mobile, new { @placeholder = @Resources.Common.Mobile, @class = "form-control" })
-        </div>
-        <div class="form-group col-md-12">
-            @Html.TextBoxFor(m => m.Address, new { @placeholder = @Resources.Common.Address, @class = "form-control" })
-        </div>
-        <div class="form-group col-md-12">
-            <div class="contact-textarea">
-                @Html.TextAreaFor(m => m.Body, new { @placeholder = "* " + @Resources.Common.Content, @class = "form-control", @rows = "4" })
-                <button type="submit" class="btn btn-theme mt-4"> @Resources.Common.BookNow</button>
-            </div>
-        </div>
+<div class="container">
+    <div class="section-title" style="margin-bottom: 0px;">
+        <h2>Thông tin <span>Liên hệ</span></h2>
 
     </div>
+    @using (Ajax.BeginForm("_PubContact", new { area = "ContentType" },
+                            new AjaxOptions
+                            {
+                                OnSuccess = "OnSuccessContactTour",
+                                OnFailure = "OnFailureContactTour"
+                            }, new { id = "frmcontact" }))
+    {
+        @Html.AntiForgeryToken()
 
-}
+        <input type="hidden" name="WebContentID" value="@ViewBag.ContentID" />
+        <input type="hidden" name="Title" value="Email liên hệ từ Tour" />
+        <input type="hidden" name="NameTour" value="@ViewBag.ContentName" />
+        <input type="hidden" name="Email" value="a@gmail.com" />
+        <div class="form-row" id="sidebar-form">
+            <div class="form-group col-md-6">
+                @Html.TextBoxFor(m => m.FullName, new { @placeholder = "*Họ và tên ", @class = "form-control" })
+                <div class="help-block with-errors tiny mt-2">
+                    @Html.ValidationMessageFor(m => m.FullName)
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.TextBoxFor(m => m.Mobile, new { @placeholder = "*Số điện thoại", @class = "form-control" })
+                <div class="help-block with-errors tiny mt-2">
+                    @Html.ValidationMessageFor(m => m.Mobile)
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.TextBoxFor(m => m.DayStart, new { @placeholder = "*Ngày Khởi Hành", @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.TextBoxFor(m => m.Parent, new { @placeholder = "*Số người lớn", @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.TextBoxFor(m => m.Child, new { @placeholder = "*Số lượng trẻ em(3-9 tuổi) ", @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                @Html.TextBoxFor(m => m.Children, new { @placeholder = "*Số lượng trẻ nhỏ(0-2 tuổi) ", @class = "form-control" })
+            </div>
+            <div class="form-group col-md-12">
+                <div class="contact-textarea">
+                    @Html.TextAreaFor(m => m.Body, new { @placeholder = "Ghi chú...", @class = "form-control", @rows = "4" })
+                    <div class="help-block with-errors tiny mt-2">
+                        @Html.ValidationMessageFor(m => m.Body)
+                    </div>
+                    <button type="submit" class="btn btn-theme mt-4"> Gửi ngay</button>
+                </div>
+            </div>
+
+        </div>
+
+    }
+</div>

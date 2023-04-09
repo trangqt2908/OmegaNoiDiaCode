@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-12">
                     <h4>@item.Title</h4>
-                  
+
                     @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
@@ -52,7 +52,7 @@
                         <div class="col-lg-6">
 
                             @Html.Action("_SlideContent", "Tour", new { area = "ContentType", id = item.ID })
-                           
+
                         </div>
                         <div class="col-lg-6">
                             <div class="content">
@@ -129,3 +129,4 @@
 
 
 @Html.Action("_OtherTour", "Tour", new { area = "ContentType", webContentID = item.ID, type = 0 })
+@Html.Action("_PubContact", "Contact", new { area = "ContentType", id = item.ID })
