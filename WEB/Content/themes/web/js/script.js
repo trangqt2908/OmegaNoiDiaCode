@@ -400,14 +400,70 @@
         autoplay: 2000,
         autoplayHoverPause:true,
         smartSpeed: 700,
-        items: 1,
+        items: 3,
         margin:30,
         dots: false,
         nav:true,
         navText: [
           '<i class="fa fa-chevron-left"></i>',
           '<i class="fa fa-chevron-right"></i>'
-        ]
+        ],
+         responsive:{
+          0:{
+            items:1
+          },
+          480:{
+            items:1
+          },
+          600:{
+            items:1
+          },
+          768:{
+            items:2
+          },
+          992:{
+            items:2
+          },
+          1200:{
+            items:3
+          }
+        }
+    });
+
+    //owl-Carousel-TwoColumn
+    $(".testimonials_slide_tour").owlCarousel({
+        loop: false,
+        autoplay: 1000000000,
+        autoplayHoverPause: true,
+        smartSpeed: 700,
+        items: 2,
+        margin: 30,
+        dots: false,
+        nav: true,
+        navText: [
+            '<i class="fa fa-chevron-left"></i>',
+            '<i class="fa fa-chevron-right"></i>'
+        ],
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 2
+            },
+            1200: {
+                items: 2
+            }
+        }
     });
 
     //owl-Carousel-TwoColumn

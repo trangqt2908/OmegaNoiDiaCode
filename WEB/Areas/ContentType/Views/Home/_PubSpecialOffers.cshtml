@@ -1,58 +1,89 @@
 ﻿@model IEnumerable<WebModels.WebContent>
 @{
-    var webmodule = (WebModule)ViewBag.webmodule;
+
 }
 
 
-
-<div class="row">
+<section class="testimonials-section pt-50 pb-50">
     <div class="container">
         <div class="row">
-            <h2 class="menu-title-header">@Html.Raw(Resources.Common.TitleSpecialOffers) </h2>
-            <div class="text-center padding-top-15 padding-bottom-15">
-                <p class="padding-left-25 padding-right-25">
-                    @webmodule.Description
-                </p>
-            </div>
+            <div class="col-lg-12">
+                <div class="inner-title">
+                    <h2> <span>Combo</span> Tours</h2>
+                    <p>  Bạn được chủ động về mặt thời gian, địa điểm vui chơi và lộ trình, không áp lực về thời gian vui chơi, thư giãn giữa các điểm tham quan trong chuyến du lịch của mình. Chuyến du lịch hoàn toàn chủ động bởi chính bạn!</p>
+                    <div class="sec-line mb-40"></div>
+                </div>
+                <div class="testimonials-post testimonials_slide owl-carousel owl-theme owl-navst st-three">
 
-        </div>
-        <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        var webmodule = item.WebModule;
+                        var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                        var urlContent = Url.Action("Detail", "Home", new
+                        {
+                            metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                            m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                            area = ""
+                        });
 
-        </div>
-    </div>
-</div>
+                        <div class="special-packages">
+                            <div class="thumb">
+                                <a href="@urlContent" alt="@item.Title"> </a>
+                                <img src="@img" alt="@item.Title">
+                                @if (item.ProductInfo.Discount > 0)
+                                {
+                                    <div class="offer-price"> Off @item.ProductInfo.Discount%</div>
+                                }
+                            <div class="post-title-box">
 
-<div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        @foreach (var item in Model)
-        {
-            var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
-            var url = Url.Action("Detail", "Home", new
-            {
-                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                area = ""
-            });
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padding-0">
-                <img src="@img" class="img-width-hotel" title="@item.Title" alt="@item.Title" />
-                @*<div class="wpb_text_column wpb_content_element  img-banner1">
-                        <div class="wpb_wrapper">
-                            <div class="title"><span class="name">the viet nam&nbsp;</span><strong>Da Lat</strong></div>
-                            <div class="prices"><span class="from">Start from</span><span class="price">586</span><span class="sub">$</span></div>
-                            <div class="description">
-                                Stay 4 day 3 night from <strong>$568 perpassenge.</strong><br>
-                                Lower air fare &amp; tour prices guanrenteed
+                                <div class="title">
+                                    <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
+                                </div>
+
+                                <div class="title-box">
+                                    @if (item.ProductInfo.Discount > 0)
+                                    {
+                                        <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
+                                    }
+                                </div>
+                                <div class="price-box">
+                                    <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                </div>
+
                             </div>
+                            </div>
+                            <div class="content">
+                                <div class="infor">
+                                    <div class="pull-left" style="width: 50%;">
+                                        <ul class="info">
+                                            <li>
+                                                <a href="#"><i class="fa fa-calendar"></i> @item.ProductInfo.DepartureTime </a>
+                                                <br />
+                                                <a href="#"><i class="fa fa-calendar-check-o"></i>@item.ProductInfo.TourTime</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="pull-left" style="width: 50%; text-align: right; margin-top: 8px;">
+                                        @{
+                                            var lstTrans = string.IsNullOrEmpty(item.ProductInfo.Transportation) ? new List<string>() : item.ProductInfo.Transportation.Split(',').ToList();
 
+                                            foreach (var trans in lstTrans)
+                                            {
+
+                                                if (!string.IsNullOrWhiteSpace(trans))
+                                                {
+                                                    <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>*@
-                <div class="zo_button vc_btn3-container  btn-position-img left vc_btn3-left">
-                    <a style="border-radius: 30px; color: #444;" href="@url" title="@item.Title" class="btn btn-success">
-                        @Resources.Common.Detail
-                    </a>
+                    }
                 </div>
             </div>
-        }
-    </div>
 
-</div>
+        </div>
+    </div>
+</section>

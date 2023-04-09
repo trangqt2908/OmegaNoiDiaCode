@@ -45,23 +45,23 @@
                                     {
                                         <div class="offer-price"> Off @item.ProductInfo.Discount%</div>
                                     }
-                                    <div class="post-title-box">
+                                <div class="post-title-box">
 
-                                        <div class="title">
-                                            <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
-                                        </div>
-
-                                        <div class="title-box">
-                                            <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
-                                        </div>
-                                        <div class="price-box">
-                                            @if (item.ProductInfo.Discount > 0)
-                                            {
-                                                <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
-                                            }
-                                        </div>
-
+                                    <div class="title">
+                                        <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
                                     </div>
+
+                                    <div class="title-box">
+                                        @if (item.ProductInfo.Discount > 0)
+                                        {
+                                            <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
+                                        }
+                                    </div>
+                                    <div class="price-box">
+                                        <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                    </div>
+
+                                </div>
                                 </div>
                                 <div class="content">
                                     <div class="infor">

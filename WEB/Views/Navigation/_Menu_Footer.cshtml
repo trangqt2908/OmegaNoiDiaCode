@@ -6,7 +6,8 @@
                 <div class="col-md-3">
                     <div class="footer-item footer-widget-one">
                         <img class="footer-logo mb-25" src="images/logo-1.png" alt="">
-                        <p>Dolorum quae quis cumque officia labore delectus at animi ducimus non nisi, dolores sapiente</p>
+                        @Html.Action("_Body", "WebSimpleContent", new { key = "desc-footer", area = "" })
+
                         <hr>
                         <h6>Follow<span> Us</span></h6>
                         <ul class="social-icon bg-transparent bordered-theme">
@@ -52,7 +53,7 @@
                 <div class="col-md-3">
                     <div class="footer-item">
                         <div class="footer-title">
-                            <h4>Quick <span>Contact</span></h4>
+                            <h4>Thông Tin <span>Liên HỆ</span></h4>
                             <div class="border-style-3"></div>
                         </div>
                         <ul class="footer-list footer-contact mb-10">

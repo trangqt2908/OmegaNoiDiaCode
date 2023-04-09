@@ -112,9 +112,7 @@ namespace WEB.Areas.ContentType.Controllers
         }
         public ActionResult AllHighlight_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var module = db.WebModules.Where(x => x.UID == "all-tour"
-                && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
-
+            var module = db.WebModules.Where(x => x.UID == "tour-trong-nuoc").FirstOrDefault();
 
             var webContents = new List<WebContent>();
 
@@ -206,7 +204,7 @@ namespace WEB.Areas.ContentType.Controllers
         }
         #endregion _Highlight
 
-        #region _SpecialOffers (Popular Destinations)
+        #region _SpecialOffers ()
         [ChildActionOnly]
         public ActionResult _SpecialOffers(int take)
         {
@@ -219,7 +217,7 @@ namespace WEB.Areas.ContentType.Controllers
         }
         public ActionResult _SpecialOffers_Read()
         {
-            var ids = ConfigurationManager.AppSettings.Get("Home_SpecialOffers");
+            var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Trong_Nuoc");
             var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
             var lstContent = new List<WebContent>();
             var jarray = new JArray();
@@ -245,7 +243,7 @@ namespace WEB.Areas.ContentType.Controllers
 
         public ActionResult SpecialOffers_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var ids = ConfigurationManager.AppSettings.Get("Home_SpecialOffers");
+            var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Trong_Nuoc");
             var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
             var result = new List<WebContent>();
             foreach (var item in data)
@@ -260,8 +258,7 @@ namespace WEB.Areas.ContentType.Controllers
         }
         public ActionResult AllSpecialOffers_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var module = db.WebModules.Where(x => x.UID == "destinations"
-              && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
+            var module = db.WebModules.Where(x => x.UID == "combo").FirstOrDefault();
 
 
             var webContents = new List<WebContent>();
@@ -280,15 +277,15 @@ namespace WEB.Areas.ContentType.Controllers
             try
             {
                 Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
-                var ids = ConfigurationManager.AppSettings.Get("Home_SpecialOffers");
+                var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Trong_Nuoc");
                 var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
                 data.Remove(id);
                 if (order < 1) order = 1;
                 else if (order > data.Count + 1) order = data.Count + 1;
                 data.Insert(order - 1, id);
                 data = data.Distinct().ToList();
-                config.AppSettings.Settings.Remove("Home_SpecialOffers");
-                config.AppSettings.Settings.Add("Home_SpecialOffers", string.Join(",", data));
+                config.AppSettings.Settings.Remove("Home_Tour_Trong_Nuoc");
+                config.AppSettings.Settings.Add("Home_Tour_Trong_Nuoc", string.Join(",", data));
                 config.Save();
                 return Json(new
                 {
@@ -311,12 +308,12 @@ namespace WEB.Areas.ContentType.Controllers
             try
             {
                 Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
-                var ids = ConfigurationManager.AppSettings.Get("Home_SpecialOffers");
+                var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Trong_Nuoc");
                 var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
                 data.Remove(id);
                 data = data.Distinct().ToList();
-                config.AppSettings.Settings.Remove("Home_SpecialOffers");
-                config.AppSettings.Settings.Add("Home_SpecialOffers", string.Join(",", data));
+                config.AppSettings.Settings.Remove("Home_Tour_Trong_Nuoc");
+                config.AppSettings.Settings.Add("Home_Tour_Trong_Nuoc", string.Join(",", data));
                 config.Save();
                 return Json(new
                 {
@@ -334,7 +331,173 @@ namespace WEB.Areas.ContentType.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult _PubSpecialOffers(int take)
+        {
+            var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Trong_Nuoc");
+            var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
+            var result = new List<WebContent>();
+            foreach (var item in data)
+            {
+                var obj = db.WebContents.Where(x => x.ID == item && x.WebModule.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
+                if (obj != null)
+                {
+                    result.Add(obj);
+                }
+            }
+
+
+            return PartialView(result.Take(take));
+        }
         #endregion _SpecialOffers
+
+        #region Tour trong nươc
+        [ChildActionOnly]
+        public ActionResult _ModuleHome()
+        {
+
+            return PartialView();
+        }
+        public ActionResult EditModuleHome()
+        {
+            return View();
+        }
+        public ActionResult _ModuleHome_Read()
+        {
+            var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Nuoc_Ngoai");
+            var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
+            var lstContent = new List<WebContent>();
+            var jarray = new JArray();
+            foreach (var item in data)
+            {
+                var obj = db.WebContents.Where(x => x.ID == item && x.Status == (int)Status.Public && x.WebModule.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
+                if (obj != null)
+                {
+                    lstContent.Add(obj);
+                }
+            }
+
+            foreach (var c in lstContent)
+            {
+                var item = c;//.TranslateTo(ApplicationService.Culture);
+                var moduletran = item.WebModule;//.TranslateTo(ApplicationService.Culture);
+                var jobjectcontent = new JObject() { new JProperty("Lang", ApplicationService.TwoLetterISOLanguage), new JProperty("ID", item.ID), new JProperty("Title", item.Title), new JProperty("MetaTitle", item.MetaTitle), new JProperty("WebModuleID", item.WebModuleID), new JProperty("WebModule_MetaTitle", moduletran.MetaTitle) };
+                jarray.Add(jobjectcontent);
+            }
+
+            return Json(new { JsonArray = jarray.ToString() }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ModuleHome_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Nuoc_Ngoai");
+            var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
+            var result = new List<WebContent>();
+            foreach (var item in data)
+            {
+                var obj = db.WebContents.Where(x => x.ID == item && x.Status == (int)Status.Public && x.WebModule.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
+                if (obj != null)
+                {
+                    result.Add(obj);
+                }
+            }
+            return Json(result.Select(x => new { x.ID, x.Title, x.Description, x.Image, x.ModifiedBy, x.ModifiedDate, x.MetaTitle }).ToDataSourceResult(request));
+
+        }
+        public ActionResult AllModuleHome_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            var module = db.WebModules.Where(x => x.UID == "tour-nuoc-ngoai").FirstOrDefault();
+
+
+            var webContents = new List<WebContent>();
+
+            var items = GetListContents(module.ID, webContents).Where(x => x.WebModule.Culture.Equals(ApplicationService.Culture)).Select(x => new { x.ID, x.Title, x.Description, x.Image, x.ModifiedBy, x.ModifiedDate });
+            {
+                request.Sorts.Add(new SortDescriptor("ID", System.ComponentModel.ListSortDirection.Descending));
+            }
+
+            return Json(items.ToDataSourceResult(request));
+        }
+
+
+        [HttpPost]
+        public ActionResult ModuleHome_Update(int id, int order)
+        {
+            try
+            {
+                Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+                var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Nuoc_Ngoai");
+                var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
+                data.Remove(id);
+                if (order < 1) order = 1;
+                else if (order > data.Count + 1) order = data.Count + 1;
+                data.Insert(order - 1, id);
+                data = data.Distinct().ToList();
+                config.AppSettings.Settings.Remove("Home_Tour_Nuoc_Ngoai");
+                config.AppSettings.Settings.Add("Home_Tour_Nuoc_Ngoai", string.Join(",", data));
+                config.Save();
+                return Json(new
+                {
+                    success = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new
+                {
+                    success = true,
+                    error = ex.Message
+                });
+            }
+        }
+        [HttpPost]
+        public ActionResult ModuleHome_Delete(int id)
+        {
+            try
+            {
+                Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+                var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Nuoc_Ngoai");
+                var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
+                data.Remove(id);
+                data = data.Distinct().ToList();
+                config.AppSettings.Settings.Remove("Home_Tour_Nuoc_Ngoai");
+                config.AppSettings.Settings.Add("Home_Tour_Nuoc_Ngoai", string.Join(",", data));
+                config.Save();
+                return Json(new
+                {
+                    success = true
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new
+                {
+                    success = true,
+                    error = ex.Message
+                });
+            }
+        }
+        [AllowAnonymous]
+        public ActionResult _PubModuleHome(int take)
+        {
+            var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Nuoc_Ngoai");
+            var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
+            var result = new List<WebContent>();
+            foreach (var item in data)
+            {
+                var obj = db.WebContents.Where(x => x.ID == item && x.WebModule.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
+                if (obj != null)
+                {
+                    result.Add(obj);
+                }
+            }
+
+
+            return PartialView(result.Take(take));
+        }
+
+        #endregion
 
         #region _Publish
         [AllowAnonymous]
@@ -436,7 +599,7 @@ namespace WEB.Areas.ContentType.Controllers
             var webmodule = db.WebModules.Where(x => x.UID.Equals("destinations")
               && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
 
-            var ids = ConfigurationManager.AppSettings.Get("Home_SpecialOffers");
+            var ids = ConfigurationManager.AppSettings.Get("Home_Tour_Trong_Nuoc");
             var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
             var result = new List<WebContent>();
             foreach (var item in data)
@@ -514,6 +677,19 @@ namespace WEB.Areas.ContentType.Controllers
 
             return PartialView();
         }
+        [AllowAnonymous]
+        public ActionResult _TopCamLangDuLich()
+        {
+            var module = db.WebModules.Where(x => x.UID.Equals("cam-nang-du-lich")).FirstOrDefault();
+
+            var contents = db.WebContents.Where(x => x.WebModuleID == module.ID
+                && x.Status == (int)Status.Public).OrderByDescending(x => x.ModifiedDate).Take(3).ToList();
+            return PartialView(contents);
+        }
+
+        
+
+
         #endregion _Publish
 
     }
