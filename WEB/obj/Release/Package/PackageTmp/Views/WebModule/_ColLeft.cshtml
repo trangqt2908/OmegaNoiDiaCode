@@ -53,7 +53,7 @@
             var url = node.URL;
             if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
             {
-                url = Url.Action("Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web", id = node.ID });
+                url = Url.Action("Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web", });
             }
             <li>
                 <a href="@url" title="@node.Title">@node.Title</a>

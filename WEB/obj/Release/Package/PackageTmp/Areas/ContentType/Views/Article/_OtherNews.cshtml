@@ -6,35 +6,19 @@
 }
 
 
-
-<div class="more-info tags my-4">
-    <h6 class="black semibold text-center mx-4 mt-3 mb-3 info-title">
-        @if (ViewBag.IsNews == true)
-        {
-            @Resources.Common.TravelPosts
-        }
-        else
-        {
-            @Resources.Common.OtherPosts
-        }
-    </h6>
-    <div class="px-3 px-lg-2 pb-3">
-        <ul class="list-other">
-            @foreach (var item in Model)
-            {
-                var url = Url.Action("Detail", "Home", new
-                {
-                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                    id = item.ID,
-                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                    m_id = item.WebModule.ID,
-                    area = ""
-                });
-
-                <li>
-                    <a href="@url" title="@item.Title"> <i class="fa fa-angle-double-right"></i> @item.Title </a>
-                </li>
-            }
-        </ul>
+@foreach (var item in Model)
+{
+    var url = Url.Action("Detail", "Home", new
+    {
+        metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+        m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+        area = ""
+    });
+    <div class="blog-small-item">
+        <img src="@item.Image" alt="">
+        <div class="tex">
+            <h5><a href="@url" title="@item.Title">@item.Title </a></h5>
+        </div>
     </div>
-</div>
+    
+}

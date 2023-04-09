@@ -21,114 +21,121 @@
     }
 </script>
 
-<div class="tour-title not-fixed ">
-    <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title">
-    <h1 class="white text-center front shadow-text center-text">@webmodule.Title</h1>
-    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curvegrey.svg" alt="">*@
-</div>
-<section id="pagesection"> 
+<section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')" data-type="parallax" data-speed="3">
     <div class="container">
-        <div class="row">
-            @Html.Action("_SiteMap", "Home", new { area = "" })
-        </div>
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-md-6 col-12 order-md-first order-last">
-                @using (Ajax.BeginForm("_PubIndex", new { area = "ContentType" },
-                        new AjaxOptions
-                        {
-                            OnSuccess = "OnSuccessContact",
-                            OnFailure = "OnFailureContact"
-                        }, new { id = "frmcontact" }))
-                {
-                      @Html.AntiForgeryToken()
-                    <input type="hidden" name="WebContentID" value="@ViewBag.ID" />
-                    <input hidden name="Title" value="Liên hệ từ Omega Tours" />
-
-                    <div class="messages"></div>
-                    <div class="controls">
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-center">
-                                    <label for="form_name">@Resources.Common.FullName *</label>
-                                    @Html.TextBoxFor(m => m.FullName, new { @placeholder = "* " + @Resources.Common.FullName, @class = "form-control" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-center">
-                                    <label for="form_email">@Resources.Common.Email *</label>
-                                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "* " + @Resources.Common.Email, @class = "form-control" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-center">
-                                    <label for="form_email">@Resources.Common.Address</label>
-                                    @Html.TextBoxFor(m => m.Address, new { @placeholder = @Resources.Common.Address, @class = "form-control" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-center">
-                                    <label for="form_phone">@Resources.Common.Mobile</label>
-                                    @Html.TextBoxFor(m => m.Mobile, new { @placeholder = @Resources.Common.Mobile, @class = "form-control" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group text-center">
-                                    <label for="form_message">Message *</label>
-                                    @*<textarea id="form_message" name="message" class="form-control" placeholder="What tour are you interested in? *" rows="4" required="required" data-error="Please,leave us a message."></textarea>*@
-                                    @Html.TextAreaFor(m => m.Body, new { @placeholder = "* " + @Resources.Common.Content, @class = "form-control", @rows = "4" })
-                                    <div class="help-block with-errors tiny mt-2"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <input type="submit" class="btn btn-primary px-4 btn-send disabled" value="Send message">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 mt-4">
-                                <p class="text-muted"><strong>*</strong> @Resources.Common.TheseFieldsAreRequired</p>
-                            </div>
-                        </div>
-                    </div>
-
-                }
-            </div>
-
-            <div class="col-md-6 col-12 text-left">
-                @Html.Action("_Body", "WebSimpleContent", new { area = "", key = "maps" })
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 offset-md-2 text-center  col-10 offset-1 mt-5">
-                <div class="text-center white-popup">
-
-                    <a href="https://www.facebook.com/Omegatours.vn/">
-                        <i class="fa fa-facebook-f"></i>
-                    </a> &nbsp;
-
-                    <a href="https://www.linkedin.com/company/omegatoursvietnam">
-                        <i class="fa fa-linkedin"></i>
-                    </a>&nbsp;
-
-                    <a href="https://www.instagram.com/omegatours.vietnam/">
-                        <i class="fa fa-instagram"></i>
-                    </a>
+        <div class="section-content">
+            <div class="row">
+                <div class="col-12">
+                    <h4>@webmodule.Title</h4>
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
 
                 </div>
             </div>
         </div>
     </div>
 </section>
+<section id="pagesection">
+    <div class="container">
+        <div class="contact-details pb-70">
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+                    <h3 class="title">Liên hệ với <span>Chúng tôi</span></h3>
 
-@*<li class="list-inline-item"><a href="https://www.facebook.com/Omegatours.vn/"><i class="fa fa-facebook-f"></i></a></li>
-<li class="list-inline-item"><a href="https://www.linkedin.com/company/omegatoursvietnam"><i class="fa fa-linkedin"></i></a></li>
-<li class="list-inline-item"><a href="https://www.instagram.com/omegatours.vietnam/"><i class="fa fa-instagram"></i></a></li>*@
+                    @using (Ajax.BeginForm("_PubIndex", new { area = "ContentType" },
+                            new AjaxOptions
+                            {
+                                OnSuccess = "OnSuccessContact",
+                                OnFailure = "OnFailureContact"
+                            }, new { id = "frmcontact" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="WebContentID" value="@ViewBag.ID" />
+                        <input hidden name="Title" value="Liên hệ từ Omega Tours" />
+
+                        <div class="messages"></div>
+                        <div class="controls">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    @Html.TextBoxFor(m => m.FullName, new { @placeholder = "Họ tên", @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2">
+                                        @Html.ValidationMessageFor(m => m.FullName)
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2">
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    @Html.TextBoxFor(m => m.Address, new { @placeholder = "Địa chỉ", @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2">
+                                        @Html.ValidationMessageFor(m => m.Address)
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    @Html.TextBoxFor(m => m.Mobile, new { @placeholder = "Số điện thoại", @class = "form-control" })
+                                    <div class="help-block with-errors tiny mt-2"></div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="contact-textarea">
+                                        @Html.TextAreaFor(m => m.Body, new { @placeholder = "Nội dung", @class = "form-control", @rows = "4" })
+                                        <div class="help-block with-errors tiny mt-2">
+                                                @Html.ValidationMessageFor(m => m.Body)
+                                        </div>
+                                        <input type="submit" class="btn btn-theme mt-4 btn-send " value="Gửi">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                    <h3 class="title">LIÊN LẠC</h3>
+                    <div class="service-item style-1 border-1px">
+                        <div class="service-icon">
+                            <i class="pe-7s-map"></i>
+                        </div>
+                        <div class="content">
+                            <h5><a href="#">Thông tin liên hệ</a></h5>
+                            <br />
+                            <p>
+                                <i class="fa fa-building-o"></i> Trụ sở chính: @Html.Action("_Description", "WebSimpleContent", new { key = "address-one", area = "" })
+                                <br />
+                                <i class="fa fa-location-arrow"></i> Chi nhánh hà nội: @Html.Action("_Description", "WebSimpleContent", new { key = "address-one", area = "" })
+                                <br />
+                                <i class="fa fa-phone"></i> @Html.Action("_Description", "WebSimpleContent", new { key = "hotline", area = "" })
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="service-item style-1 border-1px">
+                        <div class="service-icon">
+                            <i class="pe-7s-clock"></i>
+                        </div>
+                        <div class="content">
+                            <h5><a href="#">Giờ làm việc</a></h5>
+                            <p>Thứ 2 - Thứ 6: 9 AM tới 6 PM</p>
+                        </div>
+                    </div>
+                    <div class="service-item style-1 border-1px">
+                        <div class="service-icon">
+                            <i class="pe-7s-mail-open"></i>
+                        </div>
+                        <div class="content">
+                            <h5><a href="#">Email</a></h5>
+                            <p>@Html.Action("_Description", "WebSimpleContent", new { key = "email", area = "" })  </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<section class="p-0">
+        <div class="map">
+            @Html.Action("_Body", "WebSimpleContent", new { area = "", key = "maps", height = "450", allowfullscreen = "" })
+        </div>
+    </section>*@
+</section>

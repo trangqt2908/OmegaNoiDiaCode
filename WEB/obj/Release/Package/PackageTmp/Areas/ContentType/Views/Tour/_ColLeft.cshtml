@@ -33,7 +33,7 @@
                 if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
                 {
                     url = Url.Action("Index", "Home",
-                        new { metatitle = module.Parent.MetaTitle != null ? module.Parent.MetaTitle : "web", id = module.Parent.ID, area = "" });
+                        new { metatitle = module.Parent.MetaTitle != null ? module.Parent.MetaTitle : "web", area = "" });
                 }
                 <li><a href="@url" title="@module.Title"> --- @Resources.Common.TypeOfTour --- </a></li>
             }
@@ -45,7 +45,7 @@
                 if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
                 {
                     url = Url.Action("Index", "Home",
-                        new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", id = item.ID, area = "" });
+                        new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", area = "" });
                 }
                 <li><a href="@url" title="@item.Title">@item.Title </a></li>
             }

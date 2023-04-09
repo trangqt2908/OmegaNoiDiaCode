@@ -7,7 +7,7 @@
     var urlcat = webmodule.URL;
     if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
     {
-        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", id = webmodule.ID, area = "" });
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
     }
     TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
     TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
@@ -15,80 +15,71 @@
 
     TempData["URL"] = ApplicationService.Domain + urlcat;
     TempData["Cat"] = webmodule.Title;
+    var imgBanner = string.IsNullOrEmpty(webmodule.Image) ? "/images/px-1.jpg" : webmodule.Image;
 }
 
-<div class="tour-title not-fixed ">
+<!-- Inner Section Start -->
+<section class="inner-area parallax-bg" style="background: url('@imgBanner')">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-12">
+                    <h4>@webmodule.Title</h4>
 
-    <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title">
-    <h1 class="white text-center front shadow-text center-text">@webmodule.Title</h1>
-    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curve.svg" alt="">*@
 
-</div>
-
-<section id="section3" class="tour-list-sidebar tour-list-sidebar-2-col">
-   
-    <div class="container-fluid">
-        @Html.Action("_SiteMap", "Home", new { area = "" })
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-lg-3 ml-lg-5 order-lg-first order-last mt-3 mt-lg-0">
-                @Html.Action("_TopDestinations", "Destinations", new { area = "ContentType", webmoduleId = 0, webContentId = 0 })
-
-                @*@Html.Partial("_QuickContact")*@
-
-                <div class=" mt-4">
-                    @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_destination" })
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
-
-            <div class="col-xs-12 col-md-12 col-lg-8   single-tour">
-                <div class="row">
-                    <div class="col-lg-12 travel-left">
-
-
-                        @foreach (var item in Model)
-                        {
-                            var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
-                            var url = Url.Action("Detail", "Home", new
-                            {
-                                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                                id = item.ID,
-                                m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
-                                m_id = webmodule.ID,
-                                area = ""
-                            });
-                            <div class="single-travel media mb-5">
-                                <img class="img-fluid d-flex  mr-3 " src="@img" alt="@item.Title" title="@item.Title">
-                                <div class="dates tiny white">
-                                    <span>@item.CreatedDate.Value.Day</span>
-                                    <p class="white  text-center">@item.CreatedDate.Value.ToString("MMM")</p>
-                                </div>
-                                <div class="media-body mt-sm-0 mt-3  align-self-center">
-                                    <a class="title-blog black" href="@url" title="@item.Title">
-                                        <h2 class="mt-0">
-                                            @Html.RawSubString(item.Title, 50)
-                                        </h2>
-                                    </a>
-
-                                    <p class="desc-blog">
-                                        @if (!string.IsNullOrWhiteSpace(item.Description))
-                                        {
-                                            @Html.RawSubString(item.Description, 320)
-                                        }
-                                    </p>
-                                    <div class="meta-bottom d-flex justify-content-between">
-                                        @*<p class="primary-color"><span class="far primary-color fa-heart"></span></p>*@
-                                        <p class="primary-color pull-right"> @Resources.Common.SeeMore ... <span class="far primary-color"></span> </p>
+        </div>
+    </div>
+</section>
+<section class="pb-20">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                var url = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+                    area = ""
+                });
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-post">
+                        <div class="thumb">
+                            <img alt="" src="@img" alt="@item.Title" title="@item.Title">
+                            <div class="content">
+                                <a href=" @url " title=" @item.Title ">
+                                    <h3>
+                                        @Html.RawSubString(item.Title, 50)
+                                    </h3>
+                                    <div class="meta-box">
+                                        <div class="admin-post">OmegaTourNoiDia</div>
+                                        <div class="inner">
+                                            <div class="date">
+                                                <i class="fa fa-calendar-plus-o"></i> @item.CreatedDate.Value.Day @item.CreatedDate.Value.ToString("MMM")
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
-                        }
+                        </div>
+                        <a href="@url" class="read-btn">
+                            Continue Reading
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        </a>
                     </div>
-
-                    <div id="control-bot" class="control control-bot control-classer">
-                        @if (ViewBag.TotalItemCount > 12)
-                        {
-                            <div class="pager">
-                                @Html.Raw(Html.Pager(
+                </div>
+            }
+        </div>
+        <section class="text-center pt-0 pb-0">
+            <div class="container">
+                <div id="control-bot" class="control control-bot control-classer">
+                    @if (ViewBag.TotalItemCount > 1)
+                    {
+                        <div class="pager">
+                            @Html.Raw(Html.Pager(
                             new Options
                             {
                                 PageSize = 12,
@@ -103,11 +94,10 @@
                                 IsShowFirstLast = false,
                                 IsShowPages = true
                             }, new RouteValueDictionary(ViewBag.RouteValues)))
-                            </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </section>

@@ -1,10 +1,27 @@
 ﻿@{
-    var webmodule = (WebModule)ViewBag.WebModule;
-    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
-    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
-    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+    //var webmodule = (WebModule)ViewBag.WebModule;
+    //TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    //TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    //TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
 }
 
 
 
-@Html.Action("_PubHighlight", "Home", new { area = "ContentType", take = 6 })
+@*@Html.Action("_PubHighlight", "Home", new { area = "ContentType", take = 6 })*@
+
+
+<!-- Slick Section Start -->
+@Html.Action("_PubSlide", "Home", new { area = "ContentType" })
+<!-- Slick Section End -->
+<!-- Special Places Section Start -->
+@Html.Action("_PubHighlight", "Home", new { area = "ContentType", take = 10 })
+<!-- Special Places Section End -->
+<!-- Special Packages Section Start -->
+@Html.Action("_PubModuleHome", "Home", new { area = "ContentType", take = 10 })
+<!-- Special Packages Section End -->
+<!-- Testimonials Section Start -->
+@Html.Action("_PubSpecialOffers", "Home", new { area = "ContentType", take = 10 })
+<!-- Testimonials Section End -->
+
+@Html.Action("_TopCamLangDuLich", "Home", new { area = "ContentType" })
+<!-- Blog Section End -->

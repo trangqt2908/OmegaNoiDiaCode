@@ -34,13 +34,11 @@
                         columns.Bound(p => p.ModifiedDate).Format("{0:HH:mm - dd/MM/yyyy}").Title(Resources.Common.ModifiedDate).Width(150);
                         columns.Command(command =>
                         {
-                          
-                                command.Custom(Resources.Common.Edit).Click("edit_handler");
 
-                                command.Custom(Resources.Common.Delete).Click("delete_handler");
-                            
-                                command.Custom("Chi tiết").Click("detail_handler");
-                            
+                            command.Custom(Resources.Common.Edit).Click("edit_handler");
+
+                            command.Custom(Resources.Common.Delete).Click("delete_handler");
+
                         }).Width(250).HtmlAttributes(new { style = "text-align:center;" });
                     })
                     .Pageable()

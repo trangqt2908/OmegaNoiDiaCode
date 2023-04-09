@@ -3,21 +3,25 @@
     var item = Model;
     var webmodule = item.WebModule;
     var urlcat = webmodule.URL;
-    var background = String.IsNullOrEmpty(webmodule.Image) ? "/content/themes/web/img/bg-title1.png" : webmodule.Image;
-    var codecolor = String.IsNullOrEmpty(webmodule.CodeColor) ? "#b200b2" : webmodule.CodeColor;
-    var bgColor = WEB.Areas.ContentType.Controllers.ArticleController.GetBGColor(codecolor);
+    var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+
     if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
     {
-        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", id = webmodule.ID, area = "" });
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "omegatours", area = "" });
     }
+
+    var urlcatparent = webmodule.Parent.URL;
+    if (string.IsNullOrEmpty(webmodule.Parent.URL) || string.IsNullOrWhiteSpace(webmodule.Parent.URL))
+    {
+        urlcatparent = Url.Action("Index", "Home", new { metatitle = webmodule.Parent.MetaTitle != null ? webmodule.Parent.MetaTitle : "omegatours", area = "" });
+    }
+
     var url = Url.Action("Detail", "Home", new
-        {
-            metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-            id = item.ID,
-            m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
-            m_id = webmodule.ID,
-            area = ""
-        });
+    {
+        metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+        m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+        area = ""
+    });
 
     TempData["Title"] = Utility.UseStringHasValue(item.SeoTitle, item.Title);
     TempData["Description"] = Utility.UseStringHasValue(item.MetaDescription, item.Description);
@@ -25,108 +29,109 @@
     TempData["URL"] = ApplicationService.Domain + url;
     TempData["Cat"] = webmodule.Title;
 }
-<div class="tour-title">
-    <img class="w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title" title="@webmodule.Title">
-    <h1 class="white text-center shadow-text center-text">@webmodule.Title</h1>
-
-    <div>
-        <a class="smooth-scroll" href="#read-tour">
-            <img class="curvechevron" src="~/Content/themes/web/assets/svgs/curvesingle.svg" alt="">
-            <div class="chevroncurve">
-                <i class="fa hoverchevron white fa-chevron-down"></i>
-            </div>
-        </a>
-    </div>
-</div>
-
-<section id="section3" class="tour-list-sidebar tour-list-sidebar-2-col">
-
-    <div class="container-fluid">
-      
+<section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')">
+    <div class="container">
+        <div class="section-content">
             <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-3 ml-lg-5 ml-sm-3 order-lg-first order-last mt-3 mt-lg-0">
-                    @Html.Action("_PubContact", "Contact", new { area = "ContentType", id = item.ID })
+                <div class="col-12">
+                    <h4>@item.Title</h4>
 
-                    @*@Html.Partial("_QuickContact")*@
-
-                    @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_tour" })
-                </div>
-                <div class="col-xs-12 col-md-12 col-lg-8   single-tour">
-                    <div class="row">
-                        <div class="col-12">
-                            <ol class="breadcrumb">
-                                @Html.Action("_SiteMapDetail", "Home", new { area = "" })
-                                <li class="breadcrumb-item"><a href="#" title="@item.Title">@item.Title </a></li>
-                            </ol>
-                        </div>
-                    </div>
-                    <h4 id="read-tour" class="black text-left mb-3  bold">@item.Title</h4>
-
-                    @*<div class="row">
-                        <div class="col-sm-6 col-12 text-left ml-sm-0">
-                            <div class=" ml-0 mt-1">
-                                <a class="btn btn-primary px-3  text-left mr-1 mb-1 btn-sm" href="#" role="button">Europe</a>
-                                <a class="btn btn-primary px-3 mx-1 text-left mx-2 mb-1 btn-sm" href="#" role="button">travel</a>
-                            </div>
-                        </div>
-
-                    </div>*@
-                    @Html.Action("_ViewListDestination", "Navigation", new { lstDestination = item.ProductInfo.Destination, area = "" })
-                    <div class="separator-tour"></div>
-                    <section id="tabs">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-12 ">
-                                    <nav>
-                                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
-                                                <img class="svgcenter mt-3 mb-2 calendar-icon" src="~/Content/themes/web/img/briefInfo.jpg" />
-                                                <p class="grey text-center"> <span class="black bold"> Brief info </span></p>
-                                            </a>
-                                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
-                                                <img class="svgcenter mt-3 mb-2 calendar-icon" src="~/Content/themes/web/img/itinerary.jpg" />
-                                                <p class="grey text-center"> <span class="black bold"> Itinerary  </span></p>
-                                            </a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">
-                                                <img class="svgcenter mt-3 mb-2 calendar-icon" src="~/Content/themes/web/img/servicesDetails.jpg" />
-                                                <p class="grey text-center"> <span class="black bold"> Services Details </span></p>
-                                            </a>
-                                            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">
-                                                <img class="svgcenter mt-3 mb-2 calendar-icon" src="~/Content/themes/web/img/information.jpg" />
-                                                <p class="grey text-center"> <span class="black bold"> Information  </span></p>
-                                            </a>
-                                        </div>
-                                    </nav>
-                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                            <div class="post-emtry">
-                                                @Html.Raw(item.Body)
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                            <div class="post-emtry">
-                                                @Html.Raw(item.ProductInfo.Map)
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                            <div class="post-emtry">  @Html.Raw(item.ProductInfo.ServiceDetail)  </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                                            <div class="post-emtry">
-                                                @Html.Raw(item.Event)
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-
-                    @Html.Action("_OtherTour", "Tour", new { area = "ContentType", webContentID = item.ID, type = 0 })
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
         </div>
+    </div>
 </section>
+
+<section class="shop-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="shop-single">
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            @Html.Action("_SlideContent", "Tour", new { area = "ContentType", id = item.ID })
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="content">
+                                <h1>@item.Title</h1>
+                                <h4>
+                                    @String.Format("{0:N0}", item.ProductInfo.Price)₫
+
+                                    @if (item.ProductInfo.Discount > 0)
+                                    {
+                                        <span>  @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫ </span>
+                                    }
+                                </h4>
+                                <div class="transportation">
+                                    @{
+                                        var lstTrans = string.IsNullOrEmpty(item.ProductInfo.Transportation) ? new List<string>() : item.ProductInfo.Transportation.Split(',').ToList();
+
+                                        foreach (var trans in lstTrans)
+                                        {
+
+                                            if (!string.IsNullOrWhiteSpace(trans))
+                                            {
+                                                <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                                <ul class="info">
+                                    <li>
+                                        <a href="#"><i class="fa fa-calendar"></i> &nbsp; @item.ProductInfo.DepartureTime </a>
+                                        <br />
+                                        <a href="#"><i class="fa fa-calendar-check-o"></i>  &nbsp; @item.ProductInfo.TourTime</a>
+                                    </li>
+                                </ul>
+                                <p>
+                                    @Html.Raw(item.Description)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="padding-top: 30px;">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs shop-tab-menu">
+                        <li class="nav-item"><a href="" data-target="#home1" data-toggle="tab" class="nav-link active">LỊCH TRÌNH TOUR</a></li>
+                        <li class="nav-item"><a href="" data-target="#profile1" data-toggle="tab" class="nav-link">Chính sách Tour</a></li>
+                        <li class="nav-item"><a href="" data-target="#contact" data-toggle="tab" class="nav-link">Liên hệ đặt tour</a></li>
+                    </ul>
+                    <br>
+                    <div class="tab-content">
+                        <div id="home1" class="tab-pane fade active show">
+                            <div class="post-content">
+                                @Html.Raw(item.Body)
+                            </div>
+                        </div>
+                        <div id="profile1" class="tab-pane fade">
+                            <div class="post-content">
+                                @Html.Raw(item.ProductInfo.Policy)
+                            </div>
+                        </div>
+                        <div id="contact" class="tab-pane fade">
+                            <div class="post-content">
+                                @Html.Action("_PubContact", "Contact", new { area = "ContentType", id = item.ID })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@Html.Action("_OtherTour", "Tour", new { area = "ContentType", webContentID = item.ID, type = 0 })
+

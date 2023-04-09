@@ -801,7 +801,7 @@ a.scrollup:focus i {
 }
 
 .header.header-style-2 .menu-hover-2 .dropdown-buttons .btn-group .btn {
-    color: #ffcd22;
+    color: #262967;
 }
 
 .header.header-style-2 .top-bar {
@@ -5389,8 +5389,8 @@ Contact Details Css Style
     }
 
     .form-row .btn.btn-theme {
-        background-color: #ffcd22;
-        border: 1px solid #ffcd22;
+        background-color: #262967;
+        border: 1px solid #262967;
         border-radius: 0;
         color: #ffffff;
         font-family: 'Lora', serif;
@@ -5431,7 +5431,7 @@ Contact Details Css Style
         }
 
     .contact-details .service-item.style-1 .service-icon i {
-        background-color: #ffcd22;
+        background-color: #262967;
         color: #fff;
         border: 1px solid #eee;
         border-radius: 50%;
@@ -5461,7 +5461,7 @@ Contact Details Css Style
     }
 
 .contact-details .form-row .btn.btn-theme {
-    background-color: #ffcd22;
+    background-color: #262967;
     color: #fff;
     display: inline-block;
     width: auto;

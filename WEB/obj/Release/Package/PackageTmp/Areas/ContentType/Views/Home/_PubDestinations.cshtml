@@ -7,7 +7,6 @@
     {
         metatitle = webmodule.MetaTitle != null ?
             webmodule.MetaTitle : "web",
-        id = webmodule.ID,
         area = ""
     });
 
@@ -33,9 +32,7 @@
                             var urlContent = Url.Action("Detail", "Home", new
                             {
                                 metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                                id = item.ID,
                                 m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                                m_id = item.WebModule.ID,
                                 area = ""
                             });
                             if(index == 1 || index == 2 || index == 4 || index == 6)

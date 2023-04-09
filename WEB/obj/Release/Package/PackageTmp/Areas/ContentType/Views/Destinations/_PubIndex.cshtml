@@ -7,7 +7,7 @@
     var urlcat = webmodule.URL;
     if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
     {
-        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", id = webmodule.ID, area = "" });
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
     }
     TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
     TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
@@ -23,7 +23,7 @@
         <li>
             @if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
             {
-                @Html.ActionLink(node.Title, "Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web", id = node.ID, area = "" }, new { title = node.Title, style = "color:" + codecolor })
+                @Html.ActionLink(node.Title, "Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web", area = "" }, new { title = node.Title, style = "color:" + codecolor })
             }
             else
             {
@@ -49,9 +49,7 @@
                 var url = Url.Action("Detail", "Home", new
                 {
                     metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                    id = item.ID,
                     m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
-                    m_id = webmodule.ID,
                     area = ""
                 });
                 <div class="col-lg-4 col-sm-6 col-xs-12 mb-4 complete-image">

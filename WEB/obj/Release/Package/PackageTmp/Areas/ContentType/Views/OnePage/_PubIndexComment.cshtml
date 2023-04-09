@@ -4,7 +4,7 @@
     var urlcat = webmodule.URL;
     if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
     {
-        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", id = webmodule.ID, area = "" });
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
     }
     TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
     TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);

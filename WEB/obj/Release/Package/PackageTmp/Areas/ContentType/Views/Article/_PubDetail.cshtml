@@ -11,11 +11,11 @@
         urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
     }
     var url = Url.Action("Detail", "Home", new
-        {
-            metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-            m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
-            area = ""
-        });
+    {
+        metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+        m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+        area = ""
+    });
 
     TempData["Title"] = Utility.UseStringHasValue(item.SeoTitle, item.Title);
     TempData["Description"] = Utility.UseStringHasValue(item.MetaDescription, item.Description);
@@ -23,63 +23,44 @@
 
     TempData["URL"] = ApplicationService.Domain + url;
     TempData["Cat"] = webmodule.Title;
+    var imgBanner = string.IsNullOrEmpty(webmodule.Image) ? "/images/px-1.jpg" : webmodule.Image;
 }
-<div class="tour-title ">
-    <img class="blog-background w-100 h-100" src="@webmodule.Backgroud" alt="@webmodule.Title" title="@webmodule.Title">
-    <h1 class="white text-center shadow-text front center-text">@webmodule.Title</h1>
 
-
-    <div>
-        <a class="smooth-scroll" href="#read-tour">
-            <img class="curvechevron" src="~/Content/themes/web/assets/svgs/curvesingle.svg" alt="">
-            <div class="chevroncurve">
-                <i class="fa hoverchevron white fa-chevron-down"> </i>
-            </div>
-        </a>
-    </div>
-
-</div>
-
-<section id="section3" class="tour-list-sidebar">
-    <div class="container-fluid">
-       
+<!-- Inner Section Start -->
+<section class="inner-area parallax-bg" style="background: url('@imgBanner')">
+    <div class="container">
+        <div class="section-content">
             <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-3 ml-lg-5 order-lg-first order-last mt-3 mt-lg-0">
+                <div class="col-12">
+                    <h4>@webmodule.Title</h4>
 
-                    @Html.Action("_TopDestinations", "Destinations", new { area = "ContentType", webmoduleId = 0, webContentId = 0 })
-                    @Html.Action("_OtherNews", "Article", new { area = "ContentType", id = item.ID, isNew = false })
-
-                    @*@Html.Partial("_QuickContact")*@
-
-                    @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_blog" })
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
-
-                <div class="col-xs-12 col-md-12 col-lg-8  single-tour">
-                    <div class="row">
-                        <div class="col-12">
-                            <ol class="breadcrumb">
-                                @Html.Action("_SiteMapDetail", "Home", new { area = "" })
-                                <li class="breadcrumb-item"><a href="#" title="@item.Title">@item.Title </a></li>
-                            </ol>
-                        </div>
-                    </div>
-                    <h4 id="read-tour" class="black text-left bold">@item.Title</h4>
-
-
-                    <div class="separator-tour"></div>
-
-                    <div class="post-emtry">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9">
+                <div class="blog-details">
+                    <div class="details-content mb-40">
+                        <h4>@item.Title</h4>
                         @Html.Raw(item.Body)
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="theme-sidebar">
+                    <div class="widget">
+                        <div class="title-box">
+                            <h3>Bài đăng <span>Gần đây</span></h3>
+                        </div>
+                        @Html.Action("_OtherNews", "Article", new { area = "ContentType", id = item.ID, isNew = false })
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 </section>
-
-
-
-@*@Html.Action("_OtherNews", "Article", new { area = "ContentType", id = item.ID })
-    @Html.Action("_GetTagByContentID", "Home", new { area = "", id = item.ID })
-    @Html.Action("_GetDestinations", "Article", new { area = "ContentType", id = 0 })
-
-    @Html.Action("_Adv", "Advertisement", new { area = "", position = "adv_left_tour" })*@

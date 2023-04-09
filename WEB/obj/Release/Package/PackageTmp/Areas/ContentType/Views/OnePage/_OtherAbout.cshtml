@@ -14,7 +14,7 @@
                 var url = item.URL;
                 if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
                 {
-                    url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", id = item.ID, area = "" });
+                    url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web", area = "" });
                 }
 
                 <li>
