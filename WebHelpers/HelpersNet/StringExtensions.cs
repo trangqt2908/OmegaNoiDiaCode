@@ -31,6 +31,12 @@ namespace System
             input = input.Replace(",", "-");
             input = input.Replace(";", "-");
             input = input.Replace(":", "-");
+            input = input.Replace("[", "-");
+            input = input.Replace("]", "-");
+            input = input.Replace("/", "-");
+            input = input.Replace("(", "-");
+            input = input.Replace(")", "-");
+
             Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
             string str = input.Normalize(NormalizationForm.FormD);
             string str2 = regex.Replace(str, string.Empty).Replace('đ', 'd').Replace('Đ', 'D');

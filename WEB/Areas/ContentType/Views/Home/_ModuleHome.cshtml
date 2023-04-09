@@ -1,0 +1,73 @@
+﻿<div class="box box-color  box-small box-bordered">
+    <div class="box-title">
+        <h3>
+            <i class="icon-th-large"></i>  Tour nước ngoài
+        </h3>
+        <div class="actions">
+
+            <a href="#" title="@Resources.Common.Edit" id="_modulehome_edit" class="btn btn-mini "><i class="icon-edit"></i></a>
+            <a href="#" class="btn btn-mini content-refresh" id="_modulehome_refresh"><i class="icon-refresh"></i></a>
+            <a href="#" class="btn btn-mini content-slideUp"><i class="icon-angle-down"></i></a>
+        </div>
+    </div>
+    <div class="box-content">
+        <table class="table table-hover table-nomargin">
+            <tbody id="tbody_modulehome">
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#_modulehome_edit").click(function () {
+            w.data("kendoWindow").setOptions({ height: 550, width: 950 });
+            w.data("kendoWindow").refresh({
+                url: "@Url.Action("EditModuleHome")",
+            }).title('@Html.Raw(Resources.Common.EditItem)').center().open();
+        }); $("#_modulehome_refresh").click(function () {
+            load_modulehome();
+        });
+        load_modulehome();
+
+    });
+    function load_modulehome() {
+         var tempHtml = "";
+        tempHtml += "<tr>";
+        tempHtml += "     <td>";
+        tempHtml += "         <a target=\"_blank\" href=\"/$wm_metatitle-$wm_id/$metatitle-$id\" >$title</a>";
+        tempHtml += "        </td>";
+        tempHtml += " <td><a href=\"javascript:del_modulehome($id)\" class=\"btn\" rel=\"tooltip\" title=\"\" data-original-title=\"Delete\"><i class=\"icon-remove\"></i></a></td>";
+        tempHtml += "  </tr>";
+        var html = "";
+        $.getJSON('@Url.Action("_ModuleHome_Read", new {  })').done(function (data) {
+            var jdata = $.parseJSON(data.JsonArray);
+            $.each(jdata, function (i, jobject) {
+                var temp = tempHtml;
+                temp = temp.replace("$title", jobject.Title).replace("$wm_metatitle", jobject.WebModule_MetaTitle).replace("$wm_id", jobject.WebModuleID).replace("$metatitle", jobject.MetaTitle).replace("$id", jobject.ID).replace("$id", jobject.ID);
+
+                html += temp;
+            });
+            $('#tbody_modulehome').html(html);
+        });
+    }
+
+    function del_modulehome(id) {
+        $.ajax({
+            url: "@Url.Action("ModuleHome_Delete")",
+            type: "post",
+            data: { id: id },
+        dataType: "json",
+        success: function (data) {
+            if (data.success) {
+                load_modulehome();
+            } else {
+                alert(data.error);
+            }
+        }
+    });
+    }
+</script>

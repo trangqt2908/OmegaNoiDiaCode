@@ -59,13 +59,13 @@
                                 </div>
 
                                 <div class="title-box">
-                                    <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
-                                </div>
-                                <div class="price-box">
                                     @if (item.ProductInfo.Discount > 0)
                                     {
-                                        <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                        <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
                                     }
+                                </div>
+                                <div class="price-box">                                    
+                                    <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
                                 </div>
 
                             </div>
@@ -105,7 +105,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div id="control-bot" class="control control-bot control-classer">
-                    @if (ViewBag.TotalItemCount > 12)
+                    @if (ViewBag.TotalItemCount > 1)
                     {
                         <div class="pager">
                             @Html.Raw(Html.Pager(

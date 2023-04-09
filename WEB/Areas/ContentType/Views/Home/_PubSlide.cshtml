@@ -3,24 +3,41 @@
     var style = "active";
 }
 
-<section id="sectioncarousel">
-    <div id="carouselExampleIndicators" class="carousel carousel-home2  slide" data-ride="carousel">
+
+<section class="slider-wrapper p-0">
+    <div id="slider-style-one" class="carousel slide bs-slider control-round indicators-line" data-ride="carousel"
+         data-pause="hover" data-interval="5000">
+
+        <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#slider-style-one" data-slide-to="0" class="active"></li>
+            <li data-target="#slider-style-one" data-slide-to="1"></li>
+            <li data-target="#slider-style-one" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner " role="listbox">
+
+        <!-- Wrapper For Slides -->
+        <div class="carousel-inner" role="listbox">
             @foreach (var m in Model)
             {
                 <div class="carousel-item @style">
-                    <img class="d-block img-fluid" src="@m.Image" alt="@m.Title" title="@m.Title">
-                    <div class="carousel-caption justify-content-center  mb-lg-4 mb-0 align-items-center text-center">
-                        <div class="toggleCaption">
-                            <h2 class="white shadow-text  align-middle"><a class="white" href="@m.Link" title="@m.Title"> @m.Title</a> </h2>
-                        </div>
-                        <div class="toggleButton">
-                            <h4 class="white shadow-text align-middle">@m.Description</h4>
+
+                    <!-- Slide Background -->
+                    <img src="@m.Image" alt="@m.Title" class="slide-image" />
+                    <div class="bs-slider-overlay"></div>
+                    <div class="container">
+                        <div class="row">
+                            <!-- Slide Text Layer -->
+                            <div class="slide-text home-3 slide-style-center">
+                                <div class="sub-title">
+                                    <h4>we provide</h4>
+                                </div>
+                                <div class="title-box">
+                                    <h2>Best <span>Tour</span> Pacakage In Your <span>Budget</span></h2>
+                                </div>
+                                <div class="btn-box">
+                                    <a href="#" class="btn-theme">Read more</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -28,20 +45,21 @@
                 {
                     style = "";
                 }
-
             }
-
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </div>
+        <!-- End of Wrapper For Slides -->
+        <!-- Left Control -->
+        <a class="left carousel-control" href="#slider-style-one" role="button" data-slide="prev">
+            <span class="fa fa-angle-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+        <!-- Right Control -->
+        <a class="right carousel-control" href="#slider-style-one" role="button" data-slide="next">
+            <span class="fa fa-angle-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-        <div class="chapter2">
-            <img class="curve2 d-none d-xl-block" src="~/Content/themes/web/assets/svgs/curve.svg" alt="">
-        </div>
+
     </div>
+    <!-- End  slider-style-one Slider -->
 </section>
