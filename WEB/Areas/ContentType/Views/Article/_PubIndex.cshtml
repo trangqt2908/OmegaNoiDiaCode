@@ -1,23 +1,25 @@
 ﻿@model IEnumerable<WebModels.WebContent>
 @{
-        var webmodule = (WebModule)ViewBag.WebModule;
-        var moduletran = webmodule;
-        var background = String.IsNullOrEmpty(webmodule.Image) ? "/content/themes/web/img/bg-title1.png" : webmodule.Image;
-        var codecolor = String.IsNullOrEmpty(webmodule.CodeColor) ? "#b200b2" : webmodule.CodeColor;
-        var urlcat = webmodule.URL;
-        if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
-        {
-            urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
-        }
-        TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
-        TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
-        TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
+    var webmodule = (WebModule)ViewBag.WebModule;
+    var moduletran = webmodule;
+    var background = String.IsNullOrEmpty(webmodule.Image) ? "/content/themes/web/img/bg-title1.png" : webmodule.Image;
+    var codecolor = String.IsNullOrEmpty(webmodule.CodeColor) ? "#b200b2" : webmodule.CodeColor;
+    var urlcat = webmodule.URL;
+    if (string.IsNullOrEmpty(webmodule.URL) || string.IsNullOrWhiteSpace(webmodule.URL))
+    {
+        urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web", area = "" });
+    }
+    TempData["Title"] = Utility.UseStringHasValue(webmodule.SeoTitle, webmodule.Title);
+    TempData["Description"] = Utility.UseStringHasValue(webmodule.MetaDescription, webmodule.Description);
+    TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
 
-        TempData["URL"] = ApplicationService.Domain + urlcat;
-        TempData["Cat"] = webmodule.Title;
+    TempData["URL"] = ApplicationService.Domain + urlcat;
+    TempData["Cat"] = webmodule.Title;
+    var imgBanner = string.IsNullOrEmpty(webmodule.Image) ? "/images/px-1.jpg" : webmodule.Image;
 }
 
-<section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')" data-type="parallax" data-speed="3">
+<!-- Inner Section Start -->
+<section class="inner-area parallax-bg" style="background: url('@imgBanner')">
     <div class="container">
         <div class="section-content">
             <div class="row">
@@ -31,45 +33,45 @@
         </div>
     </div>
 </section>
-<section class="blog-section  pb-20">
+<section class="pb-20">
     <div class="container">
         <div class="row">
             @foreach (var item in Model)
-                        {
-                            var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
-                            var url = Url.Action("Detail", "Home", new
-                            {
-                                metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                                m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
-                                area = ""
-                            });
-            <div class="col-md-6 col-lg-4">
-                <div class="blog-post">
-                    <div class="thumb">
-                        <img alt="" src="@img" alt="@item.Title" title="@item.Title">
-                        <div class="content">
-                            <a href=" @url " title=" @item.Title ">
-                                <h3>
-                                    @Html.RawSubString(item.Title, 50)
-                                </h3>
-                                <div class="meta-box">
-                                    <div class="admin-post">OmegaTourNoiDia</div>
-                                    <div class="inner">
-                                        <div class="date">
-                                            <i class="fa fa-calendar-plus-o"></i> @item.CreatedDate.Value.Day @item.CreatedDate.Value.ToString("MMM")
+            {
+                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                var url = Url.Action("Detail", "Home", new
+                {
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                    m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "web",
+                    area = ""
+                });
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-post">
+                        <div class="thumb">
+                            <img alt="" src="@img" alt="@item.Title" title="@item.Title">
+                            <div class="content">
+                                <a href=" @url " title=" @item.Title ">
+                                    <h3>
+                                        @Html.RawSubString(item.Title, 50)
+                                    </h3>
+                                    <div class="meta-box">
+                                        <div class="admin-post">OmegaTourNoiDia</div>
+                                        <div class="inner">
+                                            <div class="date">
+                                                <i class="fa fa-calendar-plus-o"></i> @item.CreatedDate.Value.Day @item.CreatedDate.Value.ToString("MMM")
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
+                        <a href="@url" class="read-btn">
+                            Continue Reading
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        </a>
                     </div>
-                    <a href="@url" class="read-btn">
-                        Continue Reading
-                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                    </a>
                 </div>
-            </div>
-                        }
+            }
         </div>
         <section class="text-center pt-0 pb-0">
             <div class="container">

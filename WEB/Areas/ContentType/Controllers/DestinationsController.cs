@@ -152,7 +152,7 @@ namespace WEB.Areas.ContentType.Controllers
                         if (image != null)
                         {
                             model.Image = image.ImageNoResizeSave("/uploads/" + (now.Month.ToString("00") + now.Year));
-                          
+
                         }
 
                         var temp = db.ProductInfos.Where(x => x.ID == model.ID);
@@ -371,22 +371,27 @@ namespace WEB.Areas.ContentType.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult _TopDestinations(int webmoduleId, int webContentId)
+        public ActionResult _TopDestinations(int webContentId)
         {
             var webmodule = db.WebModules.Where(x => x.UID.Equals("destinations")
          && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
-
-            var ids = ConfigurationManager.AppSettings.Get("Home_SpecialOffers");
-            var data = ids.Split(',').ToList().ConvertStringToInt().ToList();
             var result = new List<WebContent>();
-            foreach (var item in data)
+
+            var desIds = db.ProductInfos.Where(x => x.ID == webContentId).FirstOrDefault();
+            if (desIds != null)
             {
-                var obj = db.WebContents.Where(x => x.ID == item && x.WebModule.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
-                if (obj != null)
+                var data = desIds.Destination.Split(',').ToList().ConvertStringToInt().ToList();
+
+                foreach (var item in data)
                 {
-                    result.Add(obj);
+                    var obj = db.WebContents.Where(x => x.ID == item && x.WebModule.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        result.Add(obj);
+                    }
                 }
             }
+
 
             return PartialView(result);
         }
