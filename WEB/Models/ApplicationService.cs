@@ -975,7 +975,7 @@ namespace WEB.Models
                 body += "      <div class='gform_body' style='font-size:14px; line-height:18px;'>";
                 body += "<table>";
                 body += " <tr>";
-                body += "  <td style='width: 190px;font-weight: bold;'> Full Name: </td>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Họ và tên: </td>";
                 body += "  <td style='width: 350px;'> " + model.FullName + " </td>";
                 body += "  </tr>";
                 body += " <tr>";
@@ -983,12 +983,109 @@ namespace WEB.Models
                 body += "  <td style='width: 350px;'> " + model.Email + " </td>";
                 body += "  </tr>";
                 body += " <tr>";
-                body += "  <td style='width: 190px;font-weight: bold;'> Mobile: </td>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Số điện thoại: </td>";
                 body += "  <td style='width: 350px;'> " + model.Mobile + " </td>";
                 body += "  </tr>";
                 body += " <tr>";
-                body += "  <td style='width: 190px;font-weight: bold;'> Address: </td>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Địa chỉ: </td>";
                 body += "  <td style='width: 350px;'> " + model.Address + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Created Date: </td>";
+                body += "  <td style='width: 350px;'> " + String.Format("{0:M/d/yyyy}", model.CreatedDate) + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Nội dung: </td>";
+                body += "  <td style='width: 350px;'> " + model.Body + " </td>";
+                body += "  </tr>";
+                body += "</table> ";
+                body += "      </div>                                                                                                                                                              ";
+                body += "  </fieldset> ";
+
+                bool valuSsl = true;
+
+                var host = WEB.Controllers.HomeController.getconfig("SmtpEmail");
+                var port = WEB.Controllers.HomeController.getconfig("PortEmail"); ;
+                var sendfrom = WEB.Controllers.HomeController.getconfig("EmailSend"); ;
+                var emailpass = WEB.Controllers.HomeController.getconfig("PasswordEmailSend");
+                var ssl = WEB.Controllers.HomeController.getconfig("Email-SSL");
+                var emailTo = WEB.Controllers.HomeController.getconfig("EmailReceived");
+
+                if (ssl == "0")
+                {
+                    valuSsl = false;
+                }
+
+                var client = new SmtpClient(host, int.Parse(port));
+                client.EnableSsl = valuSsl;
+                client.Credentials = new System.Net.NetworkCredential(sendfrom, emailpass);
+                var message = new MailMessage();
+                message.From = new MailAddress(sendfrom, sendfrom);
+                message.Subject = title;
+                message.To.Add(new MailAddress(emailTo));
+                message.Body = body;
+                message.IsBodyHtml = true;
+                message.BodyEncoding = Encoding.UTF8;
+
+
+                var mailThread = new Thread(new ThreadStart(() =>
+                {
+                    client.SendMailAsync(message);
+                }));
+                mailThread.Start();
+
+                _return = true;
+            }
+            catch (Exception ex)
+            {
+                _return = false;
+            }
+
+
+            return _return;
+        }
+        public static bool SendMailTour(WebContact model, string title)
+        {
+            // 1 contact
+            // 2 contact booking
+            bool _return = false;
+            try
+            {
+                var body = "";
+
+                body += "<fieldset  style='border: 1px solid #ccc; border-radius: 5px; padding: 15px; font-size: 22px; width: 635px;'> ";
+                body += "      <legend class='black'> " + title + "</legend>";
+                body += "      <div class='gform_heading'>";
+                body += "      </div>";
+                body += "      <div class='gform_body' style='font-size:14px; line-height:18px;'>";
+                body += "<table>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Tên Tour: </td>";
+                body += "  <td style='width: 350px;'> " + model.NameTour + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Họ và tên: </td>";
+                body += "  <td style='width: 350px;'> " + model.FullName + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Số điện thoại: </td>";
+                body += "  <td style='width: 350px;'> " + model.Mobile + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Ngày khởi hành: </td>";
+                body += "  <td style='width: 350px;'> " + model.DayStart + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Số người lớn: </td>";
+                body += "  <td style='width: 350px;'> " + model.Parent + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Số trẻ em(3-9 tuổi): </td>";
+                body += "  <td style='width: 350px;'> " + model.Child + " </td>";
+                body += "  </tr>";
+                body += " <tr>";
+                body += "  <td style='width: 190px;font-weight: bold;'> Số trẻ enhỏ(0-2 tuổi): </td>";
+                body += "  <td style='width: 350px;'> " + model.Children + " </td>";
                 body += "  </tr>";
                 body += " <tr>";
                 body += "  <td style='width: 190px;font-weight: bold;'> Created Date: </td>";

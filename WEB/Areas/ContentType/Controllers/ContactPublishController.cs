@@ -55,9 +55,15 @@ namespace WEB.Areas.ContentType.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult _PubContact(int id)
+        public ActionResult _PubContact(int? id)
         {
-            ViewBag.ContentID = id;
+            var content = db.Set<WebContent>().Where(x => x.ID == id).FirstOrDefault(); 
+            if(content!= null)
+            {
+                ViewBag.ContentID = id;
+                ViewBag.ContentName = content.Title;
+            }
+            
             return PartialView();
         }
 
@@ -69,12 +75,12 @@ namespace WEB.Areas.ContentType.Controllers
         {
             if (ModelState.IsValid)
             {
-                var module = db.WebModules.Where(x => x.UID.Equals("contact")).FirstOrDefault();
-                model.WebModuleID = module.ID;               
+               /* var module = db.WebModules.Where(x => x.UID.Equals("contact")).FirstOrDefault();
+                model.WebModuleID = module.ID;      */         
                 model.CreatedDate = DateTime.Now;
-                ApplicationService.SendMail(model, "Liên hệ booking từ www.omegatous.com");
-                db.Set<WebContact>().Add(model);
-                db.SaveChanges();
+                ApplicationService.SendMailTour(model, "Liên hệ booking từ www.omegatous.com");
+                /*db.Set<WebContact>().Add(model);
+                db.SaveChanges();*/
 
                 return Json(new { Success = true });
             }
