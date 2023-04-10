@@ -5486,7 +5486,7 @@ Footer Css Style
 .footer-item h6 {
     color: #fff;
     letter-spacing: 2px;
-    margin-bottom: 18px;
+    margin-bottom: 0px;
     text-transform: uppercase;
 }
 
