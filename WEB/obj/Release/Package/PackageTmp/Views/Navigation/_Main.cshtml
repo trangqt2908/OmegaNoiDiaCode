@@ -1,0 +1,174 @@
+﻿@model IEnumerable<WebModule>
+@{
+    var listIDModuleActive = (List<int>)ViewBag.ListModuleActive;
+
+}
+
+<!-- Header Section Start -->
+<header class="header header-style-2 clearfix">
+
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="contact-info">
+                        <ul>
+                            <li>
+                                <i class="flaticon-phone-call"></i>
+                                @Html.Action("_Description", "WebSimpleContent", new { key = "hotline", area = "" })
+                            </li>
+                            <li>
+                                <i class="flaticon-new-email-outline"></i>
+                                @Html.Action("_Description", "WebSimpleContent", new { key = "email", area = "" })
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="social-icons">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-style bg-transparent menu-hover-2  clearfix">
+        <!-- main-navigation start -->
+        <div class="main-navigation main-mega-menu animated">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- header dropdown buttons end-->
+                    <a class="navbar-brand" href="/">
+                        <img id="logo_img" src="~/Images/logo-omegatours.png" alt="">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+
+                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+
+                        <!-- main-menu -->
+                        <ul class="navbar-nav ml-xl-auto">
+                            @{
+                                var root = from x in Model where x.ParentID == null select x;
+                            }
+                            @foreach (var node in root)
+                            {
+                                var activeClass = listIDModuleActive.Contains(node.ID) ? "active" : "";
+                                var url = node.URL;
+                                if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+                                {
+                                    url = Url.Action("Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web" });
+                                }
+                                <li class="nav-item dropdown  @activeClass">
+                                    @{
+                                        var sub = from x in Model where x.ParentID == node.ID select x;
+                                    }
+                                    @if (sub.Any())
+                                    {
+                                        var idDrop = "navbarDropdown" + @node.ID;
+                                        <a href="#" class="nav-link dropdown-toggle"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @node.Title
+                                        </a>
+                                        @CreateMenu(sub)
+                                    }
+                                    else
+                                    {
+                                        <a class="nav-link" href="@url">
+                                            @node.Title
+                                        </a>
+
+                                    }
+                                </li>
+                            }
+                        </ul>
+
+                        <!-- header dropdown buttons -->
+                        <div class="dropdown-buttons">
+                            <div class="btn-group menu-search-box">
+                                <button type="button" class="btn dropdown-toggle" id="header-drop-3"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right dropdown-animation"
+                                    aria-labelledby="header-drop-3">
+                                    <li>
+                                        <form role="search" class="search-box">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Search">
+                                                <i class="fa fa-search form-control-feedback"></i>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- main-menu end -->
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- main-navigation end -->
+    </div>
+
+</header>
+<!-- Header Section End -->
+
+
+@helper CreateMenu(IEnumerable<WebModels.WebModule> nodes)
+{
+    <div class="dropdown-menu left-1">
+        <div class="dropdown">
+            @foreach (var node in nodes)
+            {
+                var sub = from x in Model where x.ParentID == node.ID select x;
+                var url = node.URL;
+                if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+                {
+                    url = Url.Action("Index", "Home", new { metatitle = node.MetaTitle != null ? node.MetaTitle : "web" });
+                }
+
+                if (sub.Any())
+                {
+                    <div class="dropdown">
+                        <a class="dropdown-toggle dropdown-item" data-toggle="dropdown"
+                           href="#"> @node.Title</a>
+                        @CreateMenu2(sub)
+                    </div>
+                }
+                else
+                {
+                    <a class="dropdown-item" href="@url">@node.Title</a>
+                }
+            }
+        </div>
+    </div>
+}
+
+@helper CreateMenu2(IEnumerable<WebModels.WebModule> nodes)
+{
+    <div class="dropdown-menu">
+        @foreach (var item in nodes)
+        {
+            var url = item.URL;
+            if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+            {
+                url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web" });
+            }
+
+            <a class="dropdown-item" href="@url">@item.Title</a>
+        }
+    </div>
+}

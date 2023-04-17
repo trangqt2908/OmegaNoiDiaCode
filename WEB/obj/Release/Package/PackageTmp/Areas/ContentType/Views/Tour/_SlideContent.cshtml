@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebModels.ContentImage>
+@{
+
+}
+
+<div class="inner-title">
+    <h2>Hình ảnh </h2>
+    <div class="sec-line mb-20"></div>
+</div>
+<div class="testimonials-post testimonials_slide_col_two owl-carousel owl-theme owl-navst st-three">
+    @foreach (var item in Model)
+    {
+        var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+        <div class="thumb">
+            <img src="@img" alt="@item.Title">
+        </div>
+    }
+</div>

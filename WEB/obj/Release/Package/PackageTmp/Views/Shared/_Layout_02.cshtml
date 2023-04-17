@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>
+        @TempData["Title"]
+    </title>
+    <meta name="description" content="@TempData["Description"]" />
+    <meta name="keywords" content="@TempData["Keywords"]" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap and Jquery scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/themes/web/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/themes/web/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/Content/themes/web/css/menu.css">
+    <link rel="stylesheet" href="~/Content/themes/web/css/custom-animation.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/Content/themes/web/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/themes/web/css/responsive.css">
+
+    <link href="~/Content/paging.css" rel="stylesheet" />
+    @RenderSection("scripts", required: false)
+
+
+</head>
+<body class="home home2">
+    <!-- navbar -->
+
+
+
+    @*@Html.Action("_Menu_Footer", "Navigation", new { area = "", key = "footer" })*@
+
+
+    <div class="preloader"></div>
+
+    <!-- Start Page Wrapper  -->
+    <div class="page-wrapper">
+        @Html.Action("_Main", "Navigation", new { key = "main",moduleID = Model.ID, area = "" })
+
+
+
+        @RenderBody()
+        <!-- Footer Style Seven Start -->
+        @Html.Action("_Menu_Footer", "Navigation", new { area = "", key = "footer" })
+
+        <!-- Footer Style Seven End -->
+
+    </div>
+    <!-- End Page Wrapper  -->
+
+    <a href="#" class="scrollup"><i class="flaticon-long-arrow-pointing-up" aria-hidden="true"></i></a>
+
+
+    <!------------------------------------------
+    Main JavaScript
+    <------------------------------------------>
+    <script src="~/Content/themes/web/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/themes/web/js/popper.min.js"></script>
+    <script src="~/Content/themes/web/js/bootstrap.min.js"></script>
+
+
+    <!-- Optional JavaScript -->
+    <script src="~/Content/themes/web/js/bootstrap-dropdownhover.min.js"></script>
+    <script src="~/Content/themes/web/js/bootstrap-slider.js"></script>
+    <script src="~/Content/themes/web/js/jquery.flexslider-min.js"></script>
+    <script src="~/Content/themes/web/js/slick.min.js"></script>
+    <script src="~/Content/themes/web/js/owl.carousel.min.js"></script>
+    <script src="~/Content/themes/web/js/css3-animate-it.js"></script>
+    <script src="~/Content/themes/web/js/magnific-popup.min.js"></script>
+    <script src="~/Content/themes/web/js/jquery.fancybox.js"></script>
+    <script src="~/Content/themes/web/js/player-min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="~/Content/themes/web/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model Stack<WebModule>
+
+<p>
+    Trang chủ
+    @if (Model != null && Model.Count > 0)
+    {
+
+        do
+        {
+            WebModule module = Model.Pop();
+
+            
+            if (string.IsNullOrEmpty(module.URL) || string.IsNullOrWhiteSpace(module.URL))
+            {
+                @Html.ActionLink(@module.Title, "Index", "Home", new { metatitle = module.MetaTitle != null ? module.MetaTitle : "omegatours" }, new { title = module.Title, area = "" })
+            }
+            else
+            {
+                <a href="@module.URL target=" @module.Target>@module.Title </a>
+            }
+
+            module = module.Parent;
+        }
+        while (Model.Count != 0);
+    }
+
+</p>
+

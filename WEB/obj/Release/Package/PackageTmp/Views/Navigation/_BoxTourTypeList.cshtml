@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebModels.WebModule>
+@{
+
+}
+
+
+
+<div class="sidebar-item sidebar-widget">
+    <h3>@Resources.Common.TypeOfTour</h3>
+    <ul class="archive-list">
+        @foreach (var item in Model)
+        {
+            var url = item.URL;
+            if (string.IsNullOrEmpty(item.URL) || string.IsNullOrWhiteSpace(item.URL))
+            {
+                url = Url.Action("Index", "Home", new { metatitle = item.MetaTitle != null ? item.MetaTitle : "web" });
+            }
+            <li>
+                <a href="@url" title="@item.Title"> @item.Title </a>
+            </li>
+        }
+    </ul>
+</div>
+

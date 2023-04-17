@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Advertisement>
+
+    @foreach (var item in Model)
+    {
+        <a href="@item.Link">
+            <img src="@item.Media" alt="@item.Title" class="" title="@item.Title" />
+        </a>
+    }
+
+
+

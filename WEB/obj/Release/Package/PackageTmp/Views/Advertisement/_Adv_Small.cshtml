@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Advertisement>
+
+
+
+<h3>Top video xem nhiều nhất</h3>
+<div class="textwidget">
+    <div class="sidebar-sponsors">
+
+        @for (var i = 0; i < Model.ToList().Count(); i += 2)
+        {
+            if (!String.IsNullOrEmpty(Model.ToList()[i].Media))
+            {
+                var _class = "" + (i % 2 == 0 ? "row" : "");
+
+                <div class="@_class">
+                    <div class="col-xs-6">
+                        <a href="@Model.ToList()[i].Link" target="_blank"><img src="@Model.ToList()[i].Media" alt="@Model.ToList()[i].Title" width="150" height="83"></a>
+                    </div>
+                    @if (i + 1 < Model.ToList().Count() - 1)
+                    {
+                        <div class="col-xs-6">
+                            <a href="@Model.ToList()[i+1].Link" target="_blank"><img src="@Model.ToList()[i + 1].Media" alt="@Model.ToList()[i + 1].Title" width="150" height="83"></a>
+                        </div>
+                    }
+                </div>
+            }
+        }
+
+    </div>
+</div>

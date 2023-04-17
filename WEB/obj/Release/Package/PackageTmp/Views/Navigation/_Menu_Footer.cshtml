@@ -1,0 +1,109 @@
+﻿@model IEnumerable<WebModels.WebModule>
+<footer class="bg-faded pt-50 bg-theme-color-2">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="footer-item footer-widget-one">
+                        @Html.Action("_Body", "WebSimpleContent", new { key = "desc-footer", area = "" })
+                        <hr>
+                        <h6>Follow<span> Us</span></h6>
+                        <ul class="social-icon bg-transparent bordered-theme">
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                @foreach (var node in Model)
+                {
+                    var url = node.URL;
+                    if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+                    {
+                        url = node.MetaTitle != null ? node.MetaTitle : "web";
+                    }
+                    <div class="col-md-3">
+                        <div class="footer-item">
+                            <div class="footer-title">
+                                <h4>@node.Title</h4>
+                                <div class="border-style-3"></div>
+                            </div>
+                            <ul class="footer-list">
+                                <li>
+                                    @{
+                                        var sub = WEB.Controllers.NavigationController.GetAllModule(node.ID);
+                                    }
+
+                                    @if (sub.Any())
+                                    {
+                                        @CreateMenu(sub)
+                                    }
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                }
+                <div class="col-md-3">
+                    <div class="footer-item">
+                        <div class="footer-title">
+                            <h4>Thông Tin <span>Liên HỆ</span></h4>
+                            <div class="border-style-3"></div>
+                        </div>
+                        <ul class="footer-list footer-contact mb-10">
+                            <li><i class="fa fa-building-o"></i> Trụ sở chính: @Html.Action("_Description", "WebSimpleContent", new { key = "address-one", area = "" })</li>
+                            <li><i class="fa fa-location-arrow"></i> Chi nhánh hà nội: @Html.Action("_Description", "WebSimpleContent", new { key = "address-one", area = "" })</li>
+                            <li><i class="fa fa-phone"></i> @Html.Action("_Description", "WebSimpleContent", new { key = "hotline", area = "" }) </li>
+                            <li><i class="fa fa-envelope-o"></i> <a href="mailto:">  @Html.Action("_Description", "WebSimpleContent", new { key = "email", area = "" }) </a></li>
+                        </ul>
+                        @*@Html.Action("_GetLetter", "Home", new { area = "ContentType" })*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<section class="footer-copy-right bg-theme-color-2 text-white p-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>© 2023, All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@helper CreateMenu(IEnumerable<WebModels.WebModule> nodes)
+{
+    <ul class="list-unstyled quick-links">
+        @foreach (var node in nodes)
+        {
+            <li>
+                @if (string.IsNullOrEmpty(node.URL) || string.IsNullOrWhiteSpace(node.URL))
+                {
+                    var url = Url.Action("Index", "Home", new
+                    {
+                        metatitle = node.MetaTitle != null ? node.MetaTitle : "web",
+                        area = ""
+                    });
+                    <a href="@url" target="@node.Target">
+                        <i class="fa fa-angle-double-right"></i> @node.Title
+                    </a>
+                }
+                else
+                {
+                    <a href="@node.URL" target="@node.Target">
+                        <i class="fa fa-angle-double-right"></i> @node.Title
+                    </a>
+                }
+            </li>
+        }
+    </ul>
+}

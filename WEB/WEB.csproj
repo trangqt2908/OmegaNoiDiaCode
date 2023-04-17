@@ -2914,7 +2914,6 @@
     <Content Include="Content\themes\web\fonts\Stroke-Gap-Icons.ttf" />
     <Content Include="Content\themes\web\fonts\Stroke-Gap-Icons.woff" />
     <Content Include="Areas\ContentType\Views\OnePage\_TourService.cshtml" />
-    <Content Include="Areas\ContentType\Views\Article\_BlogView.cshtml" />
     <Content Include="Areas\ContentType\Views\Tour\_SlideContent.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_TopCamLangDuLich.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\EditModuleHome.cshtml" />

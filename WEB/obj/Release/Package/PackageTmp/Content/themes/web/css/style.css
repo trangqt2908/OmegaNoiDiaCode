@@ -3522,7 +3522,7 @@ Blog Css Style
     }
 
         .blog-post .thumb img {
-            aspect-ratio: 350/445;
+            aspect-ratio: 300/345;
             object-fit: cover;
         }
 
@@ -3554,7 +3554,7 @@ Blog Css Style
         border-top: 3px solid rgba(255, 102, 0, 0.28);
         bottom: 0;
         left: 0;
-        padding: 12px 15px;
+        padding: 8px 10px;
         position: absolute;
         right: 0;
         -webkit-transition: all 0.2s ease-in-out;
@@ -3574,8 +3574,8 @@ Blog Css Style
         font-size: 18px;
         font-weight: 600;
         letter-spacing: 0.4px;
-        line-height: 32px;
-        margin-bottom: 18px;
+        line-height: 27px;
+        margin-bottom: 10px;
         padding-top: 0;
         text-transform: uppercase;
     }
@@ -5486,7 +5486,7 @@ Footer Css Style
 .footer-item h6 {
     color: #fff;
     letter-spacing: 2px;
-    margin-bottom: 18px;
+    margin-bottom: 0px;
     text-transform: uppercase;
 }
 
