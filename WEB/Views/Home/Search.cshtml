@@ -1,103 +1,299 @@
-﻿@model IEnumerable<WebModels.WebContent>
+﻿@model List<WebModels.WebContent>
 @{
     TempData["Title"] = @Resources.Common.SearchResults;
-    Layout = "~/Views/Shared/_Layout_02.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#country").val(@ViewBag.des);
-        $("#type").val(@ViewBag.type1);
-        $("#leng").val(@ViewBag.leng);
-    });
 
-</script>
-
-
-<div class="tour-title not-fixed center-image">
-    <img class="w-100 h-100" src="@Html.Action("_LinkImg", "WebSimpleContent", new { area = "", key = "bg_Search" })" alt="">
-    <h1 class="white text-center front shadow-text center-text">@Resources.Common.Search</h1>
-    @*<img class="curve2 front" src="~/Content/themes/web/assets/svgs/curve.svg" alt="">*@
-</div>
-@Html.Action("_FrmSearch", "Home", new { area = "ContentType" })
-
-<section id="section3" class="tour-list-sidebar tour-search-3-cols-card padding-top-0">
-    <div class="container">
-        <div class="row">
-
-            @foreach (var item in Model)
-            {
-                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
-                var urlContent = Url.Action("Detail", "Home", new
-                {
-                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
-                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                    area = ""
-                });
-
-                var urlModule = Url.Action("Index", "Home", new
-                {
-                    metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
-                    area = ""
-                });
-
-
-                <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
-                    <div class="card ">
-                        <small class="white front"><span class="fa fa-clock mr-2 white"></span>&nbsp;<strong>@item.ProductInfo.Duration</strong><br>@Resources.Common.Days</small>
-                        <a class="img-card" href="@urlContent" title="@item.Title">
-                            <img src="@img" alt="@item.Title" title="@item.Title" />
-                        </a>
-                        <div class="card-content">
-                            <div>
-                                <a class="btn btn-primary px-3 btn-sm float-left" href="@urlModule" role="button">@item.WebModule.Title</a>
-                            </div>
-                            <h6 class="primary-color text-right"> &nbsp; </h6>
-                            <h2 class="black">
-                                <a href="@urlContent" title="@item.Title">
-                                    @if (!string.IsNullOrWhiteSpace(item.Description))
-                                    {
-                                        @Html.RawSubString(item.Title, 50)
-                                    }
-                                </a>
-                            </h2>
-                            <p class="">
-                                @if (!string.IsNullOrWhiteSpace(item.Description))
-                                {
-                                    @Html.RawSubString(item.Description, 80)
-                                }
-                                <a href="@urlContent" title="@item.Title"><span>@Resources.Common.SeeMore</span></a>
+        <!-- Inner Section Start -->
+        <section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')">
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4> Kết quả tìm kiếm </h4>
+                            <p>
+                                Trang chủ
+                                <a area="" href="/tim-kiem" title="Tìm kiếm"> Tìm kiếm </a>
                             </p>
                         </div>
                     </div>
                 </div>
-            }
-        </div>
-        <div id="control-bot" class="control control-bot control-classer">
-            @if (ViewBag.TotalItemCount > 12)
+            </div>
+        </section>
+        <!-- Inner Section End -->
+
+        @Html.Action("_FrmSearch", "Home", new { area = "ContentType" })
+
+
+        <!-- Special Packages Section Start -->
+        <section class="pt-50 pb-40">
+            @if (ViewBag.isViewTourTrongNuoc)
             {
-                <div class="pager">
-                    @Html.Raw(Html.Pager(
-                            new Options
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="inner-title">
+                                <h2>Tour <span>Trong Nước</span></h2>
+                            </div>
+                            <div class="sec-line mb-20"></div>
+                        </div>                      
+                    </div>
+                    <div class="row grid-mb">
+                        @foreach (var ids in ViewBag.lstTourTrongNuocsIds)
+                        {
+                            var lstTour = Model.Where(x => x.WebModuleID == ids);
+
+                            foreach (var item in lstTour)
                             {
-                                PageSize = 12,
-                                TotalItemCount = ViewBag.TotalItemCount,
-                                CurrentPage = ViewBag.CurrentPage,
-                                ItemTexts = new ItemTexts() { Next = "", Previous = "" },
-                                ItemIcon = new ItemIcon() { First = "fa fa-angle-double-left", Previous = "fa fa-angle-left", Next = "fa fa-angle-right", Last = "fa fa-angle-double-right" },
-                                TooltipTitles = new TooltipTitles() { Next = Resources.Common.NextPage, Previous = Resources.Common.PreviousPage },
-                                Size = Size.normal,
-                                IsShowControls = true,
-                                Alignment = Alignment.centered,
-                                IsShowFirstLast = false,
-                                IsShowPages = true
-                            }, new RouteValueDictionary(ViewBag.RouteValues)))
+                                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                                var urlContent = Url.Action("Detail", "Home", new
+                                {
+                                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                                    area = ""
+                                });
+
+                                <div class="col-md-4">
+                                    <div class="special-packages">
+                                        <div class="thumb">
+                                            <a href="@urlContent" alt="@item.Title"> </a>
+                                            <img src="@img" alt="@item.Title">
+                                            @if (item.ProductInfo.Discount > 0)
+                                            {
+                                                <div class="offer-price"> Off @item.ProductInfo.Discount%</div>
+                                            }
+                                            <div class="post-title-box">
+
+                                                <div class="title">
+                                                    <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
+                                                </div>
+
+                                                <div class="title-box">
+                                                    @if (item.ProductInfo.Discount > 0)
+                                                    {
+                                                        <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
+                                                    }
+                                                </div>
+                                                <div class="price-box">
+                                                    <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <div class="infor">
+                                                <div class="pull-left" style="width: 50%;">
+                                                    <ul class="info">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-calendar"></i> @item.ProductInfo.DepartureTime </a>
+                                                            <br />
+                                                            <a href="#"><i class="fa fa-calendar-check-o"></i>@item.ProductInfo.TourTime</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="pull-left" style="width: 50%; text-align: right; margin-top: 8px;">
+                                                    @{
+                                                        var lstTrans = string.IsNullOrEmpty(item.ProductInfo.Transportation) ? new List<string>() : item.ProductInfo.Transportation.Split(',').ToList();
+
+                                                        foreach (var trans in lstTrans)
+                                                        {
+
+                                                            if (!string.IsNullOrWhiteSpace(trans))
+                                                            {
+                                                                <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             }
-        </div>
+            @if (ViewBag.isViewTourNuocNgoai)
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="inner-title">
+                                <h2>Tour <span> Nước Ngoài</span></h2>
+                            </div>
+                            <div class="sec-line mb-20"></div>
+                        </div>
 
-    </div>
-</section>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="row grid-mb">
+                        @foreach (var ids in ViewBag.lstTourNuocNgoaiIds)
+                        {
+                            var lstTour = Model.Where(x => x.WebModuleID == ids);
 
+                            foreach (var item in lstTour)
+                            {
+                                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                                var urlContent = Url.Action("Detail", "Home", new
+                                {
+                                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                                    area = ""
+                                });
 
+                                <div class="col-md-4">
+                                    <div class="special-packages">
+                                        <div class="thumb">
+                                            <a href="@urlContent" alt="@item.Title"> </a>
+                                            <img src="@img" alt="@item.Title">
+                                            @if (item.ProductInfo.Discount > 0)
+                                            {
+                                                <div class="offer-price"> Off @item.ProductInfo.Discount%</div>
+                                            }
+                                            <div class="post-title-box">
+
+                                                <div class="title">
+                                                    <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
+                                                </div>
+
+                                                <div class="title-box">
+                                                    @if (item.ProductInfo.Discount > 0)
+                                                    {
+                                                        <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
+                                                    }
+                                                </div>
+                                                <div class="price-box">
+                                                    <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <div class="infor">
+                                                <div class="pull-left" style="width: 50%;">
+                                                    <ul class="info">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-calendar"></i> @item.ProductInfo.DepartureTime </a>
+                                                            <br />
+                                                            <a href="#"><i class="fa fa-calendar-check-o"></i>@item.ProductInfo.TourTime</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="pull-left" style="width: 50%; text-align: right; margin-top: 8px;">
+                                                    @{
+                                                        var lstTrans = string.IsNullOrEmpty(item.ProductInfo.Transportation) ? new List<string>() : item.ProductInfo.Transportation.Split(',').ToList();
+
+                                                        foreach (var trans in lstTrans)
+                                                        {
+
+                                                            if (!string.IsNullOrWhiteSpace(trans))
+                                                            {
+                                                                <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            }
+
+            @if (ViewBag.isViewComboTour)
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="inner-title">
+                                <h2>Combo <span>Tour</span></h2>
+                            </div>
+                            <div class="sec-line mb-20"></div>
+                        </div>
+                    </div>
+                    <div class="row grid-mb">
+                        @foreach (var ids in ViewBag.lstComboTourIds)
+                        {
+                            var lstTour = Model.Where(x => x.WebModuleID == ids);
+
+                            foreach (var item in lstTour)
+                            {
+                                var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
+                                var urlContent = Url.Action("Detail", "Home", new
+                                {
+                                    metatitle = item.MetaTitle != null ? item.MetaTitle : "web",
+                                    m_metatitle = item.WebModule.MetaTitle != null ? item.WebModule.MetaTitle : "web",
+                                    area = ""
+                                });
+
+                                <div class="col-md-4">
+                                    <div class="special-packages">
+                                        <div class="thumb">
+                                            <a href="@urlContent" alt="@item.Title"> </a>
+                                            <img src="@img" alt="@item.Title">
+                                            @if (item.ProductInfo.Discount > 0)
+                                            {
+                                                <div class="offer-price"> Off @item.ProductInfo.Discount%</div>
+                                            }
+                                            <div class="post-title-box">
+
+                                                <div class="title">
+                                                    <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
+                                                </div>
+
+                                                <div class="title-box">
+                                                    @if (item.ProductInfo.Discount > 0)
+                                                    {
+                                                        <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
+                                                    }
+                                                </div>
+                                                <div class="price-box">
+                                                    <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <div class="infor">
+                                                <div class="pull-left" style="width: 50%;">
+                                                    <ul class="info">
+                                                        <li>
+                                                            <a href="#"><i class="fa fa-calendar"></i> @item.ProductInfo.DepartureTime </a>
+                                                            <br />
+                                                            <a href="#"><i class="fa fa-calendar-check-o"></i>@item.ProductInfo.TourTime</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="pull-left" style="width: 50%; text-align: right; margin-top: 8px;">
+                                                    @{
+                                                        var lstTrans = string.IsNullOrEmpty(item.ProductInfo.Transportation) ? new List<string>() : item.ProductInfo.Transportation.Split(',').ToList();
+
+                                                        foreach (var trans in lstTrans)
+                                                        {
+
+                                                            if (!string.IsNullOrWhiteSpace(trans))
+                                                            {
+                                                                <div class="btn"> <i class="fa fa-@trans"></i> </div>
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            }
+        </section>
+        <!-- Special Packages Section End -->

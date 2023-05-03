@@ -1,32 +1,57 @@
-﻿@{
+﻿@model IEnumerable<WebModule>
+@{
     Layout = "";
+    var root = Model.Where(x => x.ParentID == null);
 }
-
-<section id="section3">
-    <div class="container formhome2 text-center justify-content-center align-items-center pb-4">
-        <h4 class="black mx-2 mb-3 mt-0 pt-4 text-center bold  d-block">Find the place it suits you best</h4>
+<script type="text/javascript">
+    $(window).load(function () {
+            $("#type").val(@ViewBag.type);
+            $("#leng").val(@ViewBag.leng);
+        });
+</script>
+<section class="pt-30 pb-0">
+    <div class="container formhome2 text-center justify-content-center align-items-center">
+        <h4 class="black mx-2 mb-3 mt-0 pt-4 text-center bold  d-block">Thông tin tìm kiếm</h4>
         <form class="form-inline text-center justify-content-center align-items-center pb-0" action="@Url.Action("Search", "Home", new { area = "" })">
-            @*<input type="text" class="form-control-inline2 form-control mb-2 mr-lg-2 mx-md-0 mx-4 py-2" id="inlineFormInputName1" placeholder="Search Tours">
-            <span class="fas fa-search iconform"></span>*@
-
-            <select class=" mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" id="leng" name="leng" value="@ViewBag.Type">
-                <option value="0">  --  @Resources.Common.HowManyDays --</option>
-                <option value="1"> @Resources.Common.From01Day </option>
-                <option value="5"> @Resources.Common.From02To05Day</option>
-                <option value="10"> @Resources.Common.From06To10Day</option>
-                <option value="11"> @Resources.Common.Over11Day </option>
+            <input type="text" class="form-control-inline2 form-control mb-2 mr-lg-3 mx-md-0 mx-4 py-2"
+                   placeholder="Tên tour" name="keyword" id="keyword" value="@ViewBag.keyword">
+            <select class=" mb-2 mr-lg-3 mx-4 mx-md-0 form-control form-control-inline2" id="leng" name="leng">
+                <option value="0">  --  Ngày tour --</option>
+                <option value="1"> 1 ngày </option>
+                <option value="5"> Từ 2 đến 5 ngày </option>
+                <option value="10"> Từ 6 đến 10 ngày </option>
+                <option value="11"> Từ 11+ ngày </option>
             </select>
-            <span class="fa fa-chevron-down iconform"></span>
 
-            @Html.DropDownList("country", new SelectList(ViewBag.CountryList, "ID", "Title"), "-- " + Resources.Common.WhereToGo + " --", new { @class = "mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" })
-            <select id="ddlCity" name="city" style="display:none;"></select>
-            <span class="fa fa-chevron-down iconform"></span>
+            <select class=" mb-2 mr-lg-3 mx-4 mx-md-0 form-control form-control-inline2" id="type" name="type">
+                <option value="0">  Chọn khu vực </option>
+                @foreach (var item in root)
+                {
+                    <option value="@item.ID" class="font-weight-bold"> &#9830; @item.Title </option>
+                    var note1 = Model.Where(x => x.ParentID == item.ID).ToList();
+                    foreach (var sub1 in note1)
+                    {
+                        <option value="@sub1.ID" class="font-weight-bold">  &nbsp; &#8226; @sub1.Title </option>
+                        var note2 = Model.Where(x => x.ParentID == sub1.ID).ToList();
+                        foreach (var sub2 in note2)
+                        {
+                            <option value="@sub2.ID"> &nbsp;&nbsp; &#8594; @sub2.Title </option>
+                        }
+                    }
+                }
+            </select>
+
+            @*<select class=" mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" id="TypeOfTour" name="leng">
+            <option value="0">  --  Ngày tour --</option>
+            <option value="1"> 1 ngày </option>
+            <option value="5"> Từ 2 đến 5 ngày </option>
+            <option value="10"> Từ 6 đến 10 ngày </option>
+            <option value="11"> Từ 11+ ngày </option>
+        </select>*@
+            @*@Html.DropDownList("type", new SelectList(ViewBag.TypeOfTour, "ID", "Title"), "-- " + Resources.Common.TravelStyle + " --", new { @class = "mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" })*@
 
 
-            @Html.DropDownList("type", new SelectList(ViewBag.TypeOfTour, "ID", "Title"), "-- " + Resources.Common.TravelStyle + " --", new { @class = "mb-2 mr-lg-2 mx-4 mx-md-0 form-control form-control-inline2" })
-            <span class="fa fa-chevron-down iconform"></span>
-
-            <button type="submit" class="btn btn-primary mb-2 mx-4 mx-md-0 mr-lg-2 py-2 form-control-inline3">@Resources.Common.Search</button>
+            <button type="submit" class="btn btn-primary mb-2 mx-4 mx-md-0 mr-lg-2 py-2 form-control-inline3">Tìm kiếm</button>
 
         </form>
     </div>

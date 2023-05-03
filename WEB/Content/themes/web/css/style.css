@@ -223,7 +223,7 @@ input {
 }
 
     .form-control:focus {
-        border-color: #333;
+        border-color: #978e8e;
         box-shadow: none;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
@@ -1088,7 +1088,6 @@ a.dropdown-item.active {
 
 .form-control:focus {
     outline: none;
-    border: none;
     text-decoration: none;
 }
 
@@ -7758,4 +7757,10 @@ M > P Css Style
 
 .content p{
     font-size: 16px;
+}
+
+
+.btn-primary {
+    background-color: #262967;
+    border-color: #262967;
 }

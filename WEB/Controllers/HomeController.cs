@@ -43,7 +43,7 @@ namespace WEB.Controllers
                 return View(module);
 
             }
-            else if(!string.IsNullOrWhiteSpace(metatitle))
+            else if (!string.IsNullOrWhiteSpace(metatitle))
             {
                 var module = db.Set<WebModule>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault();
                 TempData["WebModule"] = module;
@@ -100,20 +100,13 @@ namespace WEB.Controllers
         {
             WebContext db = new WebContext();
 
-            var des = Request.QueryString["country"];
+            //var des = Request.QueryString["country"];
             var leng = Request.QueryString["leng"];
             var type = Request.QueryString["type"];
-            //var keyword = Request.QueryString["keyword"];
-            var tag = Request.QueryString["tag"];
+            var keyword = Request.QueryString["keyword"];
 
-            //var sKeyword = "";
-            //if (keyword != null) sKeyword = keyword.ToString().ToLower();
-
-            var sTag = "";
-            if (tag != null) sTag = tag.ToString().ToLower();
-
-            var sDes = 0;
-            int.TryParse(des, out sDes);
+            var sKeyword = "";
+            if (keyword != null) sKeyword = keyword.ToString().ToLower().Trim();
 
             int sLeng = 0;
             int.TryParse(leng, out sLeng);
@@ -126,37 +119,38 @@ namespace WEB.Controllers
                 controller = "Home",
                 action = "Search",
                 area = "",
-                keyword = sDes
+                keyword = keyword
             });
 
-            var module = db.WebModules.FirstOrDefault(x => x.UID.Equals("all-tour")
-                && x.Culture.Equals(ApplicationService.Culture)
-                && x.Status == (int)Status.Public);
+            List<int> tourTrongNuoc = new List<int>();
+            List<int> tourNuocNgoai = new List<int>();
+            List<int> comboTour = new List<int>();
 
-            List<WebContent> contentsearch = new List<WebContent>();
+            var modules = db.WebModules.Where(x => (x.UID.Equals("tour-trong-nuoc")
+            || x.UID.Equals("tour-nuoc-ngoai") || x.UID.Equals("combo"))
+            && x.Status == (int)Status.Public).ToList();
 
-            if (sDes > 0)
+            foreach (var item in modules)
             {
-                List<WebContent> contentTour = new List<WebContent>();
-                GetListContents(module.ID, contentTour);
-
-                var countryId = sDes;
-                var cityIdsOfCountry = db.WebModules.Where(x => x.ParentID == countryId).Select(y => y.ID).ToList();
-                foreach (var tour in contentTour)
+                List<WebModule> allModules = new List<WebModule>();
+                if (item.UID == "tour-trong-nuoc")
                 {
-                    var cityIdsOfTour = tour.ProductInfo.Destination.Split(',').Select(x => int.Parse(x));
-                    if (cityIdsOfTour.Intersect(cityIdsOfCountry).Count() == 0)
-                    {
-                        continue;
-                    }
-
-                    contentsearch.Add(tour);
+                    GetListModule(item.ID, allModules);
+                    tourTrongNuoc = allModules.Select(x => x.ID).ToList();
+                }
+                else if (item.UID == "tour-nuoc-ngoai")
+                {
+                    GetListModule(item.ID, allModules);
+                    tourNuocNgoai = allModules.Select(x => x.ID).ToList();
+                }
+                else
+                {
+                    GetListModule(item.ID, allModules);
+                    comboTour = allModules.Select(x => x.ID).ToList();
                 }
             }
-            else
-            {
-                GetListContents(module.ID, contentsearch);
-            }
+
+            var contentsearch = db.WebContents.Where(x => x.WebModule.ContentTypeID == "Tour").ToList();
 
             if (sType > 0)
             {
@@ -187,29 +181,37 @@ namespace WEB.Controllers
                 }
             }
 
-
-            if (!string.IsNullOrWhiteSpace(sTag))
+            if (!string.IsNullOrWhiteSpace(sKeyword))
             {
-                contentsearch = contentsearch.Where(x => x.Title.Contains(sTag) || (x.Tag != null && x.Tag.Contains(sTag))).ToList();
+                contentsearch = contentsearch.Where(x => x.Title.ToLower().Contains(sKeyword)).ToList();
             }
 
-            ViewBag.Type = sTag;
+            ViewBag.lstTourTrongNuocsIds = tourTrongNuoc;
+            ViewBag.lstTourNuocNgoaiIds = tourNuocNgoai;
+            ViewBag.lstComboTourIds = comboTour;
 
-            ViewBag.des = des;
-            ViewBag.leng = leng;
-            ViewBag.type1 = type;
+            ViewBag.isViewTourTrongNuoc = contentsearch.Any(x => tourTrongNuoc.Any(d => d == x.WebModuleID));
+            ViewBag.isViewTourNuocNgoai = contentsearch.Any(x => tourNuocNgoai.Any(d => d == x.WebModuleID));
+            ViewBag.isViewComboTour = contentsearch.Any(x => comboTour.Any(d => d == x.WebModuleID));
 
-
-            ViewBag.CountryList = GetAllModule();
-            var typeOfTour = db.WebModules.Where(x => x.Parent.UID.Equals("all-tour") && x.Parent.Culture == ApplicationService.Culture).ToList();
-            ViewBag.TypeOfTour = typeOfTour;
-
-            var ipage = 1; if (page != null) ipage = page.Value;
-            ViewBag.TotalItemCount = contentsearch.Count();
-            ViewBag.CurrentPage = ipage;
-            return View(contentsearch.Skip((ipage - 1) * 12).Take(12).OrderByDescending(x => x.CreatedDate).ToList());
+            return View(contentsearch.ToList());
         }
-        private List<WebModule> GetAllModule()
+        private List<WebModule> GetListModule(int webModuleId, List<WebModule> results)
+        {
+            var webModule = db.WebModules.Where(x => x.ID == webModuleId).FirstOrDefault();
+            results.Add(webModule);
+
+            var webModules = db.WebModules.Where(x => x.ParentID == webModuleId);
+            results.AddRange(webModules);
+
+            foreach (var childWebModule in webModules)
+            {
+                GetListModule(childWebModule.ID, results);
+            }
+
+            return results;
+        }
+        private List<WebModule> GetAllModuleDestinations()
         {
             var webmodule = db.WebModules.Where(x => x.UID.Equals("destinations")
                && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
@@ -260,7 +262,7 @@ namespace WEB.Controllers
             if (module != null)
             {
                 module = modulemetatitle;
-            }  
+            }
 
             Stack<WebModule> modules = new Stack<WebModule>();
 

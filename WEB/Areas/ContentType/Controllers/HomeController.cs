@@ -15,6 +15,8 @@ using Kendo.Mvc;
 using WebMatrix.WebData;
 using Common;
 using System.Text.RegularExpressions;
+using DotNetOpenAuth.Messaging;
+using System.Web.Razor.Tokenizer.Symbols;
 
 namespace WEB.Areas.ContentType.Controllers
 {
@@ -654,12 +656,41 @@ namespace WEB.Areas.ContentType.Controllers
         {
             ViewBag.CountryList = GetAllModule();
 
-            var typeOfTour = db.WebModules.Where(x => x.Parent.UID.Equals("all-tour") && x.Parent.Culture == ApplicationService.Culture).ToList();
-            ViewBag.TypeOfTour = typeOfTour;
-            
-            return PartialView();
+            var typeOfTour = db.WebModules.Where(x => x.UID.Equals("tour-trong-nuoc") || x.UID.Equals("tour-nuoc-ngoai")).ToList();
+            //typeOfTour = GetListModule
+
+            List<WebModule> results = new List<WebModule>();
+            foreach (var item in typeOfTour)
+            {
+                GetListModule(item.ID, results);
+            }
+
+            var leng = Request.QueryString["leng"];
+            var type = Request.QueryString["type"];
+            var keyword = Request.QueryString["keyword"];
+
+            ViewBag.keyword = keyword;
+            ViewBag.leng = leng;
+            ViewBag.type = type;
+
+            return PartialView(results);
         }
 
+        private List<WebModule> GetListModule(int webModuleId, List<WebModule> results)
+        {
+            var webModule = db.WebModules.Where(x => x.ID == webModuleId).FirstOrDefault();
+            results.Add(webModule);
+
+            var webModules = db.WebModules.Where(x => x.ParentID == webModuleId);
+            results.AddRange(webModules);
+
+            foreach (var childWebModule in webModules)
+            {
+                GetListModule(childWebModule.ID, results);
+            }
+
+            return results;
+        }
         [AllowAnonymous]
         public ActionResult _FrmSearchDetail()
         {

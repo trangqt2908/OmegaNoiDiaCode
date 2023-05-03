@@ -13,7 +13,14 @@ namespace WEB
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-           
+
+            routes.MapRoute(
+                name: "Search",
+                url: "tim-kiem",
+                defaults: new { controller = "Home", action = "Search" },
+                  namespaces: new[] { "WEB.Controllers" }
+            );
+
             //-------------------------------------------------------------
 
             // routes.MapRoute(
@@ -46,13 +53,6 @@ namespace WEB
                    m_metatitle = UrlParameter.Optional },
                  namespaces: new[] { "WEB.Controllers" }
            );
-
-            routes.MapRoute(
-                name: "Search",
-                url: "search",
-                defaults: new { controller = "Home", action = "Search" },
-                  namespaces: new[] { "WEB.Controllers" }
-            );
 
             routes.MapRoute(
                 name: "Default",
