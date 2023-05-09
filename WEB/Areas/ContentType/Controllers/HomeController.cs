@@ -1,4 +1,4 @@
-﻿using Kendo.Mvc.UI;
+using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using System;
 using System.Collections.Generic;
@@ -717,8 +717,17 @@ namespace WEB.Areas.ContentType.Controllers
                 && x.Status == (int)Status.Public).OrderByDescending(x => x.ModifiedDate).Take(3).ToList();
             return PartialView(contents);
         }
+        [AllowAnonymous]
+        public ActionResult _TopDichVu()
+        {
+            var module = db.WebModules.Where(x => x.UID.Equals("dich-vu-tour")).FirstOrDefault();
 
-        
+            var contents = db.WebContents.Where(x => x.WebModuleID == module.ID
+                && x.Status == (int)Status.Public).OrderByDescending(x => x.ModifiedDate).Take(3).ToList();
+            return PartialView(contents);
+        }
+
+
 
 
         #endregion _Publish
