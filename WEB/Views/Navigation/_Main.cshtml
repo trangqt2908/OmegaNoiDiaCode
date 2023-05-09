@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebModule>
+@model IEnumerable<WebModule>
 @{
     var listIDModuleActive = (List<int>)ViewBag.ListModuleActive;
 
@@ -107,7 +107,7 @@
                                         <form role="search" action="/tim-kiem" method="get" class="search-box">
                                             <div class="form-group">
                                                 <input type="text" class="form-control" name="keyword" placeholder="Search">
-                                                <i class="fa fa-search form-control-feedback"></i>
+                                                <button class="" type="submit"> <i class="fa fa-search form-control-feedback"></i> </button>
                                             </div>
                                         </form>
                                     </li>
