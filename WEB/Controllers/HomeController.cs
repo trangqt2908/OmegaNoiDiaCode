@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -136,17 +136,17 @@ namespace WEB.Controllers
                 if (item.UID == "tour-trong-nuoc")
                 {
                     GetListModule(item.ID, allModules);
-                    tourTrongNuoc = allModules.Select(x => x.ID).ToList();
+                    tourTrongNuoc = allModules.Select(x => x.ID).Distinct().ToList();
                 }
                 else if (item.UID == "tour-nuoc-ngoai")
                 {
                     GetListModule(item.ID, allModules);
-                    tourNuocNgoai = allModules.Select(x => x.ID).ToList();
+                    tourNuocNgoai = allModules.Select(x => x.ID).Distinct().ToList();
                 }
                 else
                 {
                     GetListModule(item.ID, allModules);
-                    comboTour = allModules.Select(x => x.ID).ToList();
+                    comboTour = allModules.Select(x => x.ID).Distinct().ToList();
                 }
             }
 
