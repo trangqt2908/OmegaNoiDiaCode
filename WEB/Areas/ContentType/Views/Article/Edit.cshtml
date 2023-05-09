@@ -1,4 +1,4 @@
-﻿@model WebModels.WebContent
+@model WebModels.WebContent
 @using (Html.BeginForm("Edit", "Article", new { UID = Model.UID }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal fix" }))
 {
 
@@ -36,12 +36,12 @@
                                 .HtmlAttributes(new { style = "width: 99%;height:180px" }))*@
                         </div>
                     </div>
-                    <div class="control-group">
+                    @*<div class="control-group">
                         @Html.LabelFor(m => m.Order, new { @class = "control-label" })
                         <div class="controls">
                             @(Html.Kendo().NumericTextBoxFor<int>(m => m.Order))
                         </div>
-                    </div>
+                    </div>*@
                     <div class="control-group">
                         @Html.LabelFor(m => m.Image, new { @class = "control-label" })
                         <div class="controls">
