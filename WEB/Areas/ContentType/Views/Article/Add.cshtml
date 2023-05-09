@@ -1,4 +1,4 @@
-﻿@model WebModels.WebContent
+@model WebModels.WebContent
 
 @using (Html.BeginForm("Add", "Article", new { WebModuleID = ViewBag.ID, UID = ViewBag.UID }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal fix" }))
 {
@@ -37,14 +37,14 @@
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    @*<div class="control-group">
                         @Html.LabelFor(m => m.Order, new { @class = "control-label" })
                         <div class="controls">
                             @(Html.Kendo().NumericTextBoxFor<int>(m => m.Order)
                                 .Value(0)
                             )
                         </div>
-                    </div>
+                    </div>*@
                     <div class="control-group">
                         @Html.LabelFor(m => m.Image, new { @class = "control-label" })
                         <div class="controls">
