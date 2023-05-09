@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -616,5 +616,16 @@ namespace WEB.Areas.ContentType.Controllers
 
             return PartialView(webmodule);
         }
+
+        [AllowAnonymous]
+        public ActionResult _LatestTour(int take)
+        {
+            var content = db.WebContents.Where(x => x.WebModule.ContentTypeID == "Tour")
+                .OrderByDescending(x => x.ID).Take(take).ToList();
+                    
+            return PartialView(content);
+        }
+
+
     }
 }
