@@ -287,6 +287,41 @@
     });
 
     //owl-Carousel-TwoColumn
+    $(".specialplaces_carousel2").owlCarousel({
+        loop: true,
+        autoplay: false,
+        autoplayHoverPause: false,
+        smartSpeed: 700,
+        items: 3,
+        margin: 30,
+        dots: false,
+        nav: true,
+        navText: [
+            '<i class="fa fa-chevron-left"></i>',
+            '<i class="fa fa-chevron-right"></i>'
+        ],
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            },
+            1200: {
+                items: 3
+            }
+        }
+    });
+    //owl-Carousel-TwoColumn
     $(".specialpackages_carousel").owlCarousel({
         loop:true,
         autoplay: false,

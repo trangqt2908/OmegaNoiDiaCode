@@ -2856,7 +2856,6 @@
     <Content Include="Areas\ContentType\Views\WebContentInformation\_OtherDestination.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_Highlight.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\EditHighlight.cshtml" />
-    <Content Include="Areas\ContentType\Views\Home\_PubHighlight.cshtml" />
     <Content Include="Areas\ContentType\Views\ContentPhoto\_PubGallery.cshtml" />
     <Content Include="Areas\Admin\Views\UploadFile\Add.cshtml" />
     <Content Include="Areas\Admin\Views\UploadFile\Delete.cshtml" />
@@ -2919,6 +2918,7 @@
     <Content Include="Areas\ContentType\Views\Home\EditModuleHome.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_ModuleHome.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_PubModuleHome.cshtml" />
+    <Content Include="Areas\ContentType\Views\Home\_PubHighlight.cshtml" />
     <None Include="Properties\PublishProfiles\Aexcursions.pubxml" />
     <None Include="Properties\PublishProfiles\FLAT.pubxml" />
     <Content Include="Images\apple-touch-icon-precomposed.png" />

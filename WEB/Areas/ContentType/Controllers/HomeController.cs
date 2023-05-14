@@ -654,7 +654,6 @@ namespace WEB.Areas.ContentType.Controllers
         [AllowAnonymous]
         public ActionResult _FrmSearch()
         {
-            ViewBag.CountryList = GetAllModule();
 
             var typeOfTour = db.WebModules.Where(x => x.UID.Equals("tour-trong-nuoc") || x.UID.Equals("tour-nuoc-ngoai")).ToList();
             //typeOfTour = GetListModule
@@ -682,7 +681,6 @@ namespace WEB.Areas.ContentType.Controllers
             results.Add(webModule);
 
             var webModules = db.WebModules.Where(x => x.ParentID == webModuleId);
-            results.AddRange(webModules);
 
             foreach (var childWebModule in webModules)
             {

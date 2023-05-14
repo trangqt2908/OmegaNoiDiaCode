@@ -6,16 +6,18 @@
 <section class="special-places-sec pb-50">
     <div class="container">
         <div class="row">
-            <div class="section-title">
-                <h4>Chào mừng đến với Omegatours Travel</h4>
+            <div class="section-title mb-30">
                 <h2>Tour <span>Trong Nước</span></h2>
-                <p>Hệ thống đặt Tour hàng đầu Việt Nam. Hơn 300 tours du lịch ở Việt Nam và Quốc tế</p>
+                <p>
+                    Tour hè trong nước @DateTime.Now.Year do Công ty OmegaTour cung cấp với nhiều điểm đến du lịch mới hấp dẫn.
+                    Các tour trong Nước được khởi hành từ Hà Nội, Tp. Hồ Chí Minh với nhiều phương tiện phù hợp cho chuyến đi của du khách được thuận lợi nhất
+                </p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="specialplaces_carousel owl-carousel owl-theme owl-navst">
-                  
+
                     @foreach (var item in Model)
                     {
                         var img = string.IsNullOrEmpty(item.Image) ? ApplicationService.NoImage : item.Image;
@@ -35,23 +37,23 @@
                                     {
                                         <div class="offer-price"> Off @item.ProductInfo.Discount%</div>
                                     }
-                                <div class="post-title-box">
+                                    <div class="post-title-box">
 
-                                    <div class="title">
-                                        <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
-                                    </div>
+                                        <div class="title">
+                                            <a href="@urlContent" alt="@item.Title">  <h2>  @item.Title </h2> </a>
+                                        </div>
 
-                                    <div class="title-box">
-                                        @if (item.ProductInfo.Discount > 0)
-                                        {
-                                            <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
-                                        }
-                                    </div>
-                                    <div class="price-box">
-                                        <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
-                                    </div>
+                                        <div class="title-box">
+                                            @if (item.ProductInfo.Discount > 0)
+                                            {
+                                                <h4> @String.Format("{0:N0}", item.ProductInfo.PriceOld)₫</h4>
+                                            }
+                                        </div>
+                                        <div class="price-box">
+                                            <h5> @String.Format("{0:N0}", item.ProductInfo.Price)₫ </h5>
+                                        </div>
 
-                                </div>
+                                    </div>
                                 </div>
                                 <div class="content">
                                     <div class="infor">

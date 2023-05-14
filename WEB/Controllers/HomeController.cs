@@ -111,8 +111,8 @@ namespace WEB.Controllers
             int sLeng = 0;
             int.TryParse(leng, out sLeng);
 
-            int sType = 0;
-            int.TryParse(type, out sType);
+            int sDes = 0;
+            int.TryParse(type, out sDes);
 
             ViewBag.RouteValues = new RouteValueDictionary(new
             {
@@ -150,12 +150,26 @@ namespace WEB.Controllers
                 }
             }
 
-            var contentsearch = db.WebContents.Where(x => x.WebModule.ContentTypeID == "Tour").ToList();
+            var contentsearch = new List<WebContent>();          
 
-            if (sType > 0)
+            if (sDes > 0)
             {
-                contentsearch = contentsearch.Where(x => x.WebModuleID == sType).ToList();
+                var contentTour = db.WebContents.Where(x => x.WebModule.ContentTypeID == "Tour");
+
+                foreach (var tour in contentTour)
+                {
+                    var cityIdsOfTour = tour.ProductInfo.Destination.Split(',').Select(x => int.Parse(x));
+                    if (cityIdsOfTour.Any(x=>x == sDes))
+                    {
+                        contentsearch.Add(tour);
+                    }
+                }
             }
+            else
+            {
+                contentsearch = db.WebContents.Where(x => x.WebModule.ContentTypeID == "Tour").ToList();
+            }
+
 
             if (sLeng > 0)
             {

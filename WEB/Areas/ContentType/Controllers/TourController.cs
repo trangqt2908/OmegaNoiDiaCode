@@ -72,15 +72,36 @@ namespace WEB.Areas.ContentType.Controllers
 
         public JsonResult GetDestinations()
         {
-            var webmodule = db.WebModules.Where(x => x.UID.Equals("destinations")
-               && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
+            //var webmodule = db.WebModules.Where(x => x.UID.Equals("destinations")
+            //   && x.Culture.Equals(ApplicationService.Culture)).FirstOrDefault();
 
-            List<WebContent> webContents = new List<WebContent>();
-            var destinations = GetListContents(webmodule.ID, webContents).Select(x => new { x.ID, x.Title }).ToList();
+            //List<WebContent> webContents = new List<WebContent>();
+            //var destinations = GetListContents(webmodule.ID, webContents).Select(x => new { x.ID, x.Title }).ToList();
 
-            return Json(destinations, JsonRequestBehavior.AllowGet);
+            //return Json(destinations, JsonRequestBehavior.AllowGet);
+
+            var typeOfTour = db.WebModules.Where(x => x.UID.Equals("tour-trong-nuoc") || x.UID.Equals("tour-nuoc-ngoai")).ToList();
+            
+            List<WebModule> results = new List<WebModule>();
+            foreach (var item in typeOfTour)
+            {
+                GetListModule(item.ID, results);
+            }
+            return Json(results.Select(x => new { x.ID, x.Title }), JsonRequestBehavior.AllowGet);
         }
+        private List<WebModule> GetListModule(int webModuleId, List<WebModule> results)
+        {
+            var webModule = db.WebModules.Where(x => x.ID == webModuleId).FirstOrDefault();
+            results.Add(webModule);
 
+            var webModules = db.WebModules.Where(x => x.ParentID == webModuleId);            
+            foreach (var childWebModule in webModules)
+            {
+                GetListModule(childWebModule.ID, results);
+            }
+
+            return results;
+        }
         public ActionResult Add(int id)
         {
             ViewBag.UID = UniqueKeyGenerator.RNGTicks(10);
