@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>D:\Publish\OmegaNoiDia</_PublishTargetUrl>
-    <History>False|2023-04-17T15:01:26.5121326Z;False|2023-04-09T15:16:37.1576676+07:00;False|2023-04-09T15:07:32.2770117+07:00;False|2023-04-09T15:06:35.9816090+07:00;</History>
+    <History>True|2023-05-03T09:25:57.6253415Z;False|2023-04-17T22:01:26.5121326+07:00;False|2023-04-09T15:16:37.1576676+07:00;False|2023-04-09T15:07:32.2770117+07:00;False|2023-04-09T15:06:35.9816090+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -618,7 +618,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/29/2019 16:02:33</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Home/_FrmSearch.cshtml">
-      <publishTime>08/11/2019 16:15:10</publishTime>
+      <publishTime>05/03/2023 14:19:03</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Home/_FrmSearchDetail.cshtml">
       <publishTime>08/11/2019 16:14:59</publishTime>
@@ -720,13 +720,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2023 15:36:06</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Tour/_PubDetail.cshtml">
-      <publishTime>04/09/2023 15:36:06</publishTime>
+      <publishTime>04/29/2023 20:07:42</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Tour/_PubIndeOnePage.cshtml">
       <publishTime>04/09/2023 15:36:06</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Tour/_PubIndex.cshtml">
-      <publishTime>04/09/2023 15:36:06</publishTime>
+      <publishTime>04/29/2023 20:07:55</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Tour/_SlideContent.cshtml">
       <publishTime>04/03/2023 21:23:23</publishTime>
@@ -999,13 +999,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/19/2013 04:01:18</publishTime>
     </File>
     <File Include="bin/vi-VN/WEB.resources.dll">
-      <publishTime>04/17/2023 22:10:54</publishTime>
+      <publishTime>05/03/2023 16:25:44</publishTime>
     </File>
     <File Include="bin/vi-VN/WebModels.resources.dll">
       <publishTime>04/17/2023 22:01:13</publishTime>
     </File>
     <File Include="bin/WEB.dll">
-      <publishTime>04/17/2023 22:10:53</publishTime>
+      <publishTime>05/03/2023 16:25:44</publishTime>
     </File>
     <File Include="bin/Web.Helpers.dll">
       <publishTime>04/17/2023 22:01:11</publishTime>
@@ -1017,7 +1017,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/17/2023 22:01:11</publishTime>
     </File>
     <File Include="bin/WEB.pdb">
-      <publishTime>04/17/2023 22:10:53</publishTime>
+      <publishTime>05/03/2023 16:25:44</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/22/2014 20:06:22</publishTime>
@@ -7662,7 +7662,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/26/2023 09:50:31</publishTime>
     </File>
     <File Include="Content/themes/web/css/style.css">
-      <publishTime>04/17/2023 21:59:37</publishTime>
+      <publishTime>04/30/2023 21:31:19</publishTime>
     </File>
     <File Include="Content/themes/web/css/venobox.css">
       <publishTime>05/11/2019 08:21:11</publishTime>
@@ -9351,7 +9351,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/23/2014 00:51:42</publishTime>
     </File>
     <File Include="Uploads/settings.config">
-      <publishTime>04/17/2023 22:10:54</publishTime>
+      <publishTime>05/03/2023 16:25:44</publishTime>
     </File>
     <File Include="Uploads/settings.Debug.config">
       <publishTime>11/29/2013 07:56:42</publishTime>
@@ -9384,7 +9384,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/06/2023 21:10:01</publishTime>
     </File>
     <File Include="Views/Home/Search.cshtml">
-      <publishTime>09/07/2022 11:46:10</publishTime>
+      <publishTime>05/03/2023 16:10:01</publishTime>
     </File>
     <File Include="Views/Home/SiteMap.cshtml">
       <publishTime>01/12/2016 00:24:32</publishTime>
@@ -9420,7 +9420,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/07/2022 11:46:09</publishTime>
     </File>
     <File Include="Views/Navigation/_Main.cshtml">
-      <publishTime>04/09/2023 15:36:06</publishTime>
+      <publishTime>04/29/2023 20:11:20</publishTime>
     </File>
     <File Include="Views/Navigation/_Menu_Footer.cshtml">
       <publishTime>04/10/2023 19:59:36</publishTime>

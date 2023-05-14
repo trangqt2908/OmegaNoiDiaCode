@@ -10,11 +10,16 @@
         urlcat = Url.Action("Index", "Home", new { metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "omegatours", area = "" });
     }
 
-    var urlcatparent = webmodule.Parent.URL;
-    if (string.IsNullOrEmpty(webmodule.Parent.URL) || string.IsNullOrWhiteSpace(webmodule.Parent.URL))
+    var urlcatparent = "#";
+    if (webmodule.Parent != null)
     {
-        urlcatparent = Url.Action("Index", "Home", new { metatitle = webmodule.Parent.MetaTitle != null ? webmodule.Parent.MetaTitle : "omegatours", area = "" });
+        urlcatparent = webmodule.Parent.URL;
+        if (string.IsNullOrEmpty(webmodule.Parent.URL) || string.IsNullOrWhiteSpace(webmodule.Parent.URL))
+        {
+            urlcatparent = Url.Action("Index", "Home", new { metatitle = webmodule.Parent.MetaTitle != null ? webmodule.Parent.MetaTitle : "omegatours", area = "" });
+        }
     }
+
 
     var url = Url.Action("Detail", "Home", new
     {
@@ -28,8 +33,10 @@
     TempData["Keywords"] = Utility.UseStringHasValue(item.MetaKeywords, item.SeoTitle);
     TempData["URL"] = ApplicationService.Domain + url;
     TempData["Cat"] = webmodule.Title;
+    var imgBanner = string.IsNullOrEmpty(webmodule.Image) ? "/images/px-1.jpg" : webmodule.Image;
+
 }
-<section class="inner-area parallax-bg" style="background: url('/images/px-1.jpg')">
+<section class="inner-area parallax-bg" style="background: url('@imgBanner')">
     <div class="container">
         <div class="section-content">
             <div class="row">

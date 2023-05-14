@@ -223,28 +223,19 @@ input {
 }
 
     .form-control:focus {
-        border-color: #333;
+        border-color: #978e8e;
         box-shadow: none;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
     }
 
-::-webkit-input-placeholder {
-    color: #999 !important;
-}
-
-::-moz-placeholder {
-    color: #999 !important;
-}
-
-:-ms-input-placeholder {
-    color: #999 !important;
+input::-webkit-input-placeholder {
+    color: red;
 }
 
 input:-moz-placeholder {
-    color: #999 !important;
+    color: red;
 }
-
 /*======= ****========****=======
     Color Style ( Default Theme Color Style )
 /*======= ****========****=======*/
@@ -1097,7 +1088,6 @@ a.dropdown-item.active {
 
 .form-control:focus {
     outline: none;
-    border: none;
     text-decoration: none;
 }
 
@@ -4910,22 +4900,6 @@ Shop Css Style
                 height: 44px;
             }
 
-input::-webkit-input-placeholder {
-    color: #c9c9c9 !important;
-}
-
-input::-moz-placeholder {
-    color: #c9c9c9 !important;
-}
-
-input::-ms-input-placeholder {
-    color: #c9c9c9 !important;
-}
-
-input::-moz-placeholder {
-    color: #c9c9c9 !important;
-}
-
 .theme-sidebar .search-sidebar i {
     background-color: #ffcd22;
     color: #fff;
@@ -5359,6 +5333,7 @@ Contact Details Css Style
             width: 50px;
         }
 
+
 .form-row {
 }
 
@@ -5367,19 +5342,20 @@ Contact Details Css Style
 
         .form-row .form-group input.form-control {
             background-color: #fbfbfb;
-            border: 1px solid #eee;
-            font-size: 14px;
+            border: 1px solid #978e8e;
+            font-size: 16px;
             font-family: 'Lora', serif;
             font-weight: 500;
             height: 56px;
             letter-spacing: 0.6px;
             text-transform: capitalize;
             padding-bottom: 10px;
+            color: #000;
         }
 
     .form-row textarea.form-control {
         background-color: #fbfbfb;
-        border: 1px solid #eee;
+        border: 1px solid #978e8e;
         font-family: 'Lora', serif;
         font-size: 16px;
         font-weight: 500;
@@ -7772,4 +7748,19 @@ M > P Css Style
 
 .over-layer-white:before {
     background-color: rgba(255, 255, 255, 0.93);
+}
+
+.post-content ul li {
+    list-style-type: inherit;
+    margin-left: 20px;
+}
+
+.content p{
+    font-size: 16px;
+}
+
+
+.btn-primary {
+    background-color: #262967;
+    border-color: #262967;
 }
