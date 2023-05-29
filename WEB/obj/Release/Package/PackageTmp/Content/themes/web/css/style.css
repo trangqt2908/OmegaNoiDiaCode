@@ -4409,7 +4409,7 @@ Global Css Style
 }
 
     .global-area p {
-        color: #6f6a6a;
+        /*color: #6f6a6a;*/
         font-size: 15px;
         margin-bottom: 30px;
     }

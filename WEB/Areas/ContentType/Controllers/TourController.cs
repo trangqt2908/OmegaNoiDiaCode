@@ -598,7 +598,7 @@ namespace WEB.Areas.ContentType.Controllers
             else
             {
                 ViewBag.WebModuleName = item.Title;
-                string des = webContentID.ToString();
+                string des = item.WebModuleID.ToString();
 
                 var contents = new List<WebContent>();
 
