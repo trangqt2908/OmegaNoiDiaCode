@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>D:\Publish\OmegaNoiDia</_PublishTargetUrl>
-    <History>True|2023-05-29T23:08:47.0404409Z;True|2023-05-14T19:49:25.1336831+07:00;True|2023-05-14T16:45:03.9571015+07:00;True|2023-05-03T16:25:57.6253415+07:00;False|2023-04-17T22:01:26.5121326+07:00;False|2023-04-09T15:16:37.1576676+07:00;False|2023-04-09T15:07:32.2770117+07:00;False|2023-04-09T15:06:35.9816090+07:00;</History>
+    <History>True|2023-06-06T14:34:48.9354818Z;True|2023-05-30T06:08:47.0404409+07:00;True|2023-05-14T19:49:25.1336831+07:00;True|2023-05-14T16:45:03.9571015+07:00;True|2023-05-03T16:25:57.6253415+07:00;False|2023-04-17T22:01:26.5121326+07:00;False|2023-04-09T15:16:37.1576676+07:00;False|2023-04-09T15:07:32.2770117+07:00;False|2023-04-09T15:06:35.9816090+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -390,7 +390,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
     <File Include="Areas/Admin/Views/WebSimpleContent/Add.cshtml">
-      <publishTime>05/29/2023 21:00:47</publishTime>
+      <publishTime>06/06/2023 21:11:18</publishTime>
     </File>
     <File Include="Areas/Admin/Views/WebSimpleContent/Delete.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
@@ -399,7 +399,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
     <File Include="Areas/Admin/Views/WebSimpleContent/Edit.cshtml">
-      <publishTime>05/29/2023 21:00:47</publishTime>
+      <publishTime>06/06/2023 21:11:20</publishTime>
     </File>
     <File Include="Areas/Admin/Views/WebSimpleContent/Index.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
@@ -483,7 +483,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Contact/_PubIndex.cshtml">
-      <publishTime>05/30/2023 05:51:01</publishTime>
+      <publishTime>06/06/2023 21:29:04</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/ContentPhoto/Add.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
@@ -632,6 +632,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Areas/ContentType/Views/Home/_Index.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
+    <File Include="Areas/ContentType/Views/Home/_LastestBlog.cshtml">
+      <publishTime>05/29/2023 21:00:47</publishTime>
+    </File>
     <File Include="Areas/ContentType/Views/Home/_ModuleHome.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
@@ -642,7 +645,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Home/_PubIndex.cshtml">
-      <publishTime>05/29/2023 21:00:47</publishTime>
+      <publishTime>06/06/2023 21:33:02</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Home/_PubModuleHome.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
@@ -663,6 +666,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/Home/_TopDestination.cshtml">
+      <publishTime>05/29/2023 21:00:47</publishTime>
+    </File>
+    <File Include="Areas/ContentType/Views/Home/_TopDichVu.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/OnePage/Edit.cshtml">
@@ -999,13 +1005,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:53</publishTime>
     </File>
     <File Include="bin/vi-VN/WEB.resources.dll">
-      <publishTime>05/30/2023 06:08:31</publishTime>
+      <publishTime>06/06/2023 21:34:37</publishTime>
     </File>
     <File Include="bin/vi-VN/WebModels.resources.dll">
       <publishTime>05/30/2023 05:50:34</publishTime>
     </File>
     <File Include="bin/WEB.dll">
-      <publishTime>05/30/2023 06:08:31</publishTime>
+      <publishTime>06/06/2023 21:34:37</publishTime>
     </File>
     <File Include="bin/Web.Helpers.dll">
       <publishTime>05/30/2023 05:50:33</publishTime>
@@ -1017,7 +1023,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2023 05:50:33</publishTime>
     </File>
     <File Include="bin/WEB.pdb">
-      <publishTime>05/30/2023 06:08:31</publishTime>
+      <publishTime>06/06/2023 21:34:37</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/29/2023 21:00:54</publishTime>
@@ -7662,7 +7668,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:48</publishTime>
     </File>
     <File Include="Content/themes/web/css/style.css">
-      <publishTime>05/30/2023 05:54:54</publishTime>
+      <publishTime>06/06/2023 21:34:08</publishTime>
     </File>
     <File Include="Content/themes/web/css/venobox.css">
       <publishTime>05/11/2019 08:21:11</publishTime>
@@ -9351,7 +9357,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:48</publishTime>
     </File>
     <File Include="Uploads/settings.config">
-      <publishTime>05/30/2023 06:08:31</publishTime>
+      <publishTime>06/06/2023 21:34:37</publishTime>
     </File>
     <File Include="Uploads/settings.Debug.config">
       <publishTime>05/29/2023 21:00:48</publishTime>
@@ -9420,10 +9426,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:48</publishTime>
     </File>
     <File Include="Views/Navigation/_Main.cshtml">
-      <publishTime>05/29/2023 21:00:48</publishTime>
+      <publishTime>06/06/2023 21:13:09</publishTime>
     </File>
     <File Include="Views/Navigation/_Menu_Footer.cshtml">
-      <publishTime>05/30/2023 06:08:05</publishTime>
+      <publishTime>06/06/2023 21:06:38</publishTime>
     </File>
     <File Include="Views/Navigation/_SlideCat.cshtml">
       <publishTime>05/29/2023 21:00:48</publishTime>
@@ -9514,6 +9520,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/WebSimpleContent/_LinkImg.cshtml">
       <publishTime>05/29/2023 21:00:48</publishTime>
+    </File>
+    <File Include="Views/WebSimpleContent/_Socical.cshtml">
+      <publishTime>06/06/2023 21:11:22</publishTime>
     </File>
     <File Include="Views/WebSlide/Index.cshtml">
       <publishTime>05/29/2023 21:00:48</publishTime>

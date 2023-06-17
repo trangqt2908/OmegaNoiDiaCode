@@ -36,16 +36,16 @@
     <div class="control-group">
         <label class="control-label"> URL </label>
         <div class="controls">
-            @Html.TextBoxFor(m => m.MetaTitle, new { @class = "input-block-level" })
+            @Html.TextBoxFor(m => m.Link, new { @class = "input-block-level" })
         </div>
     </div>
-    <div class="control-group">
+    @*<div class="control-group">
         @Html.LabelFor(m => m.Image, new { @class = "control-label" })
         <div class="controls">
             @Html.TextBoxFor(m => m.Link, new { @class = "input-xlarge", id = "txtlink" })
             <a href="javascript:void(0);" onclick="javascript: openwin('/admin/upload/file?uid=@ViewBag.GAK&func=setlinkpath', '_blank', 800, 550);" class="btn">Tải Tệp</a>
         </div>
-    </div>
+    </div>*@
     <div class="control-group">
         @Html.LabelFor(m => m.Key, new { @class = "control-label" })
         <div class="controls">

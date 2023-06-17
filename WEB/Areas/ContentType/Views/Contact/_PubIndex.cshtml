@@ -117,7 +117,8 @@
                         </div>
                         <div class="content">
                             <h5><a href="#">Giờ làm việc</a></h5>
-                            <p>Thứ 2 - Thứ 6: 9 AM tới 6 PM</p>
+                            <br />
+                            @Html.Raw(Html.Action("_Body", "WebSimpleContent", new { key = "workingtime", area = "" }))
                         </div>
                     </div>
                     <div class="service-item style-1 border-1px">

@@ -3512,7 +3512,7 @@ Blog Css Style
     }
 
         .blog-post .thumb img {
-            aspect-ratio: 300/345;
+            aspect-ratio: 350/232;
             object-fit: cover;
         }
 

@@ -1,0 +1,7 @@
+﻿@model WebSimpleContent
+
+@if (Model != null)
+{
+    var item = Model;
+    <li><a href="@item.Link"><i class="fa @item.Description" aria-hidden="true"></i></a></li>
+}

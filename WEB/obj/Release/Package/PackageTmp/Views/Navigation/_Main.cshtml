@@ -27,11 +27,11 @@
                 <div class="col-md-5">
                     <div class="social-icons">
                         <ul>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            @Html.Action("_Socical", "WebSimpleContent", new { key = "twitter", area = "" })
+                            @Html.Action("_Socical", "WebSimpleContent", new { key = "instagram", area = "" })
+                            @Html.Action("_Socical", "WebSimpleContent", new { key = "linkedin", area = "" })
+                            @Html.Action("_Socical", "WebSimpleContent", new { key = "dribbble", area = "" })
+                            @Html.Action("_Socical", "WebSimpleContent", new { key = "facebook", area = "" })
                         </ul>
                     </div>
                 </div>

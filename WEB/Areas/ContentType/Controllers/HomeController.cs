@@ -725,9 +725,6 @@ namespace WEB.Areas.ContentType.Controllers
             return PartialView(contents);
         }
 
-
-
-
         #endregion _Publish
 
     }
