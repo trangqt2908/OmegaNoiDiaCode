@@ -3565,7 +3565,7 @@ Blog Css Style
         font-weight: 600;
         letter-spacing: 0.4px;
         line-height: 27px;
-        margin-bottom: 10px;
+        /*margin-bottom: 10px;*/
         padding-top: 0;
         text-transform: uppercase;
     }

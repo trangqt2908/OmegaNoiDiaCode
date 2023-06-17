@@ -34,7 +34,7 @@ namespace WEB.Areas.ContentType.Controllers
         [ChildActionOnly]
         public ActionResult _Index(int id)
         {
-            //ViewBag.ID = id;
+            ViewBag.ID = id;
             //ViewBag.View = false;
             //ViewBag.Add = false;
             //ViewBag.Edit = false;
@@ -587,23 +587,19 @@ namespace WEB.Areas.ContentType.Controllers
             {
                 webmodule = TempData["WebModule"] as WebModule;
             }
-            else webmodule = db.Set<WebModule>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault(); ;
+            else webmodule = db.Set<WebModule>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault();
+            var contents = new List<WebContent>();
             ViewBag.WebModule = webmodule;
 
-            var contents = new List<WebContent>();
-
-            var items = GetListContents(webmodule.ID, contents)
-               .Select(x => new WebContent
-               {
-                   ID = x.ID,
-                   Title = x.Title,
-                   Image = x.Image,
-                   Order = x.Order,
-                   WebModuleID = x.WebModuleID
-
-               }).OrderBy(x => x.Order);
-
-            return PartialView(items.ToList());
+            contents = db.WebContents.Where(x => x.WebModuleID == webmodule.ID 
+            && x.Status.HasValue 
+            && x.Status.Value.Equals((int)Status.Public))
+                .OrderByDescending(x => x.CreatedDate).ToList();
+          
+            var ipage = 1; if (page != null) ipage = page.Value;
+            ViewBag.TotalItemCount = contents.Count();
+            ViewBag.CurrentPage = ipage;
+            return PartialView(contents.Skip((ipage - 1) * 18).Take(18).ToList());
         }
         [ChildActionOnly]
         [AllowAnonymous]

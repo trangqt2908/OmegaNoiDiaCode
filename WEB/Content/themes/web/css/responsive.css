@@ -610,8 +610,9 @@ Creation Date: 15 January 2019*/
         line-height: 45px;
     }
     /* testimonial section */
-    .testimonials-post{
-        padding:30px 34px 0;
+    .testimonials-post {
+        padding-bottom: 10px;
+        padding-top: 10px;
     }
     /*Content Divider Css Style*/
 

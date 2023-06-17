@@ -269,8 +269,8 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
 }
 
 .dropdown-buttons {
-    margin-left: 15px;
-    margin-top: -15px;
+   /* margin-left: 15px;
+    margin-top: -15px;*/
 }
 
     .dropdown-buttons .btn-group .dropdown-menu.cart {

@@ -33,18 +33,9 @@
                                 columns.Bound(p => p.ModifiedDate).Format("{0:HH:mm - dd/MM/yyyy}").Title(Resources.Common.ModifiedDate).Width(150);
                                 columns.Command(command =>
                                 {
-                                    if (ViewBag.Edit)
-                                    {
-
-                                        command.Custom(Resources.Common.Pictures).Click("pic_handler");
-                                        command.Custom(Resources.Common.Edit).Click("edit_handler");
-                                    }
-                                    if (ViewBag.delete)
-                                    {
-                                        command.Custom(Resources.Common.Delete).Click("delete_handler");
-                                    }
-
-
+                                    //command.Custom(Resources.Common.Pictures).Click("pic_handler");
+                                    command.Custom(Resources.Common.Edit).Click("edit_handler");
+                                    command.Custom(Resources.Common.Delete).Click("delete_handler");
                                 }).Width(310).HtmlAttributes(new { style = "text-align:center;" });
                             })
                             .Pageable()
@@ -64,35 +55,7 @@
     </div>
 </div>
 
-@if (!ViewBag.View)
-{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".row-fluid").hide();
-            $(".page-header").html("Bạn hiện đang không có quyền truy cập vào danh mục này !");
-        })
-        function delete_handler(e) {
-        }
-        function edit_handler(e) {
-        }
-        function pic_handler(e) {
-        }
-        var rowselected = [];
-        function change_handler(e) {
-            rowselected = [];
-            var len = this.select().length;
-            for (i = 0; i < len; i++) {
-                rowselected.push(this.dataItem(this.select()[i]).ID);
-            }
-        }
-        function binding_handler(e) {
-            rowselected = [];
-        }
 
-    </script>
-}
-else
-{
     <script type="text/javascript">
         function delete_handler(e) {
             e.preventDefault();
@@ -141,4 +104,3 @@ else
             });
         });
     </script>
-}

@@ -71,7 +71,8 @@ namespace WEB.Areas.Admin.Controllers
                                  ID = e.ID,
                                  Title = e.Title,
                                  Description = e.Description,
-                                 Culture = e.Culture
+                                 Culture = e.Culture,
+                                 Order =e.Order
                              };
             return Json(webmodules.ToList(), JsonRequestBehavior.AllowGet);
         }

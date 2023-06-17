@@ -1,7 +1,5 @@
-@model WebModels.WebContent
-@{
-    var listTransportation = CommonEnum.EnumToList(typeof(Transportation));
-}
+﻿@model WebModels.WebContent
+@{ var listTransportation = CommonEnum.EnumToList(typeof(Transportation)); }
 
 
 @using (Html.BeginForm("Edit", "Tour", new { UID = Model.UID }, FormMethod.Post, new
@@ -10,9 +8,7 @@
     enctype = "multipart/form-data",
     @class = "form-horizontal fix"
 }))
-{
-
-    @(Html.Kendo().TabStrip()
+{@(Html.Kendo().TabStrip()
         .Name("tabstrip")
         .Items(tabstrip =>
         {
@@ -282,15 +278,14 @@
         })
     )
 
-    <input type="hidden" name="productMultiSelectVal" id="productMultiSelectVal" />
-    <input type="hidden" name="productMultiSelectOld" id="productMultiSelectOld" value="@ViewBag.oldSelectString" />
+                <input type="hidden" name="productMultiSelectVal" id="productMultiSelectVal" />
+                                <input type="hidden" name="productMultiSelectOld" id="productMultiSelectOld" value="@ViewBag.oldSelectString" />
 
-    <div class="form-actions">
-        <button class="btn btn-primary" name="submit" value="0" type="submit"><i class="icon-save"></i>@Resources.Common.SaveChanges</button>
-        @*<button class="btn btn-primary" name="submit" value="1" type="submit">@Resources.Common.SaveAndContinue</button>*@
-    </div>
-    @Html.AntiForgeryToken()
-}
+                                                <div class="form-actions">
+                                                    <button class="btn btn-primary" name="submit" value="0" type="submit"><i class="icon-save"></i>@Resources.Common.SaveChanges</button>
+                                                    @*<button class="btn btn-primary" name="submit" value="1" type="submit">@Resources.Common.SaveAndContinue</button>*@
+                                                </div>
+                                                                @Html.AntiForgeryToken()}
 <script type="text/javascript">
     top.winsetup("@Html.Raw(Resources.Common.EditItem)", 900, 550, true);
     function edit_success() {

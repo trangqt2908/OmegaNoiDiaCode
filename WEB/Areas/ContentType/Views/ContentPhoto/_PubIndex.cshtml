@@ -1,5 +1,4 @@
 ﻿@model IList<WebModels.WebContent>
-@*Tour*@
 @{
     var webmodule = (WebModule)ViewBag.WebModule;
     var urlcat = webmodule.URL;
@@ -12,66 +11,100 @@
     TempData["Keywords"] = Utility.UseStringHasValue(webmodule.MetaKeywords, webmodule.SeoTitle);
     TempData["URL"] = ApplicationService.Domain + urlcat;
     TempData["Cat"] = webmodule.Title;
-
+    var imgBanner = string.IsNullOrEmpty(webmodule.Image) ? "/images/px-1.jpg" : webmodule.Image;
 }
 
-<section class="inner-page-banner" style="background-image: url(@webmodule.Backgroud)">
-    <div class="page-banner-caption">
-        <div class="container">
+<style>
+    .blog-post {
+        padding-bottom: 0px;
+    }
+</style>
+<!-- Inner Section Start -->
+<section class="inner-area parallax-bg" style="background: url('@imgBanner')">
+    <div class="container">
+        <div class="section-content">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>@webmodule.Title</h1>
-                    <ol class="breadcrumb">
-                        @Html.Action("_SiteMapDetail", "Home", new { area = "" })
-                    </ol>
+                <div class="col-12">
+                    <h4>@webmodule.Title</h4>
+                    @Html.Action("_SiteMap", "Home", new { area = "" })
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!-- Inner Section End -->
 
-<section class="section-spacing inverse-bg">
+
+<section class="pb-20">
     <div class="container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title text-center">
-                        <h2><span>@webmodule.Title</span></h2>
-                        <p>@webmodule.Description</p>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Image) || !string.IsNullOrWhiteSpace(item.Description))
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="blog-post">
+                            @if (!string.IsNullOrWhiteSpace(item.Image))
+                            {
+                                <div class="thumb">
+                                    <a href="@item.Image" title="@item.Title" class="image-popup-vertical-fit">
+                                        <img src="@item.Image" alt="@item.Title" title="@item.Title">
+                                        <div class="content">
+                                            <h3>
+                                                @Html.RawSubString(item.Title, 50)
+                                            </h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(item.Description))
+                            {
+                                <div class="thumb">
+
+                                    <iframe width="100%" height="225" src="https://www.youtube.com/embed/hcw7m7Re_pE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                                    <div class="content">
+                                        <a href="@item.Description" title="@item.Title" class="popup-youtube">
+                                            <h3>
+                                                @Html.RawSubString(item.Title, 50)
+                                            </h3>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
                     </div>
+                }
+            }
+        </div>
+        <section class="text-center pt-0 pb-0">
+            <div class="container">
+                <div id="control-bot" class="control control-bot control-classer">
+                    @if (ViewBag.TotalItemCount > 1)
+                    {
+                        <div class="pager">
+                            @Html.Raw(Html.Pager(
+                              new Options
+                              {
+                                  PageSize = 18,
+                                  TotalItemCount = ViewBag.TotalItemCount,
+                                  CurrentPage = ViewBag.CurrentPage,
+                                  ItemTexts = new ItemTexts() { Next = "", Previous = "" },
+                                  ItemIcon = new ItemIcon() { First = "fa fa-angle-double-left", Previous = "fa fa-angle-left", Next = "fa fa-angle-right", Last = "fa fa-angle-double-right" },
+                                  TooltipTitles = new TooltipTitles() { Next = Resources.Common.NextPage, Previous = Resources.Common.PreviousPage },
+                                  Size = Size.normal,
+                                  IsShowControls = true,
+                                  Alignment = Alignment.centered,
+                                  IsShowFirstLast = false,
+                                  IsShowPages = true
+                              }, new RouteValueDictionary(ViewBag.RouteValues)))
+                        </div>
+                    }
                 </div>
             </div>
-
-            <div class="row">
-                @Html.Action("_BoxGalleryType", "Navigation", new { area = "" })
-                @*<div class="col-md-12 text-center">
-                        <ul id="filter-list">
-                            <li class="filter active" data-filter="all">All</li>
-                            <li class="filter" data-filter="1">Asia</li>
-                            <li class="filter" data-filter="2">Africa</li>
-                            <li class="filter" data-filter="3">Europe</li>
-                            <li class="filter" data-filter="4">America</li>
-                            <li class="filter" data-filter="5">Australia</li>
-                        </ul>
-                    </div>*@
-            </div>
-        </div>
-        <div class="gallery-outer">
-            <ul class="gallery-items" style="padding: 0px; position: relative; height: 1901px;">
-                @foreach (var item in Model)
-                {
-                    var img = item.Image != null ? item.Image : ApplicationService.NoImage;
-                    <li class="filtr-item" data-category="@item.WebModuleID" style="opacity: 1; transform: scale(1) translate3d(0px, 0px, 0px); backface-visibility: hidden; perspective: 1000px;
-                            transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms; pointer-events: auto;">
-                        <div class="gallery-inner">
-                            <img src="@img" alt="@item.Title" title="@item.Title" />
-                            <div class="gallery-overlay">
-                                <a href="@img" class="venobox vbox-item" data-gall="gallery"><i class="fa fa-picture-o"></i></a>
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </div>
+        </section>
     </div>
 </section>
