@@ -48,7 +48,7 @@
                                 columns.Bound(x => x.Image)
                                     .ClientTemplate("<img src='#= Image #' width='100' height='100' />").Title(WebResources.Image).Width(120);
                                 columns.Bound(x => x.Title).Title(Resources.Common.Title);
-                                columns.Bound(x => x.Order).ClientTemplate("<input type='number' style='width:30px;' value='#= Order #'/>").Width(55).Title("TT");
+                                columns.Bound(x => x.Order).ClientTemplate("<input type='number' style='width:30px;' value='#= Order #'/>").Width(70).Title("TT");
                         
                                 columns.Template(@<text></text>)
                                     .Width(160)
@@ -130,6 +130,8 @@
         <button class="btn btn-primary" type="button" onclick="closeDialog()"> @Resources.Common.Close  </button>
     </div>
     <script>
+        top.winsetup("@Html.Raw(Resources.Common.Images)", 900, 550, true);
+
         function closeDialog() {
             top.$("#window").data("kendoWindow").close();
         }

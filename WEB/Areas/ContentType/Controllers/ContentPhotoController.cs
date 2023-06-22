@@ -678,5 +678,12 @@ namespace WEB.Areas.ContentType.Controllers
             return results;
         }
 
+        [AllowAnonymous]
+        public ActionResult _GalleryDetail(int id)
+        {
+            var item = db.ContentImages.Where(x => x.WebContentID == id).OrderBy(x => x.Order).ToList();
+            ViewBag.webcontent = db.WebContents.Single(x=>x.ID == id);
+            return PartialView(item);
+        }
     }
 }

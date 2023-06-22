@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebModels.ContentImage>
+@{
+    var content = (WebContent)ViewBag.webcontent;
+    Layout = "";
+}
+<style>
+    .blog-post {
+        padding-bottom: 0px;
+    }
+
+    .video-content {
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+</style>
+<section class="pb-20">
+    <div class="container">
+        <div class="popup-gallery">
+            <div class="row">
+                @if (!string.IsNullOrWhiteSpace(content.Description))
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="blog-post">
+                            <div class="thumb">
+                                <div class="video-content">
+                                    <img src="@content.Image" alt="image">
+                                    <div class="overlay">
+                                        <a href="@content.Description" class="popup-youtube" title="Video không khả dụng">
+                                            <i class="ficon fa fa-play-circle"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var item in Model)
+                {
+                    if (!string.IsNullOrWhiteSpace(item.Image))
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            <div class="blog-post">
+                                <div class="thumb">
+                                    <a href="@item.Image" title="@item.Title"  class="image-popup-vertical-fit">
+                                        <img src="@item.Image" alt="@item.Title" title="@item.Title">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>

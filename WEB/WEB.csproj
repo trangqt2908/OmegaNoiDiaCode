@@ -2797,8 +2797,6 @@
     <Content Include="Areas\ContentType\Views\Home\_GetLetter.cshtml" />
     <Content Include="Areas\Admin\Views\WebSlide\_IndexPublish.mobile.cshtml" />
     <Content Include="Areas\ContentType\Views\ContentPhoto\_PubIndex.mobile.cshtml" />
-    <Content Include="Areas\ContentType\Views\ContentPhoto\_PubDetail.mobile.cshtml" />
-    <Content Include="Areas\ContentType\Views\ContentPhoto\_BigSlide.mobile.cshtml" />
     <Content Include="Areas\Admin\Views\AccessWebModule\_Index.cshtml" />
     <Content Include="Images\flags\de-DE.png" />
     <Content Include="Images\flags\fr-FR.png" />
@@ -2921,6 +2919,7 @@
     <Content Include="Areas\ContentType\Views\Home\_PubHighlight.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_TopDichVu.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_LastestBlog.cshtml" />
+    <Content Include="Areas\ContentType\Views\ContentPhoto\_GalleryDetail.cshtml" />
     <None Include="Properties\PublishProfiles\Aexcursions.pubxml" />
     <None Include="Properties\PublishProfiles\FLAT.pubxml" />
     <Content Include="Images\apple-touch-icon-precomposed.png" />

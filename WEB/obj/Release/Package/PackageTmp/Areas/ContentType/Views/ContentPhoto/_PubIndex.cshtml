@@ -40,44 +40,28 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                if (!string.IsNullOrWhiteSpace(item.Image) || !string.IsNullOrWhiteSpace(item.Description))
+                var url = Url.Action("Detail", "Home", new
                 {
-                    <div class="col-md-6 col-lg-4">
-                        <div class="blog-post">
-                            @if (!string.IsNullOrWhiteSpace(item.Image))
-                            {
-                                <div class="thumb">
-                                    <a href="@item.Image" title="@item.Title" class="image-popup-vertical-fit">
-                                        <img src="@item.Image" alt="@item.Title" title="@item.Title">
-                                        <div class="content">
-                                            <h3>
-                                                @Html.RawSubString(item.Title, 50)
-                                            </h3>
-                                        </div>
-                                    </a>
-                                </div>
-                            }
+                    metatitle = item.MetaTitle != null ? item.MetaTitle : "omegatours",
+                    m_metatitle = webmodule.MetaTitle != null ? webmodule.MetaTitle : "omegatours",
+                    area = ""
+                });
 
-                            @if (!string.IsNullOrWhiteSpace(item.Description))
-                            {
-                                <div class="thumb">
 
-                                    <iframe width="100%" height="225" src="https://www.youtube.com/embed/hcw7m7Re_pE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-                                    <div class="content">
-                                        <a href="@item.Description" title="@item.Title" class="popup-youtube">
-                                            <h3>
-                                                @Html.RawSubString(item.Title, 50)
-                                            </h3>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            }
-
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-post">
+                        <div class="thumb">
+                            <img src="@item.Image" alt="@item.Title" title="@item.Title">
+                            <div class="content">
+                                <a href="@url" title="@item.Title">
+                                    <h3>
+                                        @Html.RawSubString(item.Title, 50)
+                                    </h3>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                }
+                </div>
             }
         </div>
         <section class="text-center pt-0 pb-0">
@@ -108,3 +92,4 @@
         </section>
     </div>
 </section>
+
