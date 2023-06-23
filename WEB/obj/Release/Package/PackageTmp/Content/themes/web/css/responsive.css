@@ -294,8 +294,10 @@ Creation Date: 15 January 2019*/
     .header.header-style-1 .navbar-nav {
       padding-right: 0;
     }
-    .header .dropdown-buttons {
-      display: none;
+    .dropdown-buttons .menu-search-box ul.show {
+        left: 0px !important;
+        top: 40px;
+        transition: all 0.4s ease 0s;
     }
     .header .menu-style .navbar-toggler {
       border: 1px solid rgba(255, 255, 255, 0.65);
@@ -1033,7 +1035,7 @@ Creation Date: 15 January 2019*/
 
 
     .dropdown-buttons {
-        display: none;
+        /*display: none;*/
     }
 }
 

@@ -2920,6 +2920,8 @@
     <Content Include="Areas\ContentType\Views\Home\_TopDichVu.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_LastestBlog.cshtml" />
     <Content Include="Areas\ContentType\Views\ContentPhoto\_GalleryDetail.cshtml" />
+    <Content Include="Areas\ContentType\Views\Tour\_LatestTour.cshtml" />
+    <Content Include="Areas\ContentType\Views\OnePage\_AboutUs.cshtml" />
     <None Include="Properties\PublishProfiles\Aexcursions.pubxml" />
     <None Include="Properties\PublishProfiles\FLAT.pubxml" />
     <Content Include="Images\apple-touch-icon-precomposed.png" />

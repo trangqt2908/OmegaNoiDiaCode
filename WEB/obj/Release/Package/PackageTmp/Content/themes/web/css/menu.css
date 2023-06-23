@@ -393,25 +393,12 @@ header.header div.main-navigation.animated li.dropdown div.dropdown div.dropdown
 }
 
 .dropdown-buttons .menu-search-box .search-box i {
-    width: 55px;
-    height: 55px;
-    line-height: 55px;
-    top: 0;
-    right: 0;
-    position: absolute;
-    text-align: center;
-    margin-top: 0px;
-    background: #ffcd22;
-    color: #fff;
-    cursor: pointer;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+
 }
 
 
     .dropdown-buttons .menu-search-box .search-box i:hover {
-        background: #333;
+        /*background: #333;*/
     }
 
 .dropdown-buttons .dropdown-menu-right {

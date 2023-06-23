@@ -1077,7 +1077,7 @@ a.dropdown-item.active {
     letter-spacing: 0.4px;
     text-transform: capitalize;
 }
-
+/*
 .dropdown-buttons .menu-search-box .search-box i {
     font-size: 16px;
     height: 38px;
@@ -1085,7 +1085,7 @@ a.dropdown-item.active {
     position: absolute;
     width: 46px;
 }
-
+*/
 .form-control:focus {
     outline: none;
     text-decoration: none;
@@ -4900,25 +4900,25 @@ Shop Css Style
                 height: 44px;
             }
 
-.theme-sidebar .search-sidebar i {
-    background-color: #ffcd22;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-    height: 100%;
-    line-height: 44px;
-    margin-top: 0;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
-    width: 55px;
-}
-
-    .theme-sidebar .search-sidebar i:hover {
-        background-color: #091426;
-        color: #ffcd22;
+    .theme-sidebar .search-sidebar i {
+        background-color: #ffcd22;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        height: 100%;
+        line-height: 44px;
+        margin-top: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        width: 55px;
     }
+
+        .theme-sidebar .search-sidebar i:hover {
+            background-color: #091426;
+            color: #ffcd22;
+        }
 
 /***Cat Item***/
 
@@ -7755,7 +7755,7 @@ M > P Css Style
     margin-left: 20px;
 }
 
-.content p{
+.content p {
     font-size: 16px;
 }
 
@@ -7763,4 +7763,27 @@ M > P Css Style
 .btn-primary {
     background-color: #262967;
     border-color: #262967;
+}
+
+.blog-details ul li {
+    list-style: disc;
+}
+
+.btn-search {
+    width: 45px;
+    height: 37px;
+    line-height: 30px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    text-align: center;
+    margin-top: 0px;
+    background: #ffcd22;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    border: #ffcd22;
+    outline: none;
 }

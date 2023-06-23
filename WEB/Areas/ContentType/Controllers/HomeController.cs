@@ -201,6 +201,7 @@ namespace WEB.Areas.ContentType.Controllers
                 }
             }
 
+            ViewBag.Description = db.WebModules.Where(x => x.UID == "tour-trong-nuoc").FirstOrDefault().Body;
 
             return PartialView(result.Take(take));
         }
@@ -496,6 +497,7 @@ namespace WEB.Areas.ContentType.Controllers
             }
 
 
+            ViewBag.Description = db.WebModules.Where(x => x.UID == "tour-nuoc-ngoai").FirstOrDefault().Body;
             return PartialView(result.Take(take));
         }
 
