@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>D:\Publish\OmegaNoiDia</_PublishTargetUrl>
-    <History>True|2023-06-23T15:04:20.6785323Z;True|2023-06-22T05:57:36.3837808+07:00;True|2023-06-06T21:34:48.9354818+07:00;True|2023-05-30T06:08:47.0404409+07:00;True|2023-05-14T19:49:25.1336831+07:00;True|2023-05-14T16:45:03.9571015+07:00;True|2023-05-03T16:25:57.6253415+07:00;False|2023-04-17T22:01:26.5121326+07:00;False|2023-04-09T15:16:37.1576676+07:00;False|2023-04-09T15:07:32.2770117+07:00;False|2023-04-09T15:06:35.9816090+07:00;</History>
+    <History>True|2023-07-05T14:03:55.2350014Z;True|2023-06-23T22:04:20.6785323+07:00;True|2023-06-22T05:57:36.3837808+07:00;True|2023-06-06T21:34:48.9354818+07:00;True|2023-05-30T06:08:47.0404409+07:00;True|2023-05-14T19:49:25.1336831+07:00;True|2023-05-14T16:45:03.9571015+07:00;True|2023-05-03T16:25:57.6253415+07:00;False|2023-04-17T22:01:26.5121326+07:00;False|2023-04-09T15:16:37.1576676+07:00;False|2023-04-09T15:07:32.2770117+07:00;False|2023-04-09T15:06:35.9816090+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -516,7 +516,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:47</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/ContentPhoto/_PubDetail.cshtml">
-      <publishTime>06/22/2023 05:47:59</publishTime>
+      <publishTime>07/05/2023 21:03:16</publishTime>
     </File>
     <File Include="Areas/ContentType/Views/ContentPhoto/_PubDetail.mobile.cshtml">
       <publishTime>05/29/2023 21:00:47</publishTime>
@@ -1014,13 +1014,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:53</publishTime>
     </File>
     <File Include="bin/vi-VN/WEB.resources.dll">
-      <publishTime>06/23/2023 22:14:38</publishTime>
+      <publishTime>07/05/2023 21:03:43</publishTime>
     </File>
     <File Include="bin/vi-VN/WebModels.resources.dll">
       <publishTime>05/30/2023 05:50:34</publishTime>
     </File>
     <File Include="bin/WEB.dll">
-      <publishTime>06/23/2023 22:14:37</publishTime>
+      <publishTime>07/05/2023 21:03:43</publishTime>
     </File>
     <File Include="bin/Web.Helpers.dll">
       <publishTime>05/30/2023 05:50:33</publishTime>
@@ -1032,7 +1032,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2023 05:50:33</publishTime>
     </File>
     <File Include="bin/WEB.pdb">
-      <publishTime>06/23/2023 22:14:37</publishTime>
+      <publishTime>07/05/2023 21:03:43</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/29/2023 21:00:54</publishTime>
@@ -9366,7 +9366,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2023 21:00:48</publishTime>
     </File>
     <File Include="Uploads/settings.config">
-      <publishTime>06/23/2023 22:14:38</publishTime>
+      <publishTime>07/05/2023 21:03:43</publishTime>
     </File>
     <File Include="Uploads/settings.Debug.config">
       <publishTime>05/29/2023 21:00:48</publishTime>
