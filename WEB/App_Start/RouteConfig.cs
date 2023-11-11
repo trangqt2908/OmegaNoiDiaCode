@@ -13,7 +13,6 @@ namespace WEB
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
             routes.MapRoute(
                 name: "Search",
                 url: "tim-kiem",

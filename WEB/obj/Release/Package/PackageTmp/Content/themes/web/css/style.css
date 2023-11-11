@@ -149,7 +149,7 @@ a {
     a:focus,
     a:hover {
         text-decoration: none;
-        color: #ffcd22;
+        color: #262967;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out;
@@ -642,7 +642,7 @@ input:-moz-placeholder {
 /*Scrollup CSS*/
 
 .scrollup {
-    background-color: #ffcd22;
+    background-color: #262967;
     border-radius: 50%;
     bottom: 25px;
     color: #ffffff;
@@ -728,7 +728,7 @@ a.scrollup:focus i {
         }
 
         .top-bar .contact-info i {
-            color: #ffcd22;
+            color: #fff;
             font-size: 16px;
             margin-right: 6px;
         }
@@ -892,7 +892,7 @@ a.scrollup:focus i {
 .header .menu-style.menu-hover-2 .navbar-nav li.active a.nav-link,
 .header .menu-style.menu-hover-2 .navbar-nav li:focus a.nav-link,
 .header .menu-style.menu-hover-2 .navbar-nav li:hover a.nav-link {
-    background-color: #ffcd22;
+    background-color: #262967;
 }
 
     .header .menu-style.menu-hover-2 .navbar-nav li.active a.nav-link:hover,
@@ -2436,7 +2436,7 @@ canvas {
 
 .owl-navst.owl-theme .owl-nav .owl-prev,
 .owl-navst.owl-theme .owl-nav .owl-next {
-    background-color: rgba(251, 216, 50, 0.95);
+    background-color: rgba(38, 41, 103, 0.5);
     color: #fff;
     height: 32px;
     left: -7px;
@@ -2446,7 +2446,7 @@ canvas {
 
     .owl-navst.owl-theme .owl-nav .owl-prev:hover,
     .owl-navst.owl-theme .owl-nav .owl-next:hover {
-        background-color: rgba(251, 216, 50, 1);
+        background-color: #262967;
     }
 
 .owl-navst.owl-theme .owl-nav .owl-prev {
@@ -2569,7 +2569,7 @@ canvas {
     }
 
         .special-packages .post-title-box .price-box h5 {
-            color: #ffcd22;
+            color: #f52d2d;
             font-family: 'Roboto', sans-serif;
             font-size: 24px;
             font-weight: 600;
@@ -2679,7 +2679,7 @@ canvas {
     width: 37px;
     height: 35px;
     text-align: center;
-    background: rgba(15, 129, 197, 0.86) none repeat scroll 0 0;
+    background: rgba(38, 41, 103, 0.86) none repeat scroll 0 0;
     font-size: 15px;
     border-radius: 5px;
     color: #fff;
@@ -3589,7 +3589,7 @@ Blog Css Style
     }
 
         .blog-post .meta-box .inner .date {
-            color: #ffcd22;
+            color: #fff;
             float: left;
             font-size: 14px;
             font-weight: 600;
@@ -3601,7 +3601,7 @@ Blog Css Style
         }
 
             .blog-post .meta-box .inner .date:after {
-                background-color: #ffcd22;
+                background-color: #fff;
                 content: "";
                 height: 13px;
                 position: absolute;
@@ -3611,7 +3611,7 @@ Blog Css Style
             }
 
             .blog-post .meta-box .inner .date i {
-                color: #ffcd22;
+                color: #fff;
                 font-size: 14px;
             }
 
@@ -4694,7 +4694,7 @@ Inner Css Style
     }
 
         .inner-area p a {
-            color: #ffcd22;
+            color: #fff;
         }
 
             .inner-area p a:before {
@@ -4938,7 +4938,7 @@ Shop Css Style
         }
 
             .cat-item ul li a:hover {
-                color: #ffcd22;
+                color: #fff;
             }
 
         .cat-item ul li span {
@@ -5137,7 +5137,7 @@ Page Link Css Style
         }
 
         .shop-single .content h4 {
-            color: #ffcd22;
+            color: #f52d2d;
             font-size: 28px;
             margin-bottom: 12px;
             font-weight: 600;
@@ -6644,7 +6644,7 @@ footer ul.social-icon {
     }
 
     .border-style-3:after {
-        background: #ffcd22 none repeat scroll 0 0;
+        background: #fff none repeat scroll 0 0;
         border-radius: 0 50px 0 0;
         content: "";
         height: 3px;

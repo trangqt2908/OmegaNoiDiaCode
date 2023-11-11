@@ -284,6 +284,7 @@
     <Compile Include="Controllers\AdvertisementController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BookTourController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LiveSupportController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\WebLinkController.cs" />
@@ -2515,6 +2516,7 @@
     <Content Include="Content\themes\web\js\script.js" />
     <Content Include="Content\themes\web\js\slick.min.js" />
     <Content Include="favicon.ico" />
+    <Content Include="Images\404.jpg" />
     <Content Include="Images\abc.png" />
     <Content Include="Images\apple-touch-icon.png" />
     <Content Include="Images\logo-omega.png" />
@@ -2796,7 +2798,6 @@
     <Content Include="Areas\Admin\Views\SubscribeNotice\Index.cshtml" />
     <Content Include="Areas\ContentType\Views\Home\_GetLetter.cshtml" />
     <Content Include="Areas\Admin\Views\WebSlide\_IndexPublish.mobile.cshtml" />
-    <Content Include="Areas\ContentType\Views\ContentPhoto\_PubIndex.mobile.cshtml" />
     <Content Include="Areas\Admin\Views\AccessWebModule\_Index.cshtml" />
     <Content Include="Images\flags\de-DE.png" />
     <Content Include="Images\flags\fr-FR.png" />
@@ -3322,6 +3323,7 @@
     <Content Include="Views\WebSimpleContent\_Link.cshtml" />
     <Content Include="Views\WebSimpleContent\_Description.cshtml" />
     <Content Include="Views\WebSimpleContent\_Socical.cshtml" />
+    <Content Include="Views\Error\404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

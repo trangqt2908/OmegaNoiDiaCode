@@ -39,7 +39,11 @@ namespace WEB.Controllers
             {
                 var module = db.Set<WebModule>().Find(id);
                 TempData["WebModule"] = module;
-                ViewBag.Page = page;
+                ViewBag.Page = page; 
+                if (module == null)
+                {
+                    return View("~/Views/Error/404.cshtml");
+                }
                 return View(module);
 
             }
@@ -48,6 +52,12 @@ namespace WEB.Controllers
                 var module = db.Set<WebModule>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault();
                 TempData["WebModule"] = module;
                 ViewBag.Page = page;
+
+                if(module == null)
+                {
+                    return View("~/Views/Error/404.cshtml");
+                }    
+
                 return View(module);
             }
             else if (!string.IsNullOrEmpty(uid))
@@ -62,6 +72,10 @@ namespace WEB.Controllers
                                   || (ApplicationService.Culture == null))
 
                               select x).AsNoTracking().FirstOrDefault();
+                if (module == null)
+                {
+                    return View("~/Views/Error/404.cshtml");
+                }
                 return View(module);
             }
             else
@@ -74,8 +88,11 @@ namespace WEB.Controllers
                                   ((x.Culture == null ||
                                   (!string.IsNullOrEmpty(x.Culture) && x.Culture.Equals(ApplicationService.Culture)))
                                   || (ApplicationService.Culture == null))
-
                               select x).AsNoTracking().FirstOrDefault();
+                if (module == null)
+                {
+                    return View("~/Views/Error/404.cshtml");
+                }
                 return View(module);
             }
 
@@ -84,8 +101,17 @@ namespace WEB.Controllers
         {
             //ViewBag.ID = id;
             var module = db.Set<WebModule>().Where(x => x.MetaTitle.Equals(m_metatitle)).FirstOrDefault();
+            var content = db.Set<WebContent>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault();
+
+            if (metatitle != "Index" && m_metatitle != "Error")
+            {
+                if(module == null || content == null){
+                    return View("~/Views/Error/404.cshtml");
+                }                
+            }
             return View(module);
         }
+
         [OutputCache(Duration = 120, VaryByCustom = "culture")]
         public ActionResult SiteMap()
         {

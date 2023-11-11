@@ -533,7 +533,7 @@ namespace WEB.Areas.ContentType.Controllers
         [AllowAnonymous]
         public ActionResult _PubDetail(string metatitle)
         {
-            var content = db.Set<WebContent>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault(); ;
+            var content = db.Set<WebContent>().Where(x => x.MetaTitle.Equals(metatitle)).FirstOrDefault();
             return PartialView(content);
         }
 
